@@ -1,3 +1,4 @@
+package entities;
 
 
 import java.awt.*;
@@ -5,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.*;
 
 import processing.core.PImage;
+import Maze.*;
 
 public class Player extends MovingImage {
 
@@ -16,6 +18,10 @@ public class Player extends MovingImage {
 	private double friction;
 	private double gravity;
 	private double jumpStrength;
+	
+	int health;
+	
+	
 
 	public Player(PImage img, int x, int y) {
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);

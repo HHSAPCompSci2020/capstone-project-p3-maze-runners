@@ -1,10 +1,15 @@
+package Maze;
 
 
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import entities.Player;
 import processing.core.PApplet;
+
+import entities.*;
 
 public class DrawingSurface extends PApplet {
 
