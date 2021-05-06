@@ -24,9 +24,10 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	
 	//Our fields
-	private Maze maze1;//to be implemented
+	private ArrayList<Maze> allMazes;
+	private Maze maze0, maze1;//to be implemented
 	private static long iterations = 0;
-	
+	public int mazeSelected = 0, mazeChangeCooldown;
 	
 
 	public DrawingSurface() {
@@ -34,20 +35,36 @@ public class DrawingSurface extends PApplet {
 		keys = new ArrayList<Integer>();
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
-		obstacles.add(new Rectangle(200,400,400,50));
-		obstacles.add(new Rectangle(0,250,100,50));
-		obstacles.add(new Rectangle(700,250,100,50));
-		obstacles.add(new Rectangle(375,300,50,100));
-		obstacles.add(new Rectangle(300,250,200,50));
+//		obstacles.add(new Rectangle(200,400,400,50));
+//		obstacles.add(new Rectangle(0,250,100,50));
+//		obstacles.add(new Rectangle(700,250,100,50));
+//		obstacles.add(new Rectangle(375,300,50,100));
+//		obstacles.add(new Rectangle(300,250,200,50));
+		
+		
 		
 		maze1 = new Maze();
-		maze1.add(new Rectangle(200,400,400,50));
+		maze0 = new Maze();
+		allMazes = new ArrayList<Maze>();
+		int w =10;
+		maze1.add(new Rectangle(50,10, 700,w));
+
+		maze1.add(new Rectangle(200,150,400,w));
+		maze1.add(new Rectangle(600,150,w,70));
+		maze1.add(new Rectangle(700,150,w,300));
+		maze1.add(new Rectangle(500,300,200,w));
+		maze1.add(new Rectangle(300,300,100,w));
+		maze1.add(new Rectangle(400,300,w,100));
+		maze1.add(new Rectangle(400,400,200,w));
 		
-		maze1.add(new Rectangle(0,250,100,50));
-		maze1.add(new Rectangle(700,250,100,50));
-		maze1.add(new Rectangle(375,300,50,100));
-		maze1.add(new Rectangle(300,250,200,50));
+		allMazes.add(maze1);
+		maze0.add(new Rectangle(200,400,400,50));
+		maze0.add(new Rectangle(0,250,100,50));
+		maze0.add(new Rectangle(700,250,100,50));
+		maze0.add(new Rectangle(375,300,50,100));
+		maze0.add(new Rectangle(300,250,200,50));
 		
+		allMazes.add(maze0);
 		
 		spawnNewMario();
 	}
@@ -71,9 +88,15 @@ public class DrawingSurface extends PApplet {
 		if (iterations%10 == 0)
 //			System.out.println("iteration: "+iterations);
 		iterations++;
-		
+		if (mazeChangeCooldown > 0) {
+			mazeChangeCooldown--;
+		}
 		//Loading walls 
 		
+		obstacles = new ArrayList<Shape>();
+		for (Shape s: allMazes.get(mazeSelected).getWalls()) {
+			obstacles.add(s);
+		}
 		
 		
 		
@@ -132,7 +155,20 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			mario.moveBy(0, 1);
 		
-
+		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
+			if (mazeChangeCooldown == 0) {
+				mazeChangeCooldown = 30;
+				mazeSelected++;
+			}
+				
+			
+			
+			
+			if (mazeSelected >= allMazes.size()) {
+				mazeSelected = 0;
+			}
+		}
+		
 		mario.act(obstacles);
 
 		if (!screenRect.intersects(mario))
