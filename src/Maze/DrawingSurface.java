@@ -24,7 +24,8 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	
 	//Our fields
-	private Maze maze;
+	private Maze maze1;//to be implemented
+	private static long iterations = 0;
 	
 	
 
@@ -38,6 +39,16 @@ public class DrawingSurface extends PApplet {
 		obstacles.add(new Rectangle(700,250,100,50));
 		obstacles.add(new Rectangle(375,300,50,100));
 		obstacles.add(new Rectangle(300,250,200,50));
+		
+		maze1 = new Maze();
+		maze1.add(new Rectangle(200,400,400,50));
+		
+		maze1.add(new Rectangle(0,250,100,50));
+		maze1.add(new Rectangle(700,250,100,50));
+		maze1.add(new Rectangle(375,300,50,100));
+		maze1.add(new Rectangle(300,250,200,50));
+		
+		
 		spawnNewMario();
 	}
 
@@ -57,6 +68,14 @@ public class DrawingSurface extends PApplet {
 	// sequence and after the last line is read, the first 
 	// line is executed again.
 	public void draw() {
+		if (iterations%10 == 0)
+//			System.out.println("iteration: "+iterations);
+		iterations++;
+		
+		//Loading walls 
+		
+		
+		
 		
 		// drawing stuff
 		
@@ -119,6 +138,25 @@ public class DrawingSurface extends PApplet {
 		if (!screenRect.intersects(mario))
 			spawnNewMario();
 
+//		//draw gridLines but they dont scale with window
+//
+//		for (int i = 1; i <= width/100; i++) {
+//			pushStyle();
+//			this.color(0,0,0, 16);
+//			//horizontal lines
+//			line( 0, 100*i, DRAWING_WIDTH, 100*i);
+//			//vertical lines
+//			popStyle();
+//		}
+//		for (int i = 1; i <= DRAWING_WIDTH/100; i++) {
+//			pushStyle();
+//			this.color(0,0,0, 200);
+//			//horizontal lines
+//			line( 100*i, 0, 100*i , DRAWING_HEIGHT);
+//			//vertical lines
+//			popStyle();
+//
+//		}
 	}
 
 
