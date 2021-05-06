@@ -27,7 +27,18 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1;//to be implemented
 	private static long iterations = 0;
-	public int mazeSelected = 0, mazeChangeCooldown;
+	
+	/**mazeSelected is the index of allMazes that will be loaded on screen
+	 * 
+	 */
+	public int mazeSelected = 0;
+	
+	/**
+	 * mazeChangeCooldown is the number of draw() method calls that pass between each maze change.
+	 * So at mazeChangeCooldown = 30, you can change the maze at most once per 30 frames or once per 0.5 seconds
+	 */
+	public int mazeChangeCooldown;
+	
 	
 
 	public DrawingSurface() {
@@ -42,6 +53,9 @@ public class DrawingSurface extends PApplet {
 //		obstacles.add(new Rectangle(300,250,200,50));
 		
 		
+		String instructions = "Use arrow keys or WASD to move. \n"
+				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
+		System.out.println(instructions);
 		
 		maze1 = new Maze();
 		maze0 = new Maze();
