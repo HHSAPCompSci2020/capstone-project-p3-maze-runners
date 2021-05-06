@@ -19,6 +19,10 @@ public class Maze {
 		return walls;
 	}
 	
+	/**
+	 * 
+	 * @param shape the Shape object to add to the maze, should be a Rectangle
+	 */
 	public void add(Shape shape) {
 		walls.add(shape);
 	}
