@@ -116,7 +116,7 @@ public class DrawingSurface extends PApplet {
 		
 		// drawing stuff
 		
-		background(0,255,255);   
+		background(128,212,255);   
 
 		pushMatrix();
 
