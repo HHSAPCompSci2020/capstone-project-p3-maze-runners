@@ -2,11 +2,11 @@ package entities;
 
 import Maze.*;
 public class Ability {
-	private int ammo;
+	private int uses;
 	private boolean pickedUp;
 	
 	public Ability() {
-		ammo=0;
+		uses=0;
 		pickedUp=false;
 	}
 	
@@ -16,14 +16,14 @@ public class Ability {
 	 */
 	public void attack() {
 		//code
-		ammo--;
+		uses--;
 	}
 	
 	/**
 	 * drops the weapon/ability being held on player command or when ammo is out
 	 */
 	public void drop() {
-		if(ammo==0) {
+		if(uses==0) {
 			pickedUp=false;
 			//more code
 		}
