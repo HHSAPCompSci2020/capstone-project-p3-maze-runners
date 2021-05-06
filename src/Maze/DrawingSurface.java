@@ -89,11 +89,30 @@ public class DrawingSurface extends PApplet {
 		// modifying stuff
 
 		if (isPressed(KeyEvent.VK_LEFT))
-			mario.walk(-1);
+			mario.moveBy(-1,0);
+//			mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
-			mario.walk(1);
+			mario.moveBy(1,0);
+//			mario.walk(1);
 		if (isPressed(KeyEvent.VK_UP))
-			mario.jump();
+			mario.moveBy(0,-1);
+//			mario.jump();
+		if (isPressed(KeyEvent.VK_DOWN))
+			mario.moveBy(0, 1);
+		
+		//Chris: you can also use WASD to move
+		if (isPressed(KeyEvent.VK_A))
+			mario.moveBy(-1,0);
+//			mario.walk(-1);
+		if (isPressed(KeyEvent.VK_D))
+			mario.moveBy(1,0);
+//			mario.walk(1);
+		if (isPressed(KeyEvent.VK_W))
+			mario.moveBy(0,-1);
+//			mario.jump();
+		if (isPressed(KeyEvent.VK_S))
+			mario.moveBy(0, 1);
+		
 
 		mario.act(obstacles);
 

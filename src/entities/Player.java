@@ -12,14 +12,17 @@ public class Player extends MovingImage {
 
 	public static final int MARIO_WIDTH = 40;
 	public static final int MARIO_HEIGHT = 60;
-
-	private double xVelocity, yVelocity;
+	
+	//NOTE: Positive x is right and positive y or positive yVelocity is DOWN!!!
+	private double xVelocity, yVelocity; 
 	private boolean onASurface;
-	private double friction;
+	private double friction;//lower friction means you slow down faster, (velocity is multiplied by friction every act() call)
 	private double gravity;
 	private double jumpStrength;
 	
-	int health;
+	//New fields
+	private double speed; //higher speeds mean you move faster
+	private int health; //to be implemented
 	
 	
 
@@ -29,10 +32,23 @@ public class Player extends MovingImage {
 		yVelocity = 0;
 		onASurface = false;
 		gravity = 0.7;
-		friction = .85;
+//		friction = .85;
+		friction = 0.6;
 		jumpStrength = 15;
+		
+		speed = 4.0;
 	}
-
+	//New movement methods
+	public void moveBy(int x, int y) {
+		if (xVelocity <= 10 && xVelocity >= -10) {
+			xVelocity += speed*x;
+		}
+		if (yVelocity <= 10 && yVelocity >= -10) {
+			yVelocity += speed*y;
+		}
+	}
+	
+	
 	// METHODS
 	public void walk(int dir) {
 		if (xVelocity <= 10 && xVelocity >= -10)
@@ -52,7 +68,10 @@ public class Player extends MovingImage {
 
 		// ***********Y AXIS***********
 
-		yVelocity += gravity; // GRAVITY
+		//Chris: turned off gravity
+//		yVelocity += gravity; // GRAVITY
+		
+		yVelocity *= friction;
 		double yCoord2 = yCoord + yVelocity;
 
 		Rectangle2D.Double strechY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(yVelocity));
