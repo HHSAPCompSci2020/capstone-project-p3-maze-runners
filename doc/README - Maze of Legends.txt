@@ -1,6 +1,6 @@
 ﻿[Maze of Legends]
 Authors: Christopher Lew, Lakshya Shrivastava, Joseph Huang
-Revision: 5/5/2021
+Revision: 5/6/2021
 
 
 Introduction: 
@@ -35,7 +35,7 @@ Must-have Features:
 *  There will be a GUI: Images represent the parts of the maze and all its components, as well as the characters and enemies represented on screen by images. 
 *  User input (keyboard): The user can use the arrow keys or wasd to control the character as they move around the maze and to interact with elements like monsters or powerups
 * There are power ups that the player can collect by touching them. There’ll be several powerups that change how the user can progress through the game like increasing movement, changing how much maze is visible.  Powerups: grant temporary more movespeed, vision, etc
-* Monsters are also on the maze and can hurt/kill the player. The player can avoid the monsters or attack them. Player has a limited amount of health/lives and will be killed after a certain amount of bad encounters with monsters. Different monsters will have a different AI and have different behavior.[b][c]
+* Monsters are also on the maze and can hurt/kill the player. The player can avoid the monsters or attack them. Player has a limited amount of health/lives and will be killed after a certain amount of bad encounters with monsters. Different monsters will have a different AI and have different behavior.
 * The character can freely walk on the screen, not bound to a grid, but cannot walk out of bounds or through walls. 
 
 
@@ -51,7 +51,7 @@ Want-to-have Features:
 Stretch Features:
 [These are features that we agree a fully complete version of this program would have, but that you probably will not have time to implement. A good final project does not necessarily need to have any of these completed at all. At least 3 are required. Again, fully describe each.]
 *  First Person, make the maze in first person perspective and render the maze and everything 3D to make it more difficult
-*  Maze has [d]levels that randomly generate, and becomes more and more difficult
+*  Maze has [b]levels that randomly generate, and becomes more and more difficult
 *  Monetary system to buy gear/characterskins/permanent powerups etc
 * Leaderboard feature over firebase of fastest completion time
 
@@ -87,7 +87,7 @@ Credits:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Joseph Huang - started ability class and interaction with player, 
 * Christopher Lew - Changed Player behavior and controlling, Made it so you can create and load new Mazes in the code, 
-* Lakshya Shrivastava - maze creation
+* Lakshya Shrivastava - maze creation, 3D Maze worshop
 
 
 
@@ -98,6 +98,4 @@ Credits:
 
 
 [a]In my opinion, this seems a little bit similar to the Labyrinth lab. You should make sure that you have features that make the game unique. Overall, it seems like it would be a fun game.
-[b]Can these monsters move?
-[c]How many will you have?
-[d]Isn't this the same as your first Want-to-have Feature?
+[b]Isn't this the same as your first Want-to-have Feature?
