@@ -12,7 +12,8 @@ import processing.core.PApplet;
 import entities.*;
 
 public class DrawingSurface extends PApplet {
-
+//
+	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 
@@ -89,7 +90,10 @@ public class DrawingSurface extends PApplet {
 
 
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
+		player = new Creature(loadImage("data/player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
+		//use forward slash for folders outside src I guess?
+		//
+		//
 	}
 
 	public void spawnNewEnemy() {
