@@ -3,7 +3,7 @@ package entities;
 
 import Maze.*;
 
-public class Hitbox {
+public class Hitbox {//UNUSED
 
 	/**
 	 * collide with other characters, abilities, or walls

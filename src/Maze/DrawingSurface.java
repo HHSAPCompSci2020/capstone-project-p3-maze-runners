@@ -6,7 +6,7 @@ import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import entities.Player;
+import entities.Creature;
 import processing.core.PApplet;
 
 import entities.*;
@@ -18,7 +18,7 @@ public class DrawingSurface extends PApplet {
 
 	private Rectangle screenRect;
 
-	private Player mario;
+	private Creature player;
 	private ArrayList<Shape> obstacles;
 
 	private ArrayList<Integer> keys;
@@ -84,12 +84,12 @@ public class DrawingSurface extends PApplet {
 
 		allMazes.add(maze0);
 
-		spawnNewMario();
+		spawnNewPlayer();
 	}
 
 
-	public void spawnNewMario() {
-		mario = new Player(loadImage("notmario.png"), DRAWING_WIDTH/2-Player.MARIO_WIDTH/2,50);
+	public void spawnNewPlayer() {
+		player = new Creature(loadImage("notmario.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
 	}
 
 	public void spawnNewEnemy() {
@@ -97,9 +97,9 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewAbility() {
- for(int i=0; i< abilityNum; i++) {
-	 
- }
+		for(int i=0; i< abilityNum; i++) {
+
+		}
 	}
 
 	// The statements in the setup() function 
@@ -151,7 +151,7 @@ public class DrawingSurface extends PApplet {
 		}
 
 
-		mario.draw(this);
+		player.draw(this);
 
 		popMatrix();
 
@@ -159,29 +159,29 @@ public class DrawingSurface extends PApplet {
 		// modifying stuff
 
 		if (isPressed(KeyEvent.VK_LEFT))
-			mario.moveBy(-1,0);
+			player.moveBy(-1,0);
 		//			mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
-			mario.moveBy(1,0);
+			player.moveBy(1,0);
 		//			mario.walk(1);
 		if (isPressed(KeyEvent.VK_UP))
-			mario.moveBy(0,-1);
+			player.moveBy(0,-1);
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_DOWN))
-			mario.moveBy(0, 1);
+			player.moveBy(0, 1);
 
 		//Chris: you can also use WASD to move
 		if (isPressed(KeyEvent.VK_A))
-			mario.moveBy(-1,0);
+			player.moveBy(-1,0);
 		//			mario.walk(-1);
 		if (isPressed(KeyEvent.VK_D))
-			mario.moveBy(1,0);
+			player.moveBy(1,0);
 		//			mario.walk(1);
 		if (isPressed(KeyEvent.VK_W))
-			mario.moveBy(0,-1);
+			player.moveBy(0,-1);
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_S))
-			mario.moveBy(0, 1);
+			player.moveBy(0, 1);
 
 		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
 			if (mazeChangeCooldown == 0) {
@@ -197,10 +197,10 @@ public class DrawingSurface extends PApplet {
 			}
 		}
 
-		mario.act(obstacles);
+		player.act(obstacles);
 
-		if (!screenRect.intersects(mario))
-			spawnNewMario();
+		if (!screenRect.intersects(player))
+			spawnNewPlayer();
 
 		//		//draw gridLines but they dont scale with window
 		//
