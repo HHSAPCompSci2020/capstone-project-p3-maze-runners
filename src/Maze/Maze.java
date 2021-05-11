@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import entities.*;
 
 public class Maze {
-	private ArrayList<Enemy> enemies;
+	private ArrayList<Creature> creatures;
 	private ArrayList<Shape> walls;
 	
 	public Maze() {
@@ -17,6 +17,10 @@ public class Maze {
 	 */
 	public ArrayList<Shape> getWalls(){
 		return walls;
+	}
+	
+	public ArrayList<Creature> getCreatures(){
+		return creatures;
 	}
 	
 	/**

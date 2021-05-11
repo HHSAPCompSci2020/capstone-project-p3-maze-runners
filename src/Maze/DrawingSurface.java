@@ -21,7 +21,7 @@ public class DrawingSurface extends PApplet {
 
 	private Creature player;
 	private ArrayList<Shape> obstacles;
-
+	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
 
 	//Our fields
@@ -96,7 +96,7 @@ public class DrawingSurface extends PApplet {
 		//
 	}
 
-	public void spawnNewEnemy() {
+	public void spawnNewEnemy(Enemy enemy) {
 
 	}
 
@@ -124,12 +124,23 @@ public class DrawingSurface extends PApplet {
 			mazeChangeCooldown--;
 		}
 		//Loading walls 
-
+		Maze thisMaze = allMazes.get(mazeSelected);
+		//SETUP the walls and enemies stored in each Maze here:
 		obstacles = new ArrayList<Shape>();
-		for (Shape s: allMazes.get(mazeSelected).getWalls()) {
+		for (Shape s: thisMaze.getWalls()) {
 			obstacles.add(s);
 		}
-
+		
+		for (Creature creature: thisMaze.getCreatures()) {
+			creatures.add(creature);
+			
+			if (creature instanceof Enemy) {
+				spawnNewEnemy((Enemy)creature); 
+				//spawnNewEnemy() yet to be implemented
+				//could also make this a method of the Enemy class
+			}
+			
+		}
 
 
 		// drawing stuff
@@ -153,6 +164,8 @@ public class DrawingSurface extends PApplet {
 				rect(r.x,r.y,r.width,r.height);
 			}
 		}
+		
+		
 
 
 		player.draw(this);
