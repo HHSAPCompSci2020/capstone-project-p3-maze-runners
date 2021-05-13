@@ -15,7 +15,14 @@ public abstract class Enemy extends Creature {
 	protected  double health;
 	private int x,y;
 	
-	public Enemy(PImage img, int x, int y, int width, int height) {
+	public Enemy(PImage img, int x, int y) 
+	{
+		super(img,x,y);
+		super.maxHealth = 3;
+	}
+	
+	public Enemy(PImage img, int x, int y, int width, int height) 
+	{
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
 	}

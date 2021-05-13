@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import entities.Creature;
+import entities.enemies.TimingTrap;
 import processing.core.PApplet;
 
 import entities.*;
@@ -20,6 +21,7 @@ public class DrawingSurface extends PApplet {
 	private Rectangle screenRect;
 
 	private Creature player;
+	private TimingTrap timingTrap;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
@@ -86,6 +88,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze0);
 
 		spawnNewPlayer();
+		spawnNewEnemy(timingTrap);
 	}
 
 
@@ -95,9 +98,10 @@ public class DrawingSurface extends PApplet {
 		//
 		//
 	}
-
+	
 	public void spawnNewEnemy(Enemy enemy) {
-
+//		 if(enemy instanceof TimingTrap)
+			 enemy = new TimingTrap(loadImage("D:\\School Work\\AP CS\\GitHub\\capstone-project-p3-maze-runners\\data\\TimingTrap.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
 	}
 
 	public void spawnNewAbility() {
@@ -169,6 +173,7 @@ public class DrawingSurface extends PApplet {
 
 
 		player.draw(this);
+		timingTrap.draw(this);
 
 		popMatrix();
 
