@@ -1,4 +1,5 @@
 package entities;
+import processing.core.PImage;
 
 import Maze.*;
 public class Ability {
