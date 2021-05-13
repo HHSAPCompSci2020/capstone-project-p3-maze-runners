@@ -63,21 +63,34 @@ Class List:
 * Main
    * Has the main() method and creates different Panels (JPanel, OptionPanel).
 * Maze
-   * represents the maze and has the walls, creatures(enemies), and player. Add things(players, enemies, etc) to the maze, and call draw for each one.
+   * has an ArrayList<Shape> obstacles representing the walls of the maze
+   * has an ArrayList<Creatures> that hold all the Enemies that spawn on that particular maze
+   * Can access every Creature in the current maze to access that Creature’s act(), draw(), and other methods
+   * When calling a Creature’s act() method, you can pass in the current Maze’s obstacles
+* Creature
+   * Superclass of moving entities in the game including enemy and player, includes methods for collisions of other creatures and walls.
 * Player
-   * Represents the character that the player controls
+   * Represents the character that the player controls. Is a Subclass of Creature
 * Enemy
-   * Represents the superclass of enemies that have a move speed, health, 
-* Hitbox
-   * Represents the physical space an entity takes up. Methods in hitbox will be used for collisions. 
+   * Represents the superclass of enemies that have a move speed, health. Subclass of Creature
+* TimingTrap
+   * Enemy that attacks with spikes every couple seconds appearing in a set location on the floor
 * Ability/tool 
    * Represents the superclass of items that can be picked up in the maze to boost the player or give players the skill to do something. Subclasses would include the specific ability to power up
+* FireAblility
+   * Basic attack ability that shoots individual flames
+* Heal
+   * Adds a certain amount of of health to the player
+* Invisibility
+   * Grants temporary invisibility to the player
 * DrawingSurface
    * Draws everything on the screen and has the maze and entities on the screen
 * MovingImage
    * Represent a moving image and allows us to use a image as the player
 * OptionPanel
    * Creates a button for player to access options and menu
+* Hitbox
+   * Square around the images for detecting collisions
 
 
 
@@ -85,15 +98,16 @@ Class List:
 Credits:
 [Gives credit for project components. This includes both internal credit (your group members) and external credit (other people, websites, libraries). To do this:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
-* Joseph Huang - started ability class and interaction with player, 
-* Christopher Lew - Changed Player behavior and controlling, Made it so you can create and load new Mazes in the code, 
-* Lakshya Shrivastava - maze creation, 3D Maze worshop, added timing trap
+* Joseph Huang - started ability class and interaction with player, spawning Abilities on the screen
+* Christopher Lew - Changed Player behavior and controlling, Made it so you can create and load new Mazes in the code, made it so a Maze holds the walls and Creatures that spawn on the screen, did 
+* Lakshya Shrivastava -maze creation, 3D Maze worshop, added timing trap to maze, rendering the maze in 2D
 
 
 
 
 * Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
 * Luigi image https://static.wikia.nocookie.net/papermario/images/6/6d/Luigi0.png/revision/latest?cb=20130525184424 
+* Spike image https://www.pikpng.com/transpng/iixmiRb/ 
 * Shelby’s “Processing - Game and Physics Demo - AP Version” starter demo (for its graphics and collisions)
 
 
