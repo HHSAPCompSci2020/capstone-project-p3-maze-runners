@@ -65,7 +65,7 @@ public class DrawingSurface extends PApplet {
 		maze1 = new Maze();
 		maze0 = new Maze();
 		allMazes = new ArrayList<Maze>();
-		int w =10;
+		int w =5;
 		maze1.add(new Rectangle(50,10, 700,w));
 
 		maze1.add(new Rectangle(200,150,400,w));
@@ -90,7 +90,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("data/player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
+		player = new Creature(loadImage("D:\\School Work\\AP CS\\GitHub\\capstone-project-p3-maze-runners\\data\\player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
 		//use forward slash for folders outside src I guess?
 		//
 		//
@@ -131,16 +131,16 @@ public class DrawingSurface extends PApplet {
 			obstacles.add(s);
 		}
 		
-		for (Creature creature: thisMaze.getCreatures()) {
-			creatures.add(creature);
-			
-			if (creature instanceof Enemy) {
-				spawnNewEnemy((Enemy)creature); 
-				//spawnNewEnemy() yet to be implemented
-				//could also make this a method of the Enemy class
-			}
-			
-		}
+//		for (Creature creature: thisMaze.getCreatures()) {
+//			creatures.add(creature);
+//			
+//			if (creature instanceof Enemy) {
+//				spawnNewEnemy((Enemy)creature); 
+//				//spawnNewEnemy() yet to be implemented
+//				//could also make this a method of the Enemy class
+//			}
+//			
+//		}
 
 
 		// drawing stuff
