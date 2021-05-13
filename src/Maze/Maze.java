@@ -10,6 +10,7 @@ public class Maze {
 	
 	public Maze() {
 		walls = new ArrayList<Shape>();
+		creatures = new ArrayList<Creature>();
 	}
 	
 	/**
@@ -27,9 +28,18 @@ public class Maze {
 	 * 
 	 * @param shape the Shape object to add to the maze, should be a Rectangle
 	 */
-	public void add(Shape shape) {
+	public void addWall(Shape shape) {
 		walls.add(shape);
 	}
+	
+	/**
+	 * 
+	 */
+	public void addEnemy(Enemy enemy) {
+		creatures.add(enemy);
+	}
+	
+	
 	
 	
 }
