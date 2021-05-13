@@ -23,9 +23,9 @@ public abstract class Enemy extends Creature {
 	/**
 	 * the pattern in which the enemy moves around
 	 */
-	 abstract private void move();
+	 abstract public void move();
 
-	 abstract private void attack();
+	 abstract public void attack();
 	 
 	 abstract public void reduceHealth();
 }
