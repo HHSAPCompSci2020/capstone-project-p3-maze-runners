@@ -13,7 +13,7 @@ import processing.core.PApplet;
 import entities.*;
 
 public class DrawingSurface extends PApplet {
-//
+	//
 	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -22,6 +22,7 @@ public class DrawingSurface extends PApplet {
 
 	private Creature player;
 	private TimingTrap timingTrap;
+	private Heal heals;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
@@ -79,19 +80,21 @@ public class DrawingSurface extends PApplet {
 		maze1.addWall(new Rectangle(400,300,w,100));
 		maze1.addWall(new Rectangle(400,400,200,w));
 		maze1.addEnemy(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
-		
-		
+		//maze1.addAbility
+
+
 		allMazes.add(maze1);
 		maze0.addWall(new Rectangle(200,400,400,50));
 		maze0.addWall(new Rectangle(0,250,100,50));
 		maze0.addWall(new Rectangle(700,250,100,50));
 		maze0.addWall(new Rectangle(375,300,50,100));
 		maze0.addWall(new Rectangle(300,250,200,50));
-		
-		
+
+
 		allMazes.add(maze0);
 
 		spawnNewPlayer();
+		spawnNewAbility();
 		spawnNewEnemy(timingTrap);
 	}
 
@@ -102,25 +105,24 @@ public class DrawingSurface extends PApplet {
 		//
 		//
 	}
-	
+
 	public void spawnNewEnemy(Enemy enemy) {
-		
-//		enemies.add(new TimingTrap(loadImage("data//player.png"), 100,50, 50, 50) );
+
+		//		enemies.add(new TimingTrap(loadImage("data//player.png"), 100,50, 50, 50) );
 		//enemies.add(e);
-		
+
 
 	}
 
 	public void spawnNewAbility() {
 		int x,y;
 		//x=x(Math.RANDOM); maybe i should just hard code the spots where the ability spawn
-		for(int i=0; i< abilityNum; i++) {
-			//Ability skills = new Ability(PImage img, x, y);
-		}
+		heals = new Heal(loadImage("data//heal.png"), 250, 250, 40, 60);
+
 		/*
 		 * final int num = 0;
-final JPanel pane;
-Timer timer = new Timer(10, new ActionListener() {
+			final JPanel pane;
+		Timer timer = new Timer(10, new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         num++;
         pane.repaint();
@@ -199,12 +201,12 @@ timer.start();
 
 
 		player.draw(this);
-//		timingTrap.draw(this);
+		//		timingTrap.draw(this);
 		for (Creature c: thisMaze.getCreatures()) {
 			c.draw(this);
 		}
-		
-		
+
+
 		popMatrix();
 
 
@@ -234,8 +236,8 @@ timer.start();
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
-		*/
-		
+		 */
+
 		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
 			if (mazeChangeCooldown == 0) {
 				mazeChangeCooldown = 30;
@@ -251,7 +253,7 @@ timer.start();
 		}
 		//make Creatures act
 		player.act(obstacles);
-		
+
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();
 
