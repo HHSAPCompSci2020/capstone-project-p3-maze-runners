@@ -199,7 +199,7 @@ timer.start();
 
 
 		player.draw(this);
-		TimingTrap.draw(this);
+//		timingTrap.draw(this);
 		for (Creature c: thisMaze.getCreatures()) {
 			c.draw(this);
 		}
