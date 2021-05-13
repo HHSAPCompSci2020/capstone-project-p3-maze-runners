@@ -1,0 +1,35 @@
+# # # # # # # # # # # # # # #
+# C . . . . . . . . . . . . #
+# . # # # # . # # # . # # . #
+# . # . . . T # # . . # . . #
+# . # U # . # # . . # # . # #
+# . # . . . # # # . . # . . .
+# . # # # . . # . T # # # # .
+# U # # # . . . # . # # # # .
+# . # # # . # # # . # # # # .
+# . # . . . . . . . # # @ . .
+# . P . # # # # # . # # # # #
+# . # . . . . . . . . . . . .
+# . # # # P # # # T # # # . #
+# X . T . . . . . . . . . . #
+# # # # # # # # # # # # # # #
+
+
+
+
+
+
+
+
+C -> Starting Location
+# -> Walls
+. -> walking spaces
+U -> Unbeatable enemy, Find another way
+T -> Timing Trap
+P -> Enemy that can be passed with an invisibility powerup
+@ -> Invisibility powerup
+
+
+If you fall off to the right you will be returned to the begining
+
+more to be added?
