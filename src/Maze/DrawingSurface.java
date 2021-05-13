@@ -91,7 +91,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("data/player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
+		player = new Creature(loadImage("data//player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
 		//use forward slash for folders outside src I guess?
 		//
 		//
