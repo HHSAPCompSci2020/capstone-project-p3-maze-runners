@@ -3,7 +3,7 @@ package entities;
 import Maze.*;
 import processing.core.PImage;
 public class Ability extends MovingImage{
-	private int uses;
+	protected int uses;
 	private boolean pickedUp;
 	int locX, locY;
 	
@@ -11,15 +11,14 @@ public class Ability extends MovingImage{
 	public Ability(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 
-		uses=0;
 		pickedUp=false;
-		locX=x;
-		locY=y;
+		//locX=x;
+	//	locY=y;
 	}
 	
 	public Ability(PImage img, int x, int y) {
 		super(img, x, y, 40, 60);
-		uses=0;
+		//uses=0;
 		pickedUp=false;
 	}
 	
@@ -30,8 +29,7 @@ public class Ability extends MovingImage{
 	 * attacks depending on the type of ability currently being used
 	 * e.g. Shooting a bullet, striking once with a sword
 	 */
-	public void attack() {
-		//code
+	public void use() {
 		uses--;
 	}
 	
@@ -41,7 +39,7 @@ public class Ability extends MovingImage{
 	public void drop() {
 		if(uses==0) {
 			pickedUp=false;
-			//more code
+			//more code//visually drop the ability
 		}
 	}
 	

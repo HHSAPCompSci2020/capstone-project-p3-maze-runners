@@ -84,6 +84,16 @@ public class Creature extends MovingImage {
 			yVelocity -= jumpStrength;
 	}
 
+	public void hurt() {
+		health--;
+	}
+	
+	public void heal(int x) {
+		if(health+x<=maxHealth) {
+		health+=x;}else {
+			health=maxHealth;
+		}
+	}
 	public void act(ArrayList<Shape> obstacles) {
 		double xCoord = getX();
 		double yCoord = getY();
