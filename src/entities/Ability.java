@@ -1,16 +1,31 @@
 package entities;
-import processing.core.PImage;
 
 import Maze.*;
-public class Ability {
+import processing.core.PImage;
+public class Ability extends MovingImage{
 	private int uses;
 	private boolean pickedUp;
+	int locX, locY;
 	
-	public Ability() {
+	
+	public Ability(PImage img, int x, int y, int width, int height) {
+		super(img, x, y, width, height);
+
+		uses=0;
+		pickedUp=false;
+		locX=x;
+		locY=y;
+	}
+	
+	public Ability(PImage img, int x, int y) {
+		super(img, x, y, 40, 60);
 		uses=0;
 		pickedUp=false;
 	}
 	
+	public void aquire() {
+		pickedUp=true;//if player collides with an ability on the floor
+	}
 	/**
 	 * attacks depending on the type of ability currently being used
 	 * e.g. Shooting a bullet, striking once with a sword

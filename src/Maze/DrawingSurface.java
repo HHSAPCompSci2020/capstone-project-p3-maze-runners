@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 import entities.Creature;
 import processing.core.PApplet;
-
+import processing.core.PImage;
 import entities.*;
 
 public class DrawingSurface extends PApplet {
-//
+	//
 	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -23,6 +23,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
+	private ArrayList<Enemy> enemies;
 
 	//Our fields
 	private ArrayList<Maze> allMazes;
@@ -97,13 +98,35 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewEnemy(Enemy enemy) {
+		//enemies.add(e);
 
 	}
 
 	public void spawnNewAbility() {
+		int x,y;
+		//x=x(Math.RANDOM); maybe i should just hard code the spots where the ability spawn
 		for(int i=0; i< abilityNum; i++) {
-
+			//Ability skills = new Ability(PImage img, x, y);
 		}
+		/*
+		 * final int num = 0;
+final JPanel pane;
+Timer timer = new Timer(10, new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        num++;
+        pane.repaint();
+    }
+});
+pane = new JPanel() {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, num, 0, null);
+    }
+});
+
+timer.start();
+		 */
 	}
 
 	// The statements in the setup() function 
@@ -130,17 +153,17 @@ public class DrawingSurface extends PApplet {
 		for (Shape s: thisMaze.getWalls()) {
 			obstacles.add(s);
 		}
-		
-//		for (Creature creature: thisMaze.getCreatures()) {
-//			creatures.add(creature);
-//			
-//			if (creature instanceof Enemy) {
-//				spawnNewEnemy((Enemy)creature); 
-//				//spawnNewEnemy() yet to be implemented
-//				//could also make this a method of the Enemy class
-//			}
-//			
-//		}
+
+		//		for (Creature creature: thisMaze.getCreatures()) {
+		//			creatures.add(creature);
+		//			
+		//			if (creature instanceof Enemy) {
+		//				spawnNewEnemy((Enemy)creature); 
+		//				//spawnNewEnemy() yet to be implemented
+		//				//could also make this a method of the Enemy class
+		//			}
+		//			
+		//		}
 
 
 		// drawing stuff
@@ -164,8 +187,8 @@ public class DrawingSurface extends PApplet {
 				rect(r.x,r.y,r.width,r.height);
 			}
 		}
-		
-		
+
+
 
 
 		player.draw(this);
