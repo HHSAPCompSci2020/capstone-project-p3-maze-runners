@@ -33,7 +33,7 @@ public class Maze {
 	}
 	
 	/**
-	 * 
+	 * adds an enemy to the maze
 	 */
 	public void addEnemy(Enemy enemy) {
 		creatures.add(enemy);
