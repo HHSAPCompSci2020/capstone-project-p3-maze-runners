@@ -22,23 +22,35 @@ public class TimingTrap extends Enemy {
 		isVisible = true;
 	}
 	
+	/**
+	 * spikes dont move, they are toggled at a fixed location
+	 */
 	public void move() 
 	{
 		
 	}
 
+	/**
+	 * To be implemented
+	 */
 	public void attack() 
 	{
 		
 	}
 	
+	/**
+	 * This method will be used to toggle whether the spike will be draw or not and if they will hurt the player or not. 
+	 * @param state the state to which the visibility will be changed
+	 */
 	private void setVisibility(boolean state)
 	{
 		isVisible = state;
 	}
 	
+	/**
+	 * This method does nothing because the spikes cannot be destroyed.
+	 */
 	public void reduceHealth()
 	{
-		health -= 1;
 	}
 }

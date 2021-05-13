@@ -63,7 +63,7 @@ Class List:
 * Main
    * Has the main() method and creates different Panels (JPanel, OptionPanel).
 * Maze
-   * represents the maze and has the walls, player, and enemies on screen
+   * represents the maze and has the walls, creatures(enemies), and player. Add things(players, enemies, etc) to the maze, and call draw for each one.
 * Player
    * Represents the character that the player controls
 * Enemy
