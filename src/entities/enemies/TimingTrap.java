@@ -11,6 +11,12 @@ import processing.core.PImage;
 public class TimingTrap extends Enemy {
 	private boolean isVisible;
 	
+	public TimingTrap(PImage img, int x, int y)
+	{
+		super(img, x, y);
+		isVisible = true;
+	}
+	
 	public TimingTrap(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		isVisible = true;

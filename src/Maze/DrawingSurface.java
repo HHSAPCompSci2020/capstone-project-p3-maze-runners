@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import entities.Creature;
 import entities.enemies.TimingTrap;
 import processing.core.PApplet;
-import processing.core.PImage;
+
 import entities.*;
 
 public class DrawingSurface extends PApplet {
-	//
+//
 	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -21,6 +21,7 @@ public class DrawingSurface extends PApplet {
 	private Rectangle screenRect;
 
 	private Creature player;
+	private TimingTrap timingTrap;
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
@@ -91,6 +92,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze0);
 
 		spawnNewPlayer();
+		spawnNewEnemy(timingTrap);
 	}
 
 
@@ -100,7 +102,7 @@ public class DrawingSurface extends PApplet {
 		//
 		//
 	}
-
+	
 	public void spawnNewEnemy(Enemy enemy) {
 		
 //		enemies.add(new TimingTrap(loadImage("data//player.png"), 100,50, 50, 50) );
@@ -196,9 +198,8 @@ timer.start();
 		}
 
 
-
-
 		player.draw(this);
+		TimingTrap.draw(this);
 		for (Creature c: thisMaze.getCreatures()) {
 			c.draw(this);
 		}

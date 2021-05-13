@@ -87,7 +87,7 @@ Credits:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Joseph Huang - started ability class and interaction with player, 
 * Christopher Lew - Changed Player behavior and controlling, Made it so you can create and load new Mazes in the code, 
-* Lakshya Shrivastava - maze creation, 3D Maze worshop
+* Lakshya Shrivastava - maze creation, 3D Maze worshop, added timing trap
 
 
 
