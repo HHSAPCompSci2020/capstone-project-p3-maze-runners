@@ -10,11 +10,15 @@ public FireAbility(PImage img, int x, int y, int width, int height) {
 	xVelocity = 0;
 	yVelocity = 0;
 	speed=2.5;
+	super.uses=10;
 }
 
-public void attack() {
-super.attack();
-//moveBy();
+public void use() {
+super.use();
+if(super.uses>0) {
+	//moveBy();
+
+}
 }
 
 public void moveBy(int x, int y) {
