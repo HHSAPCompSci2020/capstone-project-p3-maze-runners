@@ -22,12 +22,12 @@ public class TimingTrap extends Enemy {
 		isVisible = true;
 	}
 	
-	private  void move() 
+	public void move() 
 	{
 		
 	}
 
-	private void attack() 
+	public void attack() 
 	{
 		
 	}
