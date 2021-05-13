@@ -21,7 +21,9 @@ public class Ability extends MovingImage{
 		//uses=0;
 		pickedUp=false;
 	}
-	
+	/**
+	 * pick up an ability if the player collides with it
+	 */
 	public void aquire() {
 		pickedUp=true;//if player collides with an ability on the floor
 	}
