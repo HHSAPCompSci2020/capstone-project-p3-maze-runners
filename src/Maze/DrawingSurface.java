@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import entities.Creature;
+import entities.enemies.TimingTrap;
 import processing.core.PApplet;
 import processing.core.PImage;
 import entities.*;
@@ -67,23 +68,26 @@ public class DrawingSurface extends PApplet {
 		maze0 = new Maze();
 		allMazes = new ArrayList<Maze>();
 		int w =5;
-		maze1.add(new Rectangle(50,10, 700,w));
+		maze1.addWall(new Rectangle(50,10, 700,w));
 
-		maze1.add(new Rectangle(200,150,400,w));
-		maze1.add(new Rectangle(600,150,w,70));
-		maze1.add(new Rectangle(700,150,w,300));
-		maze1.add(new Rectangle(500,300,200,w));
-		maze1.add(new Rectangle(300,300,100,w));
-		maze1.add(new Rectangle(400,300,w,100));
-		maze1.add(new Rectangle(400,400,200,w));
-
+		maze1.addWall(new Rectangle(200,150,400,w));
+		maze1.addWall(new Rectangle(600,150,w,70));
+		maze1.addWall(new Rectangle(700,150,w,300));
+		maze1.addWall(new Rectangle(500,300,200,w));
+		maze1.addWall(new Rectangle(300,300,100,w));
+		maze1.addWall(new Rectangle(400,300,w,100));
+		maze1.addWall(new Rectangle(400,400,200,w));
+		maze1.addEnemy(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
+		
+		
 		allMazes.add(maze1);
-		maze0.add(new Rectangle(200,400,400,50));
-		maze0.add(new Rectangle(0,250,100,50));
-		maze0.add(new Rectangle(700,250,100,50));
-		maze0.add(new Rectangle(375,300,50,100));
-		maze0.add(new Rectangle(300,250,200,50));
-
+		maze0.addWall(new Rectangle(200,400,400,50));
+		maze0.addWall(new Rectangle(0,250,100,50));
+		maze0.addWall(new Rectangle(700,250,100,50));
+		maze0.addWall(new Rectangle(375,300,50,100));
+		maze0.addWall(new Rectangle(300,250,200,50));
+		
+		
 		allMazes.add(maze0);
 
 		spawnNewPlayer();
@@ -98,7 +102,10 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewEnemy(Enemy enemy) {
+		
+//		enemies.add(new TimingTrap(loadImage("data//player.png"), 100,50, 50, 50) );
 		//enemies.add(e);
+		
 
 	}
 
@@ -192,7 +199,11 @@ timer.start();
 
 
 		player.draw(this);
-
+		for (Creature c: thisMaze.getCreatures()) {
+			c.draw(this);
+		}
+		
+		
 		popMatrix();
 
 
@@ -209,7 +220,7 @@ timer.start();
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_DOWN))
 			player.moveBy(0, 1);
-
+		/*
 		//Chris: you can also use WASD to move
 		if (isPressed(KeyEvent.VK_A))
 			player.moveBy(-1,0);
@@ -222,7 +233,8 @@ timer.start();
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
-
+		*/
+		
 		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
 			if (mazeChangeCooldown == 0) {
 				mazeChangeCooldown = 30;
@@ -236,31 +248,12 @@ timer.start();
 				mazeSelected = 0;
 			}
 		}
-
+		//make Creatures act
 		player.act(obstacles);
-
+		
 		if (!screenRect.intersects(player))
 			spawnNewPlayer();
 
-		//		//draw gridLines but they dont scale with window
-		//
-		//		for (int i = 1; i <= width/100; i++) {
-		//			pushStyle();
-		//			this.color(0,0,0, 16);
-		//			//horizontal lines
-		//			line( 0, 100*i, DRAWING_WIDTH, 100*i);
-		//			//vertical lines
-		//			popStyle();
-		//		}
-		//		for (int i = 1; i <= DRAWING_WIDTH/100; i++) {
-		//			pushStyle();
-		//			this.color(0,0,0, 200);
-		//			//horizontal lines
-		//			line( 100*i, 0, 100*i , DRAWING_HEIGHT);
-		//			//vertical lines
-		//			popStyle();
-		//
-		//		}
 	}
 
 
