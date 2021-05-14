@@ -86,7 +86,8 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze1);
 		maze0.addWall(new Rectangle(0,0,1000,w));
 		maze0.addWall(new Rectangle(0,0,w,1000));
-		maze0.addWall(new Rectangle(795,0,w,1000));
+		maze0.addWall(new Rectangle(795,0,w,200));
+		maze0.addWall(new Rectangle(795,450,w,250));
 		maze0.addWall(new Rectangle(0,595,1000,w));
 
 
@@ -99,7 +100,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("data//player.png"), DRAWING_WIDTH/2-Creature.DEFAULT_WIDTH/2,50);
+		player = new Creature(loadImage("data//player.png"), 5,15);
 		//use forward slash for folders outside src I guess?
 		//
 		//
