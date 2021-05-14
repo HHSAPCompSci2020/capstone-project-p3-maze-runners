@@ -69,7 +69,7 @@ public class DrawingSurface extends PApplet {
 		maze1 = new Maze();
 		maze0 = new Maze();
 		allMazes = new ArrayList<Maze>();
-		int w =5;
+		int w =7;
 		maze1.addWall(new Rectangle(50,10, 700,w));
 
 		maze1.addWall(new Rectangle(200,150,400,w));
@@ -89,6 +89,13 @@ public class DrawingSurface extends PApplet {
 		maze0.addWall(new Rectangle(795,0,w,200));
 		maze0.addWall(new Rectangle(795,450,w,250));
 		maze0.addWall(new Rectangle(0,595,1000,w));
+		maze0.addWall(new Rectangle(35, 35, 250, w));
+		maze0.addWall(new Rectangle(35, 35, w, 430));
+		maze0.addWall(new Rectangle(35, 495, w, 100));
+		maze0.addWall(new Rectangle(315, 35, 200, w));
+		maze0.addWall(new Rectangle(545, 35, 212, w));
+		maze0.addWall(new Rectangle(750, 42, w, 115));
+		maze0.addWall(new Rectangle(700,200,100,w));
 
 
 		allMazes.add(maze0);
@@ -100,7 +107,7 @@ public class DrawingSurface extends PApplet {
 
 
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("data//player.png"), 5,15);
+		player = new Creature(loadImage("data//player.png"), 8,10, 25, 25);
 		//use forward slash for folders outside src I guess?
 		//
 		//
