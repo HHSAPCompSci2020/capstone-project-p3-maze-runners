@@ -84,11 +84,10 @@ public class DrawingSurface extends PApplet {
 
 
 		allMazes.add(maze1);
-		maze0.addWall(new Rectangle(200,400,400,50));
-		maze0.addWall(new Rectangle(0,250,100,50));
-		maze0.addWall(new Rectangle(700,250,100,50));
-		maze0.addWall(new Rectangle(375,300,50,100));
-		maze0.addWall(new Rectangle(300,250,200,50));
+		maze0.addWall(new Rectangle(0,0,1000,w));
+		maze0.addWall(new Rectangle(0,0,w,1000));
+		maze0.addWall(new Rectangle(795,0,w,1000));
+		maze0.addWall(new Rectangle(0,595,1000,w));
 
 
 		allMazes.add(maze0);
