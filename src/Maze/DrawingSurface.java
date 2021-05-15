@@ -97,13 +97,16 @@ public class DrawingSurface extends PApplet {
 		maze0.addWall(new Rectangle(545, 442, 300, WALL_THICKNESS ));
 		maze0.addWall(new Rectangle(440,200,105,WALL_THICKNESS ));
 		maze0.addWall(new Rectangle(440,235,105,WALL_THICKNESS ));
+		maze0.addWall(new Rectangle(35, 563, 280, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(345, 563, 200, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(576, 563, 190, WALL_THICKNESS));
 		
 //		vertical lines
 		maze0.addWall(new Rectangle(0,0,WALL_THICKNESS ,1000));
 		maze0.addWall(new Rectangle(795,0,WALL_THICKNESS ,200));
 		maze0.addWall(new Rectangle(795,450,WALL_THICKNESS ,250));
 		maze0.addWall(new Rectangle(35, 35, WALL_THICKNESS , 430));
-		maze0.addWall(new Rectangle(35, 495, WALL_THICKNESS , 100));
+		maze0.addWall(new Rectangle(35, 495, WALL_THICKNESS , 68));
 		maze0.addWall(new Rectangle(750, 42, WALL_THICKNESS , 128));
 		maze0.addWall(new Rectangle(545, 35, WALL_THICKNESS , 407));
 		maze0.addWall(new Rectangle(750, 235, WALL_THICKNESS , 165));
@@ -115,6 +118,8 @@ public class DrawingSurface extends PApplet {
 		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 285,50, 30, 25));
 		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 515,50, 30, 25));
 		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 440,208, 30, 26));
+		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 205,570, 30, 25));
+		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 546,570, 30, 25));
 		
 		allMazes.add(maze0);
 
