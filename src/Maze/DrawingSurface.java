@@ -32,7 +32,7 @@ public class DrawingSurface extends PApplet {
 
 	//Our fields
 	private ArrayList<Maze> allMazes;
-	private Maze maze0, maze1;//to be implemented
+	private Maze maze0, maze1, txtMaze0;//to be implemented
 	private static long iterations = 0;
 
 	/**mazeSelected is the index of allMazes that will be loaded on screen
@@ -133,7 +133,14 @@ public class DrawingSurface extends PApplet {
 		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 546,570, 30, 25));
 		
 		allMazes.add(maze0);
-
+		
+		txtMaze0 = new Maze("data//txtmaze0.txt", 15, 15);
+		allMazes.add(txtMaze0);
+		System.out.println("3rd maze in allMazes:");
+		txtMaze0.printCharArray(txtMaze0.grid);
+		
+		
+		
 		spawnNewPlayer();
 		spawnNewAbility();
 		spawnNewEnemy(timingTrap);
@@ -283,14 +290,15 @@ timer.start();
 			if (mazeChangeCooldown == 0) {
 				mazeChangeCooldown = 30;
 				mazeSelected++;
+				if (mazeSelected >= allMazes.size()) {
+					mazeSelected = 0;
+				}
+				System.out.println("Maze Selected: "+mazeSelected);
 			}
 
-
-
-
-			if (mazeSelected >= allMazes.size()) {
-				mazeSelected = 0;
-			}
+			
+			
+//			if (mazeChangeCooldown == 0)
 		}
 		//make Creatures act
 		player.act(obstacles);

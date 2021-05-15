@@ -6,17 +6,25 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import processing.core.PApplet;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.util.ArrayList;
+import entities.*;
 
 import entities.*;
 
 public class Maze {
 	private ArrayList<Creature> creatures;
 	private ArrayList<Shape> walls;
+	
+	public int playerStartX, playerStartY;
 	/**
 	 * grid is a 2D char array initialized from Maze's constructor, indexes are at [row #][col #]
 	 */
 	protected char[][] grid;
 	private final int DEFAULT_MAZE_WIDTH = 20, DEFAULT_MAZE_HEIGHT = 20;
+	private final int CELL_WIDTH = 50, CELL_HEIGHT = 50;
 	
 	//characters that represents objects in grid
 	
@@ -28,6 +36,8 @@ public class Maze {
 		walls = new ArrayList<Shape>();
 		creatures = new ArrayList<Creature>();
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
+		playerStartX = 100; 
+		playerStartY = 100;
 	}
 	
 	public Maze(String filename, int gridWidth, int gridHeight) {
@@ -68,8 +78,15 @@ public class Maze {
 	private void createMazeFromGrid() {
 		for (int i = 0; i < grid.length; i ++) {
 			for (int j = 0; j < grid[i].length; j++) {
+				char c = grid[i][j];
+				if (c == '#') {
+					//Rectangle(int x, int y, int width, int height)
+					Rectangle r = new Rectangle(j*CELL_WIDTH, i * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT); 
+					
+				}
 				
-				walls.add(e)
+				
+//				walls.add(e)
 			}
 		}
 		
@@ -122,6 +139,24 @@ public class Maze {
 		} else {
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
 		}
+	}
+	
+	/**
+	 * @pre chars is a rectangular 2D char array that is initialized
+	 * @param chars
+	 */
+	public void printCharArray(char[][] chars) {
+		String s0 = "";
+		for (int i = 0; i < chars.length; i++) {
+			if (i!= 0)
+				s0+= "\n";
+			for (int j = 0; j < chars[0].length; j++) {
+				
+				s0+= chars[i][j] + " ";
+				
+			}
+		}
+		System.out.println(s0);
 	}
 	
 	

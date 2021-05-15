@@ -1,0 +1,35 @@
+###############
+#C............#
+#.####.###.##.#
+#.#...T##..#..#
+#.#U#.##..##.##
+#.#...###..#...
+#.###..#.T####.
+#U###...#.####.
+#.###.###.####.
+#.#.......##@..
+#.P.#####.#####
+#.#...........#
+#.###P###T###.#
+#X.T..........#
+###############
+\
+
+
+
+
+
+
+
+C->StartingLocation
+#->Walls
+.->walkingspaces
+U->Unbeatableenemy,Findanotherway
+T->TimingTrap
+P->Enemythatcanbepassedwithaninvisibilitypowerup
+@->Invisibilitypowerup 
+
+
+If you fall off to the right you will be returned to the begining
+
+More to be added?
