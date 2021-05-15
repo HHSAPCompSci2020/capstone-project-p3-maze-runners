@@ -15,11 +15,14 @@ public class TimingTrap extends Enemy {
 	{
 		super(img, x, y);
 		isVisible = true;
+		symbol = 'T';
 	}
 	
 	public TimingTrap(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		isVisible = true;
+		symbol = 'T';
+
 	}
 	
 	/**

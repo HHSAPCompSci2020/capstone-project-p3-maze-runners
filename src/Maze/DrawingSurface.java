@@ -134,19 +134,21 @@ public class DrawingSurface extends PApplet {
 		
 		allMazes.add(maze0);
 		
-		txtMaze0 = new Maze("data//txtmaze0.txt", 15, 15);
+		txtMaze0 = new Maze(this, "data//txtmaze0.txt", 15, 15);
 		allMazes.add(txtMaze0);
 		System.out.println("3rd maze in allMazes:");
 		txtMaze0.printCharArray(txtMaze0.grid);
 		
 		
 		
-		spawnNewPlayer();
+		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 		spawnNewAbility();
 		spawnNewEnemy(timingTrap);
 	}
 
-
+	public void spawnNewPlayer(int x, int y) {
+		player = new Creature(loadImage("data//player.png"), x,y, 25, 25);
+	}
 	public void spawnNewPlayer() {
 		player = new Creature(loadImage("data//player.png"), 8,10, 25, 25);
 		//use forward slash for folders outside src I guess?
@@ -286,25 +288,15 @@ timer.start();
 			player.moveBy(0, 1);
 		 
 
-		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
-			if (mazeChangeCooldown == 0) {
-				mazeChangeCooldown = 30;
-				mazeSelected++;
-				if (mazeSelected >= allMazes.size()) {
-					mazeSelected = 0;
-				}
-				System.out.println("Maze Selected: "+mazeSelected);
-			}
-
-			
-			
-//			if (mazeChangeCooldown == 0)
+		if (isPressed(KeyEvent.VK_M)) { //TOGGLE MAZE
+			String s = "" + toggleMaze();
+			System.out.println("Maze Selected: "+s);
 		}
 		//make Creatures act
 		player.act(obstacles);
 
 		if (!screenRect.intersects(player))
-			spawnNewPlayer();
+			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 
 	}
 
@@ -320,6 +312,24 @@ timer.start();
 
 	public boolean isPressed(Integer code) {
 		return keys.contains(code);
+	}
+	
+	
+	/**
+	 * Change the current maze on the screen from allMazes.get(i) to allMazes.get(i+1) (or allMazes.get(0) if i+1 > allMazes.size() )
+	 * @return the index of the new Maze selected that will be shown on the screen
+	 */
+	public int toggleMaze() {
+		if (mazeChangeCooldown == 0) {
+			mazeChangeCooldown = 30;
+			mazeSelected++;
+			if (mazeSelected >= allMazes.size()) {
+				mazeSelected = 0;
+			}
+			System.out.println("Maze Selected: "+mazeSelected);
+			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY); 
+		}
+		return mazeSelected;
 	}
 
 

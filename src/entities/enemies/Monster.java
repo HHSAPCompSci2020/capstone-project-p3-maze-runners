@@ -18,6 +18,7 @@ public class Monster extends Enemy {
 		directions[1] = EAST;
 		directions[2] = WEST; 
 		directions[3] = SOUTH; 
+		symbol = 'M';
 	}
 
 	public void move() {

@@ -11,7 +11,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
 import entities.*;
-
+import entities.enemies.TimingTrap;
 import entities.*;
 
 public class Maze {
@@ -24,10 +24,10 @@ public class Maze {
 	 */
 	protected char[][] grid;
 	private final int DEFAULT_MAZE_WIDTH = 20, DEFAULT_MAZE_HEIGHT = 20;
-	private final int CELL_WIDTH = 50, CELL_HEIGHT = 50;
+	private int cellWidth = 40, cellHeight = 40;
 	
 	//characters that represents objects in grid
-	
+	private final char START = 'C', WALL = '#', WALKABLE = '.';
 	
 	
 	
@@ -36,16 +36,17 @@ public class Maze {
 		walls = new ArrayList<Shape>();
 		creatures = new ArrayList<Creature>();
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
-		playerStartX = 100; 
-		playerStartY = 100;
+		playerStartX = 25; 
+		playerStartY = 25;
 	}
 	
-	public Maze(String filename, int gridWidth, int gridHeight) {
+	public Maze(PApplet marker, String filename, int gridWidth, int gridHeight) {
 		walls = new ArrayList<Shape>();
 		creatures = new ArrayList<Creature>();
 		
 		grid = new char[gridHeight][gridWidth];
 		this.readData(filename, grid);
+		addObjectsFromGrid(marker);
 	}
 	
 	
@@ -75,14 +76,28 @@ public class Maze {
 		creatures.add(enemy);
 	}
 	
-	private void createMazeFromGrid() {
-		for (int i = 0; i < grid.length; i ++) {
-			for (int j = 0; j < grid[i].length; j++) {
-				char c = grid[i][j];
-				if (c == '#') {
+	private void addObjectsFromGrid(PApplet marker) {
+		for (int row = 0; row < grid.length; row ++) {
+			for (int col = 0; col < grid[row].length; col++) {
+				char c = grid[row][col];
+				int x = col*cellWidth;
+				int y = row*cellHeight;
+				
+				
+				if (c == WALL) {//wall
 					//Rectangle(int x, int y, int width, int height)
-					Rectangle r = new Rectangle(j*CELL_WIDTH, i * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT); 
-					
+					Rectangle r = new Rectangle(col*cellWidth, row * cellHeight, cellWidth, cellHeight); 
+					walls.add(r);
+				}
+				if(c == START) {//start location
+					playerStartX = col*cellWidth;
+					playerStartY = row*cellHeight;
+				}
+				if(c == WALKABLE) {
+					//add nothing
+				}
+				if (c == TimingTrap.symbol) {//TimingTrap
+					this.addEnemy(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
 				}
 				
 				

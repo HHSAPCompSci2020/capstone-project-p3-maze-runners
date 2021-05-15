@@ -11,8 +11,10 @@ import processing.core.PImage;
  */
 public class Blockade extends Enemy{
 
+	
 	public Blockade(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
+		symbol = 'B';
 	}
 
 	public void move() {

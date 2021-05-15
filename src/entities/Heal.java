@@ -3,10 +3,11 @@ import entities.Ability;
 import processing.core.PImage;
 public class Heal extends Ability{
 	Creature a ;
+	
 	public Heal(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.uses=1;
-
+		symbol = 'h';
 	}
 	/**
 	 * adds health to the player

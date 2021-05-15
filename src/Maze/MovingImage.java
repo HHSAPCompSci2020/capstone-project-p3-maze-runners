@@ -15,6 +15,7 @@ public class MovingImage extends Rectangle2D.Double {
 	
 	// FIELDS
 	private PImage image;
+	public static char symbol = '?';
 	
 	// CONSTRUCTORS
 	public MovingImage(PImage img, int x, int y, int w, int h) {
