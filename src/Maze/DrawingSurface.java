@@ -100,6 +100,13 @@ public class DrawingSurface extends PApplet {
 		maze0.addWall(new Rectangle(35, 563, 280, WALL_THICKNESS));
 		maze0.addWall(new Rectangle(345, 563, 200, WALL_THICKNESS));
 		maze0.addWall(new Rectangle(576, 563, 190, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(70, 530, 500, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(600, 530, 200, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(105, 70, 50, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(185, 70, 65, WALL_THICKNESS));
+		maze0.addWall(new Rectangle(77, 140, 140 , WALL_THICKNESS));
+		maze0.addWall(new Rectangle(140, 105, 140, WALL_THICKNESS ));
+		maze0.addWall(new Rectangle(103, 175, 182, WALL_THICKNESS ));
 		
 //		vertical lines
 		maze0.addWall(new Rectangle(0,0,WALL_THICKNESS ,1000));
@@ -112,7 +119,10 @@ public class DrawingSurface extends PApplet {
 		maze0.addWall(new Rectangle(750, 235, WALL_THICKNESS , 165));
 		maze0.addWall(new Rectangle(508, 42, WALL_THICKNESS , 128));
 		maze0.addWall(new Rectangle(315, 42, WALL_THICKNESS , 128));
-		maze0.addWall(new Rectangle(278, 42, WALL_THICKNESS , 128));
+		maze0.addWall(new Rectangle(278, 42, WALL_THICKNESS , 132));
+		maze0.addWall(new Rectangle(70, 330, WALL_THICKNESS, 200));
+		maze0.addWall(new Rectangle(70, 70, WALL_THICKNESS, 230));
+		maze0.addWall(new Rectangle(105, 77, WALL_THICKNESS, 35));
 
 //		Timing Traps
 		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 285,50, 30, 25));
