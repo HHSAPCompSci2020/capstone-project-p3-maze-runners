@@ -13,7 +13,8 @@ import Maze.*;
 public abstract class Enemy extends Creature {
 
 	protected  double health;
-	private int x,y;
+	protected int x;
+	protected int y;
 	
 	public Enemy(PImage img, int x, int y) 
 	{

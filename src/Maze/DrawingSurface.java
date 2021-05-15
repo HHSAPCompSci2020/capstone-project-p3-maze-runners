@@ -18,6 +18,7 @@ public class DrawingSurface extends PApplet {
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 	private static final int WALL_THICKNESS = 7;
+	
 
 	private Rectangle screenRect;
 
