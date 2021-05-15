@@ -264,7 +264,7 @@ timer.start();
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_DOWN))
 			player.moveBy(0, 1);
-		/*
+		
 		//Chris: you can also use WASD to move
 		if (isPressed(KeyEvent.VK_A))
 			player.moveBy(-1,0);
@@ -277,7 +277,7 @@ timer.start();
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
-		 */
+		 
 
 		if (isPressed(KeyEvent.VK_M)) { //toggle which maze
 			if (mazeChangeCooldown == 0) {
