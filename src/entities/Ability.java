@@ -2,7 +2,7 @@ package entities;
 
 import Maze.*;
 import processing.core.PImage;
-public class Ability extends MovingImage{
+public class Ability extends Creature{
 	protected int uses;
 	private boolean pickedUp;
 	int locX, locY;

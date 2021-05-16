@@ -14,7 +14,7 @@ public class Heal extends Ability{
 	 * @param x the ammount of healing from the item
 	 */
 	public void healing(int x) {
-		//super.health+=x; this method if we make ability extend creature not moving image
+		super.health+=x; 
 	}
 	/**
 	 * heals by adding 1 health to the player
