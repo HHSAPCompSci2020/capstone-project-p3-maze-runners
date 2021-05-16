@@ -174,13 +174,14 @@ public class Maze {
 		System.out.println(s0);
 	}
 	
-	public boolean removeCreature(Creature c) {
-		boolean successfullyRemoved = false;
-		if (creatures.remove(c) ) {
-			successfullyRemoved = true;
-		}
-		return successfullyRemoved;
-	}
+//	public boolean removeCreature(Creature c) {
+//		boolean successfullyRemoved = false;
+//		if (creatures.remove(c) ) {
+//			successfullyRemoved = true;
+//		}
+//		return successfullyRemoved;
+//	}
 	
+		
 	
 }

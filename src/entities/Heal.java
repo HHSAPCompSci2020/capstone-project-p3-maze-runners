@@ -8,6 +8,7 @@ public class Heal extends Ability{
 		super(img, x, y, width, height);
 		super.uses=1;
 		symbol = 'h';
+		imageName = "heal.png";
 	}
 	/**
 	 * adds health to the player

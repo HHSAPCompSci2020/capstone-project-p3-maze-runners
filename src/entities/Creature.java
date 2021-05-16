@@ -20,7 +20,7 @@ public class Creature extends MovingImage {
 	private double gravity;
 	private double jumpStrength;
 	
-	
+	protected static String imageName;
 	
 	//New fields
 	protected double speed; //higher speeds mean you move faster
@@ -59,10 +59,14 @@ public class Creature extends MovingImage {
 		speed = 4.0;
 	}
 	
-	protected boolean touchingCreature(Creature c) {
+	public boolean touchingCreature(Creature other) {
 		boolean isTouching = false;
 		
+		isTouching = other.intersects(this);
 		
+		if (isTouching) {
+			System.out.println("INTERSECTING! " + this);
+		}
 		return isTouching;
 	}
 	
@@ -75,9 +79,18 @@ public class Creature extends MovingImage {
 		p.takeDamage(1);
 	}
 	
-	public void removeSelfFromMaze(Maze m) {
-		
+	public void removeSelfFromMaze(Maze m, int index) {
+		m.getCreatures().remove(index);
 	}
+	
+	public String toString() {
+		String s = "";
+		s += "Creature at x="+this.x + "y="+this.y; 
+		return s;
+	}
+	
+	
+	
 	
 	
 	

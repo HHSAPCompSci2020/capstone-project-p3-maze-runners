@@ -22,7 +22,7 @@ public class DrawingSurface extends PApplet {
 
 	private Rectangle screenRect;
 
-	private Creature player;
+	private Player player;
 	private TimingTrap timingTrap;
 	private Heal heals;
 	private ArrayList<Shape> obstacles;
@@ -35,6 +35,9 @@ public class DrawingSurface extends PApplet {
 	private Maze maze0, maze1, txtMaze0;//to be implemented
 	private static long iterations = 0;
 
+	
+	
+	
 	/**mazeSelected is the index of allMazes that will be loaded on screen
 	 * 
 	 */
@@ -150,7 +153,7 @@ public class DrawingSurface extends PApplet {
 		player = new Player(loadImage("data//player.png"), x,y, 25, 25);
 	}
 	public void spawnNewPlayer() {
-		player = new Creature(loadImage("data//player.png"), 8,10, 25, 25);
+		player = new Player(loadImage("data//player.png"), 8,10, 25, 25);
 		//use forward slash for folders outside src I guess?
 		//
 		//
@@ -209,6 +212,7 @@ timer.start();
 		}
 		//Loading walls 
 		Maze thisMaze = allMazes.get(mazeSelected);
+		
 		//SETUP the walls and enemies stored in each Maze here:
 		obstacles = new ArrayList<Shape>();
 		for (Shape s: thisMaze.getWalls()) {
@@ -242,19 +246,29 @@ timer.start();
 		scale(ratioX, ratioY);
 
 		fill(100);
+		
+		
+		
 		for (Shape s : obstacles) {
 			if (s instanceof Rectangle) {
 				Rectangle r = (Rectangle)s;
 				rect(r.x,r.y,r.width,r.height);
 			}
 		}
+		
+		//Check if any creature is touching Player. If yes, make player take damage
+		for (Creature c: thisMaze.getCreatures()) {
+			c.draw(this);
+			if (c.touchingCreature(player)) {
+				player.takeDamage(1);
+			}
+			
+		}
 
 
 		player.draw(this);
 		//		timingTrap.draw(this);
-		for (Creature c: thisMaze.getCreatures()) {
-			c.draw(this);
-		}
+		
 
 
 		popMatrix();
