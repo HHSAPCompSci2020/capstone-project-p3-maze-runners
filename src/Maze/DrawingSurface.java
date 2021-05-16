@@ -147,7 +147,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewPlayer(int x, int y) {
-		player = new Creature(loadImage("data//player.png"), x,y, 25, 25);
+		player = new Player(loadImage("data//player.png"), x,y, 25, 25);
 	}
 	public void spawnNewPlayer() {
 		player = new Creature(loadImage("data//player.png"), 8,10, 25, 25);

@@ -28,6 +28,16 @@ public abstract class Enemy extends Creature {
 		super.maxHealth = 3;
 	}
 	
+	public void act(ArrayList<Shape> obstacles, Player p, Maze m) {
+		if (touchingPlayer(p)) {
+			p.getHit();
+		}
+		else {
+			super.act(obstacles);
+		}
+		
+	}
+	
 	/**
 	 * the pattern in which the enemy moves around
 	 */

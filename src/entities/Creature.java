@@ -10,8 +10,8 @@ import Maze.*;
 
 public class Creature extends MovingImage {
 
-	public static final int DEFAULT_WIDTH = 40;
-	public static final int DEFAULT_HEIGHT = 60;
+	public static final int DEFAULT_WIDTH = 50;
+	public static final int DEFAULT_HEIGHT = 50;
 	
 	//NOTE: Positive x is right and positive y or positive yVelocity is DOWN!!!
 	private double xVelocity, yVelocity; 
@@ -59,6 +59,21 @@ public class Creature extends MovingImage {
 		speed = 4.0;
 	}
 	
+	public boolean touchingPlayer(Player player) {
+		boolean isTouching = false;
+		
+		
+		return isTouching;
+	}
+	
+	private boolean getHit() {
+		health--;
+		return false;
+	}
+	
+	public void removeSelfFromMaze(Maze m) {
+		
+	}
 	
 	
 	
@@ -94,6 +109,9 @@ public class Creature extends MovingImage {
 			health=maxHealth;
 		}
 	}
+	
+
+	
 	public void act(ArrayList<Shape> obstacles) {
 		double xCoord = getX();
 		double yCoord = getY();
@@ -101,7 +119,8 @@ public class Creature extends MovingImage {
 		double height = getHeight();
 
 		// ***********Y AXIS***********
-
+		
+		
 		//Chris: turned off gravity
 //		yVelocity += gravity; // GRAVITY
 		
