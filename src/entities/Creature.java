@@ -59,16 +59,20 @@ public class Creature extends MovingImage {
 		speed = 4.0;
 	}
 	
-	public boolean touchingPlayer(Player player) {
+	protected boolean touchingCreature(Creature c) {
 		boolean isTouching = false;
 		
 		
 		return isTouching;
 	}
 	
-	private boolean getHit() {
+	protected boolean getHit() {
 		health--;
 		return false;
+	}
+	
+	protected void attackPlayer(Player p) {
+		p.takeDamage(1);
 	}
 	
 	public void removeSelfFromMaze(Maze m) {

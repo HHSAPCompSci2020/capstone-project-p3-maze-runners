@@ -29,8 +29,8 @@ public abstract class Enemy extends Creature {
 	}
 	
 	public void act(ArrayList<Shape> obstacles, Player p, Maze m) {
-		if (touchingPlayer(p)) {
-			p.getHit();
+		if (touchingCreature(p)) {
+			
 		}
 		else {
 			super.act(obstacles);
