@@ -97,6 +97,7 @@ public class Maze {
 					//add nothing
 				}
 				if (c == TimingTrap.symbol) {//TimingTrap
+					
 					this.addEnemy(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
 				}
 				

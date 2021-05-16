@@ -15,6 +15,7 @@ public abstract class Enemy extends Creature {
 	protected  double health;
 	protected int x;
 	protected int y;
+	protected int attackDamage;
 	
 	public Enemy(PImage img, int x, int y) 
 	{
@@ -43,7 +44,7 @@ public abstract class Enemy extends Creature {
 	 */
 	 abstract public void move();
 
-	 abstract public void attack();
+//	 abstract public void attack();
 	 
 	 abstract public void reduceHealth();
 }

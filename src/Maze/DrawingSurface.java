@@ -47,7 +47,9 @@ public class DrawingSurface extends PApplet {
 	 * mazeChangeCooldown is the number of draw() method calls that pass between each maze change.
 	 * So at mazeChangeCooldown = 30, you can change the maze at most once per 30 frames or once per 0.5 seconds
 	 */
-	public int mazeChangeCooldown;
+	private int mazeChangeCooldown;
+	
+	public static int playerDmgCooldown;
 
 	/**
 	 * how many abilities are to be spawned randomly in the maze
@@ -210,6 +212,10 @@ timer.start();
 		if (mazeChangeCooldown > 0) {
 			mazeChangeCooldown--;
 		}
+		if (playerDmgCooldown > 0) {
+			playerDmgCooldown--;
+		}
+
 		//Loading walls 
 		Maze thisMaze = allMazes.get(mazeSelected);
 		
@@ -260,17 +266,31 @@ timer.start();
 		for (Creature c: thisMaze.getCreatures()) {
 			c.draw(this);
 			if (c.touchingCreature(player)) {
-				player.takeDamage(1);
+				if (c instanceof Enemy) {
+					c.attack(player);
+					
+				}
+				
+				
 			}
 			
 		}
-
-
+		if (player.getHealth() <= 0) {
+			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
+		}
+		
+		
 		player.draw(this);
+		
+		
+		
 		//		timingTrap.draw(this);
 		
 
-
+		String healthStr = "Health: " + player.getHealth();
+		this.textSize(20);
+		this.stroke(0);
+		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 24);
 		popMatrix();
 
 
@@ -311,7 +331,8 @@ timer.start();
 
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
-
+		
+		
 	}
 
 

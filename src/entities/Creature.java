@@ -8,7 +8,7 @@ import java.util.*;
 import processing.core.PImage;
 import Maze.*;
 
-public class Creature extends MovingImage {
+public abstract class Creature extends MovingImage {
 
 	public static final int DEFAULT_WIDTH = 50;
 	public static final int DEFAULT_HEIGHT = 50;
@@ -75,9 +75,7 @@ public class Creature extends MovingImage {
 		return false;
 	}
 	
-	protected void attackPlayer(Player p) {
-		p.takeDamage(1);
-	}
+	abstract public void attack(Player p) ;
 	
 	public void removeSelfFromMaze(Maze m, int index) {
 		m.getCreatures().remove(index);

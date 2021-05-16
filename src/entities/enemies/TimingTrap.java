@@ -1,6 +1,7 @@
 package entities.enemies;
 
 import entities.Enemy;
+import entities.Player;
 import processing.core.PImage;
 
 /**
@@ -19,7 +20,7 @@ public class TimingTrap extends Enemy {
 		isVisible = true;
 		symbol = 'T';
 		imageName = "spike.png";
-
+		attackDamage = 1;
 	}
 	
 	public TimingTrap(PImage img, int x, int y, int width, int height) {
@@ -39,11 +40,14 @@ public class TimingTrap extends Enemy {
 	}
 
 	/**
-	 * To be implemented
+	 * 
+	 * @override
 	 */
-	public void attack() 
+	public void attack(Player p) 
 	{
-		
+		if (System.nanoTime() % 30 <= 15) {
+			p.takeDamage(1);
+		}
 	}
 	
 	/**
@@ -61,4 +65,14 @@ public class TimingTrap extends Enemy {
 	public void reduceHealth()
 	{
 	}
+	
+	public String toString() {
+		String s = "TimingTrap at x="+x + "y="+y;
+		return s;
+	}
+
+	
+
+	
+	
 }

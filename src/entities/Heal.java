@@ -29,4 +29,17 @@ public class Heal extends Ability{
 	public void use() {
 		super.use();
 	}
+	
+	public String toString() {
+		String s = "Heal ability at x="+this.x + "y="+this.y;
+		return s;
+	}
+	
+	/**
+	 * So a heal ability is an a Creature that deals negative damage
+	 */
+	public void attack(Player p) {
+		p.takeDamage(-1);
+		
+	}
 }

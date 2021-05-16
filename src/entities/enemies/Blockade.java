@@ -1,6 +1,7 @@
 package entities.enemies;
 
 import entities.Enemy;
+import entities.Player;
 import processing.core.PImage;
 
 /**
@@ -24,6 +25,12 @@ public class Blockade extends Enemy{
 	}
 
 	public void reduceHealth() {
+	}
+
+	@Override
+	public void attack(Player p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
