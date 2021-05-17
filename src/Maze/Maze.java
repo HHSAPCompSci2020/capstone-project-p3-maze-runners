@@ -134,6 +134,13 @@ public class Maze {
 					
 				}
 				
+//				if(c == 'S') //Exit
+//				{
+//					Spike e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
+//					this.addExit(e);
+//					
+//				}
+				
 //				if (System.nanoTime() % 100 == 0) {
 //					System.out.println("timing trap symbol: " + TimingTrap.getSymbol());
 //					System.out.println("heal symbol: " + Heal.getSymbol());
@@ -244,5 +251,20 @@ public class Maze {
 		
 	public char[][] getGrid(){
 		return grid;
+	}
+	
+	public String toString() {
+		String s0 = "";
+		
+		for (int i = 0; i < grid.length; i++) {
+			if (i!= 0)
+				s0+= "\n";
+			for (int j = 0; j < grid[0].length; j++) {
+				
+				s0+= grid[i][j] + " ";
+				
+			}
+		}
+		return s0;
 	}
 }

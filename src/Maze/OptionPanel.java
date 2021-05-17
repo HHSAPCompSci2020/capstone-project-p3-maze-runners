@@ -15,7 +15,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 		
 		JButton button = new JButton("Start Game");
-		JLabel instructions = new JLabel("Use arrow keys or WASD to move. Press 'm' to toggle which Maze is on screen");
+		JLabel instructions = new JLabel("Use arrow keys or WASD to move. Press '=' to enter Debug Mode");
 		
 		button.addActionListener(this);
 		

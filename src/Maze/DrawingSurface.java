@@ -36,7 +36,8 @@ public class DrawingSurface extends PApplet {
 	private static long iterations = 0;
 	public static int lives = 1;
 	
-	
+	private boolean debugEnabled = false;
+	private int toggleDebugCooldown;
 	
 	/**mazeSelected is the index of allMazes that will be loaded on screen
 	 * 
@@ -175,6 +176,7 @@ public class DrawingSurface extends PApplet {
 		
 		{
 		Maze thisMaze = allMazes.get(mazeSelected);
+		System.out.println("Maze: " + (mazeSelected) );
 		thisMaze.printCharArray(thisMaze.getGrid());
 		}
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
@@ -223,7 +225,7 @@ public class DrawingSurface extends PApplet {
 			e.draw(this);
 			if(e.touchingCreature(player))
 			{
-				System.out.println("Player is at exit");
+//				System.out.println("Player is at exit");
 				toggleMaze();
 			}
 		}
@@ -282,6 +284,9 @@ public class DrawingSurface extends PApplet {
 		}
 		if (playerDmgCooldown > 0) {
 			playerDmgCooldown--;
+		}
+		if (toggleDebugCooldown > 0) {
+			toggleDebugCooldown--;
 		}
 
 		if(mazeSelected < allMazes.size())
@@ -360,10 +365,22 @@ public class DrawingSurface extends PApplet {
 			popStyle();
 		}
 		
+		if (debugEnabled) {
+			pushStyle();
+			String debugStr = "Debug On\n"
+					+ "= toggle debug\n"
+					+ "m go to next maze\n"
+					+ "";
+			fill(32);
+			textSize(16);
+			this.text(debugStr, DRAWING_WIDTH - 200, 20);
+			
+		}
 
 
 		// modifying stuff
-
+		
+		
 		if (isPressed(KeyEvent.VK_LEFT))
 			player.moveBy(-1,0);
 		//			mario.walk(-1);
@@ -388,7 +405,12 @@ public class DrawingSurface extends PApplet {
 		//			mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
-		 
+		if (isPressed(KeyEvent.VK_EQUALS)) {
+			if (toggleDebugCooldown == 0) {
+				debugEnabled = !debugEnabled;
+				toggleDebugCooldown = 60;
+			}
+		}
 
 		if (isPressed(KeyEvent.VK_M)) { //TOGGLE MAZE
 			String s = "" + toggleMaze();
@@ -427,10 +449,12 @@ public class DrawingSurface extends PApplet {
 		if (mazeChangeCooldown == 0) {
 			mazeChangeCooldown = 30;
 			mazeSelected++;
-//			if (mazeSelected >= allMazes.size()) {
-//				mazeSelected = 0;
-//			}
-			System.out.println("Maze Selected: "+mazeSelected);
+			if (mazeSelected >= allMazes.size()) {
+				mazeSelected = 0;
+			}
+//			System.out.println("Maze Selected: "+mazeSelected);
+			
+			
 			if(mazeSelected < allMazes.size())
 				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);	 
 		}
