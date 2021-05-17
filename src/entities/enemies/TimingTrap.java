@@ -1,7 +1,9 @@
 package entities.enemies;
 
+import Maze.DrawingSurface;
 import entities.Enemy;
 import entities.Player;
+import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
@@ -43,10 +45,13 @@ public class TimingTrap extends Enemy {
 	 * 
 	 * @override
 	 */
-	public void attack(Player p) 
+	public void attack(Player p) //Chris:I think this is unused?
 	{
-		if (System.nanoTime() % 30 <= 15) {
+		if (DrawingSurface.iterations % 120 > 60) {
 			p.reduceHealthBy(1, x, y, width, height);
+		}
+		else {
+			System.out.println("safe to pass");
 		}
 	}
 	
@@ -75,6 +80,16 @@ public class TimingTrap extends Enemy {
 //		return tSymbol;
 //	}
 
-	
+	public void draw(PApplet marker) {
+		if (DrawingSurface.iterations % 120 <= 60) {
+			marker.pushStyle();
+			marker.fill(200,200,200);
+			marker.rect((float)x, (float)y, (float)width, (float)height);
+			
+		}
+		else {
+			super.draw(marker);
+		}
+	}
 	
 }

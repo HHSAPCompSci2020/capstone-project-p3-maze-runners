@@ -33,7 +33,7 @@ public class DrawingSurface extends PApplet {
 	//Our fields
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1, maze2, maze3;//to be implemented
-	private static long iterations = 0;
+	public static long iterations = 0;
 
 	
 	
@@ -213,9 +213,10 @@ timer.start();
 	// sequence and after the last line is read, the first 
 	// line is executed again.
 	public void draw() {
+		iterations++;
+
 		if (iterations%10 == 0)
 			//			System.out.println("iteration: "+iterations);
-			iterations++;
 		if (mazeChangeCooldown > 0) {
 			mazeChangeCooldown--;
 		}
