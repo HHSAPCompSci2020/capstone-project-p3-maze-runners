@@ -47,11 +47,11 @@ public class TimingTrap extends Enemy {
 	 */
 	public void attack(Player p) //Chris:I think this is unused?
 	{
-		if (DrawingSurface.iterations % 120 > 60) {
+		if (isVisible) {
 			p.reduceHealthBy(1, x, y, width, height);
 		}
 		else {
-			System.out.println("safe to pass");
+//			System.out.println("safe to pass");
 		}
 	}
 	
@@ -81,13 +81,16 @@ public class TimingTrap extends Enemy {
 //	}
 
 	public void draw(PApplet marker) {
+		
 		if (DrawingSurface.iterations % 120 <= 60) {
-			marker.pushStyle();
-			marker.fill(200,200,200);
-			marker.rect((float)x, (float)y, (float)width, (float)height);
+			setVisibility(false);
+//			marker.pushStyle();
+//			marker.fill(200,200,200);
+//			marker.rect((float)x, (float)y, (float)width, (float)height);
 			
 		}
 		else {
+			setVisibility(true);
 			super.draw(marker);
 		}
 	}
