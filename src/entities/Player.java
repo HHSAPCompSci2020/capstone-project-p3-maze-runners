@@ -33,7 +33,10 @@ public class Player extends Creature{
 	
 	public void healBy(int amount) {
 		health+= amount;
+		if(health>maxHealth)
+			health=maxHealth;
 	}
+	
 	public void act(ArrayList<Shape> obstacles) {
 		if (DrawingSurface.playerDmgCooldown == 0) {
 			speed= 2.0;
