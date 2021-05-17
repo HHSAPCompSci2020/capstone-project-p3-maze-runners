@@ -102,6 +102,7 @@ public class Maze {
 	public void addExit(Exit e)
 	{
 		exits.add(e);
+//		System.out.println(exits.toString());
 	}
 	
 	private void addObjectsFromGrid(PApplet marker) {
@@ -122,6 +123,13 @@ public class Maze {
 					this.addEnemy(temp);
 					
 				}
+				if(c == 'X')
+				{
+					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
+					this.addExit(e);
+					
+				}
+				
 //				if (System.nanoTime() % 100 == 0) {
 //					System.out.println("timing trap symbol: " + TimingTrap.getSymbol());
 //					System.out.println("heal symbol: " + Heal.getSymbol());
@@ -144,11 +152,7 @@ public class Maze {
 				if(c == WALKABLE) {
 					//add nothing
 				}
-				if(c == 'X')
-				{
-					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
-					this.addExit(e);
-				}
+				
 				
 				
 				

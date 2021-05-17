@@ -221,10 +221,7 @@ timer.start();
 			e.draw(this);
 			if(e.touchingCreature(player))
 			{
-				if(e instanceof Exit)
-				{
-					
-				}
+				System.out.println("Player is at exit");
 			}
 		}
 	}
