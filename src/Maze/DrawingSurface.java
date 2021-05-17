@@ -33,7 +33,7 @@ public class DrawingSurface extends PApplet {
 	//Our fields
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1, maze2, maze3, newMaze0, newMaze1;//to be implemented
-	public static long iterations = 0;
+	private static long iterations = 0;
 	public static int lives = 1;
 	
 	
@@ -430,7 +430,10 @@ public class DrawingSurface extends PApplet {
 		}
 		return mazeSelected;
 	}
-
+	
+	public static long getIterations() {
+		return iterations;
+	}
 
 }
 

@@ -11,12 +11,12 @@ import processing.core.PImage;
  * A timing trap will be spikes that appear and disappear every few seconds. 
  * If the player touches the timing trap, their health will go down by 1 
  */
-public class TimingTrap extends Enemy {
+public class Spike extends Enemy {
 	private boolean isVisible;
 	
 	private static char tSymbol = 'T';
 	
-	public TimingTrap(PImage img, int x, int y)
+	public Spike(PImage img, int x, int y)
 	{
 		super(img, x, y);
 		isVisible = true;
@@ -25,7 +25,7 @@ public class TimingTrap extends Enemy {
 		attackDamage = 1;
 	}
 	
-	public TimingTrap(PImage img, int x, int y, int width, int height) {
+	public Spike(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		isVisible = true;
 //		symbol = 'T';
@@ -61,7 +61,7 @@ public class TimingTrap extends Enemy {
 	 */
 	private void setVisibility(boolean state)
 	{
-		isVisible = state;
+		isVisible = true;
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class TimingTrap extends Enemy {
 	}
 	
 	public String toString() {
-		String s = "TimingTrap at x="+x + "y="+y;
+		String s = "Spike at x="+x + "y="+y;
 		return s;
 	}
 
