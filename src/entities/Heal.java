@@ -56,7 +56,7 @@ public class Heal extends Ability{
 	
 	public void draw(PApplet marker) {
 		marker.pushStyle();
-		marker.fill(124, 252, 0);
+		marker.fill(95, 252, 0);
 		marker.noStroke();
 		marker.rect((float)x, (float)(y+height/3), (float)width , (float)height/3);
 		marker.rect((float)(x+width/3), (float)(y), (float)width/3 , (float)height);
