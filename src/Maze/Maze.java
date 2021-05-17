@@ -123,7 +123,7 @@ public class Maze {
 					this.addEnemy(temp);
 					
 				}
-				if(c == 'X')
+				if(c == 'X') //Exit
 				{
 					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
 					this.addExit(e);
