@@ -340,10 +340,18 @@ public class DrawingSurface extends PApplet {
 		}
 		else
 		{
+			pushStyle();
+			textAlign(CENTER);
 			fill(0);
-			this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
+			this.rect(0,0, getWidth(), getHeight());
 			fill(255);
-			this.text("Thanks For Playing!", DRAWING_WIDTH /2 -50,DRAWING_HEIGHT/2);
+			textSize(40);
+			this.text("Thanks For Playing!",getWidth() /2 ,getHeight()/4);
+			this.text("Developed By:", getWidth() /2 , getHeight()/2 - 180);
+			this.text("Christopher Lew", getWidth() /2 , getHeight()/2 - 140);
+			this.text("Joseph Huang", getWidth() /2 , getHeight()/2 - 100);
+			this.text("Lakshya Shrivatava", getWidth() /2 , getHeight()/2 - 60);
+			popStyle();
 		}
 		
 
