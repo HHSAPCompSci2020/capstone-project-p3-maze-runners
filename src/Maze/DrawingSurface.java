@@ -205,6 +205,7 @@ public class DrawingSurface extends PApplet {
 			if(e.touchingCreature(player))
 			{
 				System.out.println("Player is at exit");
+				toggleMaze();
 			}
 		}
 	}
@@ -297,7 +298,7 @@ public class DrawingSurface extends PApplet {
 		
 		checkEnemyCollisions(thisMaze);
 		checkAbilityCollisions(thisMaze);
-		
+		checkExitCollision(thisMaze);
 		//If player's health is less then 1, player respawns
 		if (player.getHealth() <= 0) {
 			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
