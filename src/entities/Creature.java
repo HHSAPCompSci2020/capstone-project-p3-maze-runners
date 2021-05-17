@@ -65,7 +65,7 @@ public abstract class Creature extends MovingImage {
 		isTouching = other.intersects(this);
 		
 		if (isTouching && System.nanoTime() % 30 == 0) {
-			System.out.println("INTERSECTING! " + this);
+//			System.out.println("INTERSECTING! " + this);
 		}
 		return isTouching;
 	}
@@ -78,7 +78,7 @@ public abstract class Creature extends MovingImage {
 	abstract public void attack(Player p) ;
 	
 	public void removeSelfFromMaze(Maze m, int index) {
-		m.getCreatures().remove(index);
+		m.getEnemies().remove(index);
 	}
 	
 	public String toString() {

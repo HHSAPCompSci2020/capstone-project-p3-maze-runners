@@ -15,7 +15,8 @@ import entities.enemies.TimingTrap;
 import entities.*;
 
 public class Maze {
-	private ArrayList<Creature> creatures;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<Ability> abilities;
 	private ArrayList<Shape> walls;
 	
 	public int playerStartX, playerStartY;
@@ -34,7 +35,9 @@ public class Maze {
 	
 	public Maze() {
 		walls = new ArrayList<Shape>();
-		creatures = new ArrayList<Creature>();
+		enemies = new ArrayList<Enemy>();
+		abilities = new ArrayList<Ability>();
+
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
 		playerStartX = 25; 
 		playerStartY = 25;
@@ -42,7 +45,10 @@ public class Maze {
 	
 	public Maze(PApplet marker, String filename, int gridWidth, int gridHeight) {
 		walls = new ArrayList<Shape>();
-		creatures = new ArrayList<Creature>();
+		enemies = new ArrayList<Enemy>();
+		abilities = new ArrayList<Ability>();
+		
+		
 		
 		grid = new char[gridHeight][gridWidth];
 		this.readData(filename, grid);
@@ -57,8 +63,12 @@ public class Maze {
 		return walls;
 	}
 	
-	public ArrayList<Creature> getCreatures(){
-		return creatures;
+	public ArrayList<Enemy> getEnemies(){
+		return enemies;
+	}
+	
+	public ArrayList<Ability> getAbilities(){
+		return abilities;
 	}
 	
 	/**
@@ -70,10 +80,16 @@ public class Maze {
 	}
 	
 	/**
-	 * adds a Creature to the maze. allows Enemies and Abilities too because of polymorphism
+	 * adds a Creature to the maze. allows Enemies  too because of polymorphism
 	 */
 	public void addCreature(Creature creature) {
-		creatures.add(creature);
+		enemies.add((Enemy)creature);
+	}
+	public void addEnemy(Enemy e) {
+		enemies.add(e);
+	}
+	public void addAbility(Ability ability) {
+		abilities.add(ability);
 	}
 	
 	private void addObjectsFromGrid(PApplet marker) {
@@ -83,6 +99,16 @@ public class Maze {
 				int x = col*cellWidth;
 				int y = row*cellHeight;
 				
+				
+				
+				if (c == Heal.symbol) {
+					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight ));
+				}
+				
+				if (c == TimingTrap.symbol) {//TimingTrap
+					
+					this.addEnemy(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
+				}
 				
 				if (c == WALL) {//wall
 					//Rectangle(int x, int y, int width, int height)
@@ -97,13 +123,7 @@ public class Maze {
 					//add nothing
 				}
 				
-				if (c == TimingTrap.symbol) {//TimingTrap
-					
-					this.addCreature(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
-				}
-				if (c == Heal.symbol) {
-					this.addCreature(new Heal(marker.loadImage("data//heal.png"), x, y, cellWidth, cellHeight ));
-				}
+				
 				
 				
 //				walls.add(e)
@@ -188,5 +208,7 @@ public class Maze {
 //	}
 	
 		
-	
+	public char[][] getGrid(){
+		return grid;
+	}
 }

@@ -46,7 +46,7 @@ public class TimingTrap extends Enemy {
 	public void attack(Player p) 
 	{
 		if (System.nanoTime() % 30 <= 15) {
-			p.takeDamage(1);
+			p.reduceHealthBy(1, x, y, width, height);
 		}
 	}
 	

@@ -32,7 +32,7 @@ public class DrawingSurface extends PApplet {
 
 	//Our fields
 	private ArrayList<Maze> allMazes;
-	private Maze maze0, maze1, txtMaze0;//to be implemented
+	private Maze maze0, maze1, maze2, maze3;//to be implemented
 	private static long iterations = 0;
 
 	
@@ -41,7 +41,7 @@ public class DrawingSurface extends PApplet {
 	/**mazeSelected is the index of allMazes that will be loaded on screen
 	 * 
 	 */
-	public int mazeSelected = 0;
+	public int mazeSelected = 2;
 
 	/**
 	 * mazeChangeCooldown is the number of draw() method calls that pass between each maze change.
@@ -139,10 +139,17 @@ public class DrawingSurface extends PApplet {
 		
 		allMazes.add(maze0);
 		
-		txtMaze0 = new Maze(this, "data//txtmaze0.txt", 15, 15);
-		allMazes.add(txtMaze0);
-		System.out.println("3rd maze in allMazes:");
-		txtMaze0.printCharArray(txtMaze0.grid);
+		maze2 = new Maze(this, "data//txtmaze0.txt", 15, 15);
+		allMazes.add(maze2);
+//		System.out.println("3rd maze in allMazes:");
+//		maze2.printCharArray(maze2.getGrid());
+		
+		
+		maze3 = new Maze(this, "data//txtmaze1.txt", 15, 15);
+		allMazes.add(maze3);
+		maze2.printCharArray(maze3.getGrid());
+
+
 		
 		
 		
@@ -263,23 +270,32 @@ timer.start();
 		}
 		
 		//Check if any creature is touching Player. If yes, make player take damage
-		for (Creature c: thisMaze.getCreatures()) {
-			c.draw(this);
-			if (c.touchingCreature(player)) {
-				if (c instanceof Heal) {
-					c.attack(player);
-					System.out.println("Should be healing");
-				}
-				if (c instanceof Enemy) {
-					c.attack(player);
+		for (int i = 0; i < thisMaze.getEnemies().size(); i++){
+			Enemy e = thisMaze.getEnemies().get(i);
+			e.draw(this);
+			if (e.touchingCreature(player)) {
+				if (e instanceof Enemy) {
+					e.attack(player);
 					
 				}
-				
-				
-				
 			}
 			
 		}
+		
+		
+		for (int i = 0; i < thisMaze.getAbilities().size(); i++){
+			Ability ab = thisMaze.getAbilities().get(i);
+			ab.draw(this);
+			if (ab.touchingCreature(player)) {
+				if (ab instanceof Heal) {
+					player.healBy(1);
+					System.out.println("Should be healing");
+					ab.removeSelfFromMaze(thisMaze, i);
+				}
+			}
+			
+		}
+		
 		if (player.getHealth() <= 0) {
 			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
 		}
@@ -291,11 +307,19 @@ timer.start();
 		
 		//		timingTrap.draw(this);
 		
-
+		if (playerDmgCooldown > 0) {
+			this.fill(248, 44, 0);
+			this.text("Ow!", (float)(player.x - player.width/4), (float)(player.y - player.width/8));
+		}
+		else {
+			this.fill(0);
+		}
 		String healthStr = "Health: " + player.getHealth();
 		this.textSize(20);
-		this.stroke(0);
 		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 24);
+		this.fill(0);
+
+		
 		popMatrix();
 
 

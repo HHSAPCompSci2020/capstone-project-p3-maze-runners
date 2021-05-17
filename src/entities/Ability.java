@@ -58,4 +58,8 @@ public class Ability extends Creature{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void removeSelfFromMaze(Maze m, int index) {
+		m.getAbilities().remove(index);
+	}
 }
