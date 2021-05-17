@@ -70,10 +70,10 @@ public class Maze {
 	}
 	
 	/**
-	 * adds an enemy to the maze
+	 * adds a Creature to the maze. allows Enemies and Abilities too because of polymorphism
 	 */
-	public void addEnemy(Enemy enemy) {
-		creatures.add(enemy);
+	public void addCreature(Creature creature) {
+		creatures.add(creature);
 	}
 	
 	private void addObjectsFromGrid(PApplet marker) {
@@ -96,9 +96,13 @@ public class Maze {
 				if(c == WALKABLE) {
 					//add nothing
 				}
+				
 				if (c == TimingTrap.symbol) {//TimingTrap
 					
-					this.addEnemy(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
+					this.addCreature(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
+				}
+				if (c == Heal.symbol) {
+					this.addCreature(new Heal(marker.loadImage("data//heal.png"), x, y, cellWidth, cellHeight ));
 				}
 				
 				

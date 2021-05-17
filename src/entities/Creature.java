@@ -64,7 +64,7 @@ public abstract class Creature extends MovingImage {
 		
 		isTouching = other.intersects(this);
 		
-		if (isTouching) {
+		if (isTouching && System.nanoTime() % 30 == 0) {
 			System.out.println("INTERSECTING! " + this);
 		}
 		return isTouching;

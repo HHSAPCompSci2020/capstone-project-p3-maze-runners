@@ -86,7 +86,7 @@ public class DrawingSurface extends PApplet {
 		maze1.addWall(new Rectangle(300,300,100,w));
 		maze1.addWall(new Rectangle(400,300,w,100));
 		maze1.addWall(new Rectangle(400,400,200,w));
-		maze1.addEnemy(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
+		maze1.addCreature(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
 		//maze1.addAbility
 
 
@@ -131,11 +131,11 @@ public class DrawingSurface extends PApplet {
 		maze0.addWall(new Rectangle(105, 77, WALL_THICKNESS, 35));
 
 //		Timing Traps
-		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 285,50, 30, 25));
-		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 515,50, 30, 25));
-		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 440,208, 30, 26));
-		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 205,570, 30, 25));
-		maze0.addEnemy(new TimingTrap(loadImage("data//spike.png"), 546,570, 30, 25));
+		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 285,50, 30, 25));
+		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 515,50, 30, 25));
+		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 440,208, 30, 26));
+		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 205,570, 30, 25));
+		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 546,570, 30, 25));
 		
 		allMazes.add(maze0);
 		
@@ -266,10 +266,15 @@ timer.start();
 		for (Creature c: thisMaze.getCreatures()) {
 			c.draw(this);
 			if (c.touchingCreature(player)) {
+				if (c instanceof Heal) {
+					c.attack(player);
+					System.out.println("Should be healing");
+				}
 				if (c instanceof Enemy) {
 					c.attack(player);
 					
 				}
+				
 				
 				
 			}

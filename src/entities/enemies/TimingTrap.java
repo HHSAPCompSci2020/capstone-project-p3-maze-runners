@@ -19,7 +19,7 @@ public class TimingTrap extends Enemy {
 		super(img, x, y);
 		isVisible = true;
 		symbol = 'T';
-		imageName = "spike.png";
+//		imageName = "spike.png";
 		attackDamage = 1;
 	}
 	
@@ -27,7 +27,7 @@ public class TimingTrap extends Enemy {
 		super(img, x, y, width, height);
 		isVisible = true;
 		symbol = 'T';
-		imageName = "spike.png";
+//		imageName = "spike.png";
 
 	}
 	
