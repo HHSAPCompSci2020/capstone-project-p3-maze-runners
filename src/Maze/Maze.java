@@ -101,14 +101,24 @@ public class Maze {
 				
 				
 				
-				if (c == Heal.symbol) {
+				if (c == 'h') {
 					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight ));
 				}
 				
-				if (c == TimingTrap.symbol) {//TimingTrap
+				if (c == 'T') {//TimingTrap
+					TimingTrap temp = new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight);
+					this.addEnemy(temp);
 					
-					this.addEnemy(new TimingTrap(marker.loadImage("data//spike.png"), x,y, cellWidth, cellHeight) );
 				}
+//				if (System.nanoTime() % 100 == 0) {
+//					System.out.println("timing trap symbol: " + TimingTrap.getSymbol());
+//					System.out.println("heal symbol: " + Heal.getSymbol());
+////					System.out.println()
+//
+//				}
+				
+				
+				
 				
 				if (c == WALL) {//wall
 					//Rectangle(int x, int y, int width, int height)

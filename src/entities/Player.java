@@ -76,7 +76,9 @@ public class Player extends Creature{
 			
 		}
 	}
-	
+	public char getSymbol() {
+		return 'C';
+	}
 	
 
 	@Override

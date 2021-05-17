@@ -15,7 +15,7 @@ public class MovingImage extends Rectangle2D.Double {
 	
 	// FIELDS
 	private PImage image;
-	public static char symbol = '?';
+//	public static char symbol = '?';
 	
 	// CONSTRUCTORS
 	public MovingImage(PImage img, int x, int y, int w, int h) {
@@ -46,6 +46,8 @@ public class MovingImage extends Rectangle2D.Double {
 	public void draw(PApplet g) {
 		g.image(image,(int)x,(int)y,(int)width,(int)height);
 	}
+	
+	
 	
 	
 }

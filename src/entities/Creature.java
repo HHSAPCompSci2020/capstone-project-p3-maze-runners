@@ -20,6 +20,9 @@ public abstract class Creature extends MovingImage {
 	private double gravity;
 	private double jumpStrength;
 	
+//	public static char symbol;
+	
+	
 	protected static String imageName;
 	
 	//New fields
@@ -218,6 +221,8 @@ public abstract class Creature extends MovingImage {
 		moveToLocation(xCoord2,yCoord2);
 
 	}
+	
+//	public abstract char getSymbol();
 	
 	
 	

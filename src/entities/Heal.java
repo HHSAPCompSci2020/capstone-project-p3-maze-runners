@@ -5,10 +5,12 @@ import processing.core.PImage;
 public class Heal extends Ability{
 	Creature a ;
 	
+	private static char hSymbol = 'h';
+	
 	public Heal(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.uses=1;
-		symbol = 'h';
+//		symbol = 'h';
 		imageName = "heal.png";
 	}
 	/**
@@ -54,4 +56,8 @@ public class Heal extends Ability{
 		
 		
 	}
+	public static char getSymbol() {
+		return hSymbol;
+	}
+	
 }

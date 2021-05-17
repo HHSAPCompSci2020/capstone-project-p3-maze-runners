@@ -12,13 +12,13 @@ import processing.core.PImage;
 public class TimingTrap extends Enemy {
 	private boolean isVisible;
 	
-	
+	private static char tSymbol = 'T';
 	
 	public TimingTrap(PImage img, int x, int y)
 	{
 		super(img, x, y);
 		isVisible = true;
-		symbol = 'T';
+//		symbol = 'T';
 //		imageName = "spike.png";
 		attackDamage = 1;
 	}
@@ -26,7 +26,7 @@ public class TimingTrap extends Enemy {
 	public TimingTrap(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		isVisible = true;
-		symbol = 'T';
+//		symbol = 'T';
 //		imageName = "spike.png";
 
 	}
@@ -71,7 +71,9 @@ public class TimingTrap extends Enemy {
 		return s;
 	}
 
-	
+//	public static char getSymbol() {
+//		return tSymbol;
+//	}
 
 	
 	
