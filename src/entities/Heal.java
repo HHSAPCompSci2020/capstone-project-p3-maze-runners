@@ -49,6 +49,7 @@ public class Heal extends Ability{
 	 * So a heal ability is an a Creature that deals negative damage
 	 */
 	public void attack(Player p) {
+		if(super.getPickedUp())
 		p.reduceHealthBy(-1);
 		//p.healBy(1); //i think this should work the same
 	}

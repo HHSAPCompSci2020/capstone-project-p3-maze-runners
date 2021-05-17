@@ -90,7 +90,6 @@ public class DrawingSurface extends PApplet {
 		maze1.addWall(new Rectangle(400,300,w,100));
 		maze1.addWall(new Rectangle(400,400,200,w));
 		maze1.addCreature(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
-		//maze1.addAbility();
 
 
 		allMazes.add(maze1);
@@ -139,6 +138,9 @@ public class DrawingSurface extends PApplet {
 		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 440,208, 30, 26));
 		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 205,570, 30, 25));
 		maze0.addCreature(new TimingTrap(loadImage("data//spike.png"), 546,570, 30, 25));
+		
+//		Abilities
+		maze0.addAbility(new Heal(loadImage("data//heal.png"), 250, 250, 40, 60));
 		
 		allMazes.add(maze0);
 		
