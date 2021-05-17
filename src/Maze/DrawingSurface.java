@@ -213,6 +213,11 @@ timer.start();
 		//size(0,0,PApplet.P3D);
 	}
 	
+	private void checkExitCollision(Maze thisMaze)
+	{
+		for(int i = 0; i < thisMaze)
+	}
+	
 	
 	private void checkEnemyCollisions(Maze thisMaze) {
 		//Check if any creature is touching Player. If yes, make player take damage

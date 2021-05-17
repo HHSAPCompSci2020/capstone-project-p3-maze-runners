@@ -78,7 +78,7 @@ public abstract class Creature extends MovingImage {
 		return false;
 	}
 	
-	abstract public void attack(Player p) ;
+	
 	
 	public void removeSelfFromMaze(Maze m, int index) {
 		m.getEnemies().remove(index);

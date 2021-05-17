@@ -81,7 +81,6 @@ public class Player extends Creature{
 	}
 	
 
-	@Override
 	public void attack(Player p) {
 		// TODO Auto-generated method stub
 		System.out.println("Player attacked player");

@@ -18,6 +18,7 @@ public class Maze {
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Ability> abilities;
 	private ArrayList<Shape> walls;
+	private ArrayList<Exit> exits;
 	
 	public int playerStartX, playerStartY;
 	/**
@@ -37,6 +38,7 @@ public class Maze {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
+		exits = new ArrayList<Exit>();
 
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
 		playerStartX = 25; 
@@ -47,7 +49,7 @@ public class Maze {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
-		
+		exits = new ArrayList<Exit>();
 		
 		
 		grid = new char[gridHeight][gridWidth];

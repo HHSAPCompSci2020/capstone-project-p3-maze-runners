@@ -39,6 +39,8 @@ public abstract class Enemy extends Creature {
 		
 	}
 	
+	abstract public void attack(Player p) ;
+	
 	/**
 	 * the pattern in which the enemy moves around
 	 */

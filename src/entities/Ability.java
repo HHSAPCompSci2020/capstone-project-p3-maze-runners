@@ -52,12 +52,6 @@ public class Ability extends Creature{
 	public boolean getPickedUp() {
 		return pickedUp;
 	}
-
-	@Override
-	public void attack(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void removeSelfFromMaze(Maze m, int index) {
 		m.getAbilities().remove(index);
