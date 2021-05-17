@@ -34,7 +34,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1, maze2, maze3, newMaze0, newMaze1;//to be implemented
 	public static long iterations = 0;
-	public static int lives = 3;
+	public static int lives = 1;
 	
 	
 	
@@ -154,9 +154,10 @@ public class DrawingSurface extends PApplet {
 		
 		
 		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
-		maze2.printCharArray(maze3.getGrid());
+//		maze2.printCharArray(maze3.getGrid());
 
 		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
+		
 		
 		
 		//add each maze to ArrayList<Maze> allMazes 
@@ -164,13 +165,15 @@ public class DrawingSurface extends PApplet {
 //		allMazes.add(maze1);
 		
 		
-		
+		allMazes.add(newMaze0);
 		
 		allMazes.add(maze2);
 		allMazes.add(maze3);
-
 		
-		
+		{
+		Maze thisMaze = allMazes.get(mazeSelected);
+		thisMaze.printCharArray(thisMaze.getGrid());
+		}
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 		spawnNewAbility();
 		spawnNewEnemy(timingTrap);
@@ -331,15 +334,17 @@ public class DrawingSurface extends PApplet {
 		
 		popMatrix();
 		
+		pushStyle();
 		if(lives<=0) {
 			this.fill(0);
 			String endStr = "YOU DIED";
 			endStr += "\nGAME OVER ";
 			this.textSize(100);
-			this.text(endStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
+			this.text(endStr, DRAWING_WIDTH/2, DRAWING_HEIGHT/2);
 			this.fill(0);
 		}
-
+		popStyle();
+		
 		// modifying stuff
 
 		if (isPressed(KeyEvent.VK_LEFT))
