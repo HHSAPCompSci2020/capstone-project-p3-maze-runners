@@ -41,7 +41,7 @@ public class DrawingSurface extends PApplet {
 	/**mazeSelected is the index of allMazes that will be loaded on screen
 	 * 
 	 */
-	public int mazeSelected = 2;
+	public int mazeSelected = 0;
 
 	/**
 	 * mazeChangeCooldown is the number of draw() method calls that pass between each maze change.
@@ -76,6 +76,7 @@ public class DrawingSurface extends PApplet {
 				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
 		System.out.println(instructions);
 
+		
 		maze1 = new Maze();
 		maze0 = new Maze();
 		allMazes = new ArrayList<Maze>();
@@ -92,7 +93,7 @@ public class DrawingSurface extends PApplet {
 		maze1.addCreature(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
 
 
-		allMazes.add(maze1);
+//		allMazes.add(maze1);
 		
 //		horizontal lines
 		maze0.addWall(new Rectangle(0,0,1000,WALL_THICKNESS ));
@@ -142,20 +143,20 @@ public class DrawingSurface extends PApplet {
 //		Abilities
 		maze0.addAbility(new Heal(loadImage("data//heal.png"), 250, 250, 40, 60));
 		
-		allMazes.add(maze0);
+//		allMazes.add(maze0);
 		
 		maze2 = new Maze(this, "data//txtmaze0.txt", 15, 15);
-		allMazes.add(maze2);
 //		System.out.println("3rd maze in allMazes:");
 //		maze2.printCharArray(maze2.getGrid());
 		
 		
 		maze3 = new Maze(this, "data//txtmaze1.txt", 15, 15);
-		allMazes.add(maze3);
 		maze2.printCharArray(maze3.getGrid());
 
+		//add each maze to ArrayList<Maze> allMazes 
+		allMazes.add(maze2);
+		allMazes.add(maze3);
 
-		
 		
 		
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
