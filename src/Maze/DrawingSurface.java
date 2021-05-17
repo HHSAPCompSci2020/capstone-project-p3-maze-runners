@@ -144,12 +144,12 @@ public class DrawingSurface extends PApplet {
 		maze0.addAbility(new Heal(loadImage("data//heal.png"), 250, 250, 40, 60));
 		
 
-		maze2 = new Maze(this, "data//txtmaze0.txt", 15, 15);
+		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
 //		System.out.println("3rd maze in allMazes:");
 //		maze2.printCharArray(maze2.getGrid());
 		
 		
-		maze3 = new Maze(this, "data//txtmaze1.txt", 15, 15);
+		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
 		maze2.printCharArray(maze3.getGrid());
 
 		//add each maze to ArrayList<Maze> allMazes 
@@ -271,57 +271,68 @@ public class DrawingSurface extends PApplet {
 			playerDmgCooldown--;
 		}
 
-		//Loading walls 
-		Maze thisMaze = allMazes.get(mazeSelected);
-		
-		//SETUP the walls and enemies stored in each Maze here:
-		obstacles = new ArrayList<Shape>();
-		spawnWalls(obstacles, thisMaze);
-		// drawing stuff
+		if(mazeSelected < allMazes.size())
+		{
+			//Loading walls 
+			Maze thisMaze = allMazes.get(mazeSelected);
+			
+			//SETUP the walls and enemies stored in each Maze here:
+			obstacles = new ArrayList<Shape>();
+			spawnWalls(obstacles, thisMaze);
+			// drawing stuff
 
-		background(128,212,255);   
+			background(128,212,255);   
 
-		pushMatrix();
+			pushMatrix();
 
-		int width = getWidth();
-		int height = getHeight();
+			int width = getWidth();
+			int height = getHeight();
 
-		float ratioX = (float)width/DRAWING_WIDTH;
-		float ratioY = (float)height/DRAWING_HEIGHT;
+			float ratioX = (float)width/DRAWING_WIDTH;
+			float ratioY = (float)height/DRAWING_HEIGHT;
 
-		scale(ratioX, ratioY);
+			scale(ratioX, ratioY);
 
-		fill(100);
-		
-		//old mazes use this part
-		for (Shape s : obstacles) {
-			if (s instanceof Rectangle) {
-				Rectangle r = (Rectangle)s;
-				rect(r.x,r.y,r.width,r.height);
+			fill(100);
+			
+			//old mazes use this part
+			for (Shape s : obstacles) {
+				if (s instanceof Rectangle) {
+					Rectangle r = (Rectangle)s;
+					rect(r.x,r.y,r.width,r.height);
+				}
 			}
-		}
+			
+			
+			checkEnemyCollisions(thisMaze);
+			checkAbilityCollisions(thisMaze);
+			checkExitCollision(thisMaze);
+			//If player's health is less then 1, player respawns
+			if (player.getHealth() <= 0) {
+				spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
+			}
+			
+			player.draw(this);
 		
-		
-		checkEnemyCollisions(thisMaze);
-		checkAbilityCollisions(thisMaze);
-		checkExitCollision(thisMaze);
-		//If player's health is less then 1, player respawns
-		if (player.getHealth() <= 0) {
-			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
-		}
-		
-		player.draw(this);
-	
-		
-		this.fill(0);
-		String healthStr = "Lives: " + lives;
-		healthStr += "\nHealth: " + player.getHealth();
-		this.textSize(20);
-		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
-		this.fill(0);
+			
+			this.fill(0);
+			String healthStr = "Lives: " + lives;
+			healthStr += "\nHealth: " + player.getHealth();
+			this.textSize(20);
+			this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
+			this.fill(0);
 
+			
+			popMatrix();
+		}
+		else
+		{
+			fill(0);
+			this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
+			fill(255);
+			this.text("Thanks For Playing!", DRAWING_WIDTH /2 -50,DRAWING_HEIGHT/2);
+		}
 		
-		popMatrix();
 
 
 		// modifying stuff
@@ -389,11 +400,12 @@ public class DrawingSurface extends PApplet {
 		if (mazeChangeCooldown == 0) {
 			mazeChangeCooldown = 30;
 			mazeSelected++;
-			if (mazeSelected >= allMazes.size()) {
-				mazeSelected = 0;
-			}
+//			if (mazeSelected >= allMazes.size()) {
+//				mazeSelected = 0;
+//			}
 			System.out.println("Maze Selected: "+mazeSelected);
-			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY); 
+			if(mazeSelected < allMazes.size())
+				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);	 
 		}
 		return mazeSelected;
 	}
