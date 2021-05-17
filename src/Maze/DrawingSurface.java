@@ -253,7 +253,9 @@ public class DrawingSurface extends PApplet {
 	public void draw() {
 		iterations++;
 
-		if (iterations%10 == 0)
+		if (iterations%10 == 0) {
+			
+		}
 			//			System.out.println("iteration: "+iterations);
 		if (mazeChangeCooldown > 0) {
 			mazeChangeCooldown--;
@@ -376,6 +378,7 @@ public class DrawingSurface extends PApplet {
 	 * @return the index of the new Maze selected that will be shown on the screen
 	 */
 	public int toggleMaze() {
+		System.out.println("maze change CD" +mazeChangeCooldown);
 		if (mazeChangeCooldown == 0) {
 			mazeChangeCooldown = 30;
 			mazeSelected++;
