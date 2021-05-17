@@ -86,6 +86,7 @@ public class Player extends Creature{
 		System.out.println("Player attacked player");
 		p.reduceHealthBy(1);
 	}
+	
 	public int getHealth() {
 		return this.health;
 	}

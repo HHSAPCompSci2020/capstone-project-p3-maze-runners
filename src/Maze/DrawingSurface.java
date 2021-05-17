@@ -90,7 +90,7 @@ public class DrawingSurface extends PApplet {
 		maze1.addWall(new Rectangle(400,300,w,100));
 		maze1.addWall(new Rectangle(400,400,200,w));
 		maze1.addCreature(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
-		//maze1.addAbility
+		//maze1.addAbility();
 
 
 		allMazes.add(maze1);
@@ -186,25 +186,6 @@ public class DrawingSurface extends PApplet {
 		//x=x(Math.RANDOM); maybe i should just hard code the spots where the ability spawn
 		heals = new Heal(loadImage("data//heal.png"), 250, 250, 40, 60);
 
-		/*
-		 * final int num = 0;
-			final JPanel pane;
-		Timer timer = new Timer(10, new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-        num++;
-        pane.repaint();
-    }
-});
-pane = new JPanel() {
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, num, 0, null);
-    }
-});
-
-timer.start();
-		 */
 	}
 
 	// The statements in the setup() function 

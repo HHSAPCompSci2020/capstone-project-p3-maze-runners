@@ -50,7 +50,7 @@ public class Heal extends Ability{
 	 */
 	public void attack(Player p) {
 		p.reduceHealthBy(-1);
-		
+		//p.healBy(1); //i think this should work the same
 	}
 	
 	public void draw(PApplet marker) {
@@ -60,8 +60,6 @@ public class Heal extends Ability{
 		marker.rect((float)x, (float)(y+height/3), (float)width , (float)height/3);
 		marker.rect((float)(x+width/3), (float)(y), (float)width/3 , (float)height);
 		marker.popStyle();
-		
-		
 		
 	}
 	
