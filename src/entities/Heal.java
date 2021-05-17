@@ -20,6 +20,13 @@ public class Heal extends Ability{
 	public void healing(int x) {
 		super.health+=x; 
 	}
+	
+	/**
+	 * heals by adding 1 health to the player
+	 */
+	public void healing3() {
+		super.health++;
+	}
 	/**
 	 * heals by adding 1 health to the player
 	 */
@@ -45,6 +52,7 @@ public class Heal extends Ability{
 		p.reduceHealthBy(-1);
 		
 	}
+	
 	public void draw(PApplet marker) {
 		marker.pushStyle();
 		marker.fill(248, 44, 0);
@@ -56,6 +64,7 @@ public class Heal extends Ability{
 		
 		
 	}
+	
 	public static char getSymbol() {
 		return hSymbol;
 	}
