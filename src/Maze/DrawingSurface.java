@@ -26,15 +26,15 @@ public class DrawingSurface extends PApplet {
 	private TimingTrap timingTrap;
 	private Heal heals;
 	private ArrayList<Shape> obstacles;
-	private ArrayList<Creature> creatures;
+//	private ArrayList<Creature> creatures;
 	private ArrayList<Integer> keys;
-	private ArrayList<Enemy> enemies;
+//	private ArrayList<Enemy> enemies;
 
 	//Our fields
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1, maze2, maze3;//to be implemented
 	public static long iterations = 0;
-
+	public static int lives = 3;
 	
 	
 	
@@ -49,8 +49,11 @@ public class DrawingSurface extends PApplet {
 	 */
 	private int mazeChangeCooldown;
 	
+	/**
+	 * how many invincibility frames the player has. Player cannot take a damage for 
+	 */
 	public static int playerDmgCooldown;
-
+	public static final int DMG_MAX_COOLDOWN = 60;
 	/**
 	 * how many abilities are to be spawned randomly in the maze
 	 */
@@ -169,11 +172,13 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewEnemy(Enemy enemy) {
-
 		//		enemies.add(new TimingTrap(loadImage("data//player.png"), 100,50, 50, 50) );
 		//enemies.add(e);
-
-
+	}
+	private void spawnWalls(ArrayList<Shape> obstacles, Maze thisMaze) {
+		for (Shape s: thisMaze.getWalls()) {
+			obstacles.add(s);
+		}
 	}
 
 	public void spawnNewAbility() {
@@ -207,6 +212,43 @@ timer.start();
 	public void setup() {
 		//size(0,0,PApplet.P3D);
 	}
+	
+	
+	private void checkEnemyCollisions(Maze thisMaze) {
+		//Check if any creature is touching Player. If yes, make player take damage
+		for (int i = 0; i < thisMaze.getEnemies().size(); i++){
+			Enemy e = thisMaze.getEnemies().get(i);
+			e.draw(this);
+			if (e.touchingCreature(player)) {
+				if (e instanceof Enemy) {
+					e.attack(player);
+
+				}
+				//ADD NEW ENEMIES ATTACK METHODS HERE OR MODIFY attack() METHOD
+				
+				
+				
+			}
+
+		}
+	}
+	
+	private void checkAbilityCollisions(Maze thisMaze) {
+		for (int i = 0; i < thisMaze.getAbilities().size(); i++){
+			Ability ab = thisMaze.getAbilities().get(i);
+			ab.draw(this);
+			if (ab.touchingCreature(player)) {
+				if (ab instanceof Heal) {
+					player.healBy(1);
+					System.out.println("Should be healing");
+					ab.removeSelfFromMaze(thisMaze, i);
+				}
+			}
+			
+		}
+	}
+	
+
 
 	// The statements in draw() are executed until the 
 	// program is stopped. Each statement is executed in 
@@ -229,22 +271,7 @@ timer.start();
 		
 		//SETUP the walls and enemies stored in each Maze here:
 		obstacles = new ArrayList<Shape>();
-		for (Shape s: thisMaze.getWalls()) {
-			obstacles.add(s);
-		}
-
-		//		for (Creature creature: thisMaze.getCreatures()) {
-		//			creatures.add(creature);
-		//			
-		//			if (creature instanceof Enemy) {
-		//				spawnNewEnemy((Enemy)creature); 
-		//				//spawnNewEnemy() yet to be implemented
-		//				//could also make this a method of the Enemy class
-		//			}
-		//			
-		//		}
-
-
+		spawnWalls(obstacles, thisMaze);
 		// drawing stuff
 
 		background(128,212,255);   
@@ -261,8 +288,7 @@ timer.start();
 
 		fill(100);
 		
-		
-		
+		//old mazes use this part
 		for (Shape s : obstacles) {
 			if (s instanceof Rectangle) {
 				Rectangle r = (Rectangle)s;
@@ -270,54 +296,23 @@ timer.start();
 			}
 		}
 		
-		//Check if any creature is touching Player. If yes, make player take damage
-		for (int i = 0; i < thisMaze.getEnemies().size(); i++){
-			Enemy e = thisMaze.getEnemies().get(i);
-			e.draw(this);
-			if (e.touchingCreature(player)) {
-				if (e instanceof Enemy) {
-					e.attack(player);
-					
-				}
-			}
-			
-		}
 		
+		checkEnemyCollisions(thisMaze);
+		checkAbilityCollisions(thisMaze);
 		
-		for (int i = 0; i < thisMaze.getAbilities().size(); i++){
-			Ability ab = thisMaze.getAbilities().get(i);
-			ab.draw(this);
-			if (ab.touchingCreature(player)) {
-				if (ab instanceof Heal) {
-					player.healBy(1);
-					System.out.println("Should be healing");
-					ab.removeSelfFromMaze(thisMaze, i);
-				}
-			}
-			
-		}
-		
+		//If player's health is less then 1, player respawns
 		if (player.getHealth() <= 0) {
 			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
 		}
 		
-		
 		player.draw(this);
+	
 		
-		
-		
-		//		timingTrap.draw(this);
-		
-		if (playerDmgCooldown > 0) {
-			this.fill(248, 44, 0);
-			this.text("Ow!", (float)(player.x - player.width/4), (float)(player.y - player.width/8));
-		}
-		else {
-			this.fill(0);
-		}
-		String healthStr = "Health: " + player.getHealth();
+		this.fill(0);
+		String healthStr = "Lives: " + lives;
+		healthStr += "\nHealth: " + player.getHealth();
 		this.textSize(20);
-		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 24);
+		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
 		this.fill(0);
 
 		

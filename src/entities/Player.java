@@ -4,24 +4,28 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 import Maze.DrawingSurface;
+import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Player extends Creature{
-
+//	private int lives;
+	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 5;
 		health = maxHealth;
 		imageName = "player.png";
+		
 	}
 	
 	public void reduceHealthBy(int damage) {
 		
 		if (DrawingSurface.playerDmgCooldown== 0) {
 			health -= damage;
-			DrawingSurface.playerDmgCooldown = 60;
+			DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
 			if (health <= 0) {
 				health = 0;
+				DrawingSurface.lives -= 1;
 				//do DrawingSurface.spawnNewPlayer();
 			}
 		}
@@ -48,9 +52,10 @@ public class Player extends Creature{
 			DrawingSurface.playerDmgCooldown = 60;
 			if (health <= 0) {
 				health = 0;
-				//do DrawingSurface.spawnNewPlayer();
+				DrawingSurface.lives -= 1;
 			}
 			
+			//get Knocked back
 			if (otherX <= this.x && this.x <= otherX+otherWidth) {
 				if (y >= otherY) {
 					moveBy(0, 10);
@@ -69,11 +74,6 @@ public class Player extends Creature{
 				}
 			}
 			
-			
-			
-			
-			
-			
 		}
 	}
 	public char getSymbol() {
@@ -91,4 +91,19 @@ public class Player extends Creature{
 		return this.health;
 	}
 	
+	
+	public void draw(PApplet marker) {
+		marker.pushStyle();
+		if (DrawingSurface.playerDmgCooldown > 0) {
+			marker.fill(248, 44, 0);
+			marker.text("Ow!", (float)(x - width/4), (float)(y - width/8));
+		}
+		else {
+			marker.fill(0);
+		}
+		
+		marker.popStyle();
+		super.draw(marker);;
+		
+	}
 }
