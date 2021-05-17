@@ -215,7 +215,18 @@ timer.start();
 	
 	private void checkExitCollision(Maze thisMaze)
 	{
-		for(int i = 0; i < thisMaze)
+		for(int i = 0; i < thisMaze.getExits().size(); i++)
+		{
+			Exit  e = thisMaze.getExits().get(i);
+			e.draw(this);
+			if(e.touchingCreature(player))
+			{
+				if(e instanceof Exit)
+				{
+					
+				}
+			}
+		}
 	}
 	
 	

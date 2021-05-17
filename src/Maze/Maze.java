@@ -73,6 +73,11 @@ public class Maze {
 		return abilities;
 	}
 	
+	public ArrayList<Exit> getExits()
+	{
+		return exits;
+	}
+	
 	/**
 	 * 
 	 * @param shape the Shape object to add to the maze, should be a Rectangle
@@ -92,6 +97,11 @@ public class Maze {
 	}
 	public void addAbility(Ability ability) {
 		abilities.add(ability);
+	}
+	
+	public void addExit(Exit e)
+	{
+		exits.add(e);
 	}
 	
 	private void addObjectsFromGrid(PApplet marker) {
@@ -134,7 +144,11 @@ public class Maze {
 				if(c == WALKABLE) {
 					//add nothing
 				}
-				
+				if(c == 'X')
+				{
+					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
+					this.addExit(e);
+				}
 				
 				
 				
