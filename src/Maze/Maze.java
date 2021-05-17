@@ -114,8 +114,12 @@ public class Maze {
 				
 				
 				
-				if (c == 'h') {
+				if (c == 'h') {//heal cross
 					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight ));
+				}
+				
+				if (c == 's') {//stealth
+					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight ));
 				}
 				
 				if (c == 'T') {//TimingTrap

@@ -321,8 +321,14 @@ public class DrawingSurface extends PApplet {
 			checkAbilityCollisions(thisMaze);
 			checkExitCollision(thisMaze);
 			//If player's health is less then 1, player respawns
-			if (player.getHealth() <= 0) {
+			if (player.getHealth() <= 0&&lives>0) {
 				spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
+			}else if(lives<=0) {
+				//player.removeSelfFromMaze(thisMaze, 1);
+				fill(0);
+				this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
+				fill(255);
+				this.text("YOU DIED", DRAWING_WIDTH /2 -50,DRAWING_HEIGHT/2);
 			}
 			
 			player.draw(this);
