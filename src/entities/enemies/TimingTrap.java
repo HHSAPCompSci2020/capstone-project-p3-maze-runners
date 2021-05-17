@@ -82,7 +82,7 @@ public class TimingTrap extends Enemy {
 
 	public void draw(PApplet marker) {
 		
-		if (DrawingSurface.iterations % 120 <= 60) {
+		if (DrawingSurface.getIterations() % 120 <= 60) {
 			setVisibility(false);
 //			marker.pushStyle();
 //			marker.fill(200,200,200);
