@@ -23,15 +23,11 @@
 
 C->StartingLocation
 #->Walls
-.->walkingspaces
-
 T=TimingTrap
-M = Monster
-B = Blockade
 
 h = heal powerup
 
-
+.->walkingspaces
 
 If you fall off to the right you will be returned to the begining
 

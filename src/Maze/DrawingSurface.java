@@ -32,7 +32,7 @@ public class DrawingSurface extends PApplet {
 
 	//Our fields
 	private ArrayList<Maze> allMazes;
-	private Maze maze0, maze1, maze2, maze3;//to be implemented
+	private Maze maze0, maze1, maze2, maze3, newMaze0, newMaze1;//to be implemented
 	public static long iterations = 0;
 	public static int lives = 3;
 	
@@ -75,11 +75,11 @@ public class DrawingSurface extends PApplet {
 		String instructions = "Use arrow keys or WASD to move. \n"
 				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
 		System.out.println(instructions);
+		allMazes = new ArrayList<Maze>();
 
-		
+		/*
 		maze1 = new Maze();
 		maze0 = new Maze();
-		allMazes = new ArrayList<Maze>();
 		int w =10;
 		maze1.addWall(new Rectangle(50,10, 700,w));
 
@@ -142,16 +142,23 @@ public class DrawingSurface extends PApplet {
 		
 //		Abilities
 		maze0.addAbility(new Heal(loadImage("data//heal.png"), 250, 250, 40, 60));
-		
+		*/
 
-		maze2 = new Maze(this, "data//txtmaze0.txt", 15, 15);
+		
+		
+		
+		
+		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
 //		System.out.println("3rd maze in allMazes:");
 //		maze2.printCharArray(maze2.getGrid());
 		
 		
-		maze3 = new Maze(this, "data//txtmaze1.txt", 15, 15);
+		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
 		maze2.printCharArray(maze3.getGrid());
 
+		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
+		
+		
 		//add each maze to ArrayList<Maze> allMazes 
 //		allMazes.add(maze0);
 //		allMazes.add(maze1);
