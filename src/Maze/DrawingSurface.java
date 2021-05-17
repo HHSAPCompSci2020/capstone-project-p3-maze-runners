@@ -302,8 +302,7 @@ public class DrawingSurface extends PApplet {
 		}
 
 		
-		if(!gameComplete)
-		{
+		
 			//Loading walls 
 			Maze thisMaze = allMazes.get(mazeSelected);
 			
@@ -361,22 +360,21 @@ public class DrawingSurface extends PApplet {
 			this.fill(0);
 
 			
-			popMatrix();
-		}
-		else 
-		{
+		
+		if(gameComplete) {
+	
 			pushStyle();
 			textAlign(CENTER);
-			fill(0);
-			this.rect(0,0, getWidth(), getHeight());
 			fill(255);
+			this.rect(0,0, DRAWING_WIDTH,DRAWING_HEIGHT);
+			fill(0);
 			textSize(40);
 			String s = "Thanks For Playing!\n"
 					+ "Developed By:\n"
 					+ "Christopher Lew\n"
 					+ "Joseph Huang\n"
 					+ "Lakshya Shrivatava\n";
-			this.text(s,getWidth() /2 ,getHeight()/4);
+			this.text(s,DRAWING_WIDTH /2 ,DRAWING_HEIGHT/3);
 //			this.text("Thanks For Playing!",getWidth() /2 ,getHeight()/4);
 //			this.text("Developed By:", getWidth() /2 , getHeight()/2 - 180);
 //			this.text("Christopher Lew", getWidth() /2 , getHeight()/2 - 140);
@@ -384,6 +382,8 @@ public class DrawingSurface extends PApplet {
 //			this.text("Lakshya Shrivatava", getWidth() /2 , getHeight()/2 - 60);
 			popStyle();
 		}
+		popMatrix();
+
 		
 		if (debugEnabled && !gameComplete) {
 			pushStyle();
@@ -397,6 +397,7 @@ public class DrawingSurface extends PApplet {
 			this.text(debugStr, DRAWING_WIDTH - 200, 20);
 			
 		}
+		
 
 
 		// modifying stuff
