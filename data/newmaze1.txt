@@ -1,0 +1,20 @@
+############
+#C..#.TTT.S#
+#...T.##S.S#
+#####.#....#
+#...S.#....#
+#.S...#....#
+#.#####....#
+#..........#
+#.........X#
+############
+\
+
+
+2nd maze
+C->StartingLocation
+#->Walls
+T=TimingTrap
+X = Exit
+
+h = heal powerup

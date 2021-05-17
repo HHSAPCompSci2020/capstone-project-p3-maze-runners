@@ -1,6 +1,7 @@
 package Maze;
 
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
@@ -34,7 +35,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Maze> allMazes;
 	private Maze maze0, maze1, maze2, maze3, newMaze0, newMaze1;//to be implemented
 	private static long iterations = 0;
-	public static int lives = 1;
+	public static int lives = 3;
 	
 	private boolean debugEnabled = false;
 	private int toggleDebugCooldown;
@@ -49,17 +50,19 @@ public class DrawingSurface extends PApplet {
 	 * So at mazeChangeCooldown = 30, you can change the maze at most once per 30 frames or once per 0.5 seconds
 	 */
 	private int mazeChangeCooldown;
+	private int otherCooldown = 0;
+	private int respawnCooldown = 0;
 	
 	/**
 	 * how many invincibility frames the player has. Player cannot take a damage for 
 	 */
 	public static int playerDmgCooldown;
-	public static final int DMG_MAX_COOLDOWN = 60;
+	public static final int DMG_MAX_COOLDOWN = 30;
 	/**
 	 * how many abilities are to be spawned randomly in the maze
 	 */
 	public int abilityNum;
-
+	private boolean gameComplete = false;
 
 	public DrawingSurface() {
 		super();
@@ -159,7 +162,7 @@ public class DrawingSurface extends PApplet {
 //		maze2.printCharArray(maze3.getGrid());
 
 		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
-		
+		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
 		
 		
 		//add each maze to ArrayList<Maze> allMazes 
@@ -168,7 +171,8 @@ public class DrawingSurface extends PApplet {
 		
 		
 		allMazes.add(newMaze0);
-		
+		allMazes.add(newMaze1);
+
 		
 		allMazes.add(maze2);
 		allMazes.add(maze3);
@@ -185,9 +189,11 @@ public class DrawingSurface extends PApplet {
 	}
 
 	public void spawnNewPlayer(int x, int y) {
+		respawnCooldown = 60;
 		player = new Player(loadImage("data//player.png"), x,y, 25, 25);
 	}
 	public void spawnNewPlayer() {
+		respawnCooldown = 60;
 		player = new Player(loadImage("data//player.png"), 8,10, 25, 25);
 		//use forward slash for folders outside src I guess?
 		//
@@ -274,22 +280,29 @@ public class DrawingSurface extends PApplet {
 	// line is executed again.
 	public void draw() {
 		iterations++;
-
+		
 		if (iterations%10 == 0) {
 			
 		}
 			//			System.out.println("iteration: "+iterations);
-		if (mazeChangeCooldown > 0) {
+		if (mazeChangeCooldown > 0) 
 			mazeChangeCooldown--;
-		}
-		if (playerDmgCooldown > 0) {
+		if (playerDmgCooldown > 0) 
 			playerDmgCooldown--;
-		}
-		if (toggleDebugCooldown > 0) {
+		if (toggleDebugCooldown > 0) 
 			toggleDebugCooldown--;
+		if (otherCooldown > 0) 
+			otherCooldown--;
+		if (respawnCooldown > 0) {
+			respawnCooldown--;
+			player.setSpeed(0.25);
+		}
+		else {
+			player.setSpeed(Player.MAX_SPEED);
 		}
 
-		if(mazeSelected < allMazes.size())
+		
+		if(!gameComplete)
 		{
 			//Loading walls 
 			Maze thisMaze = allMazes.get(mazeSelected);
@@ -328,14 +341,15 @@ public class DrawingSurface extends PApplet {
 			//If player's health is less then 1, player respawns
 			if (player.getHealth() <= 0&&lives>0) {
 				spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
-			}else if(lives<=0) {
-				//player.removeSelfFromMaze(thisMaze, 1);
-				fill(0);
-				this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
-				fill(255);
-				this.text("YOU DIED", DRAWING_WIDTH /2 -50,DRAWING_HEIGHT/2);
 			}
-			
+//			else if(lives<=0) {
+//				//player.removeSelfFromMaze(thisMaze, 1);
+//				fill(0);
+//				this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
+//				fill(255);
+//				this.text("YOU DIED", DRAWING_WIDTH /2 -50,DRAWING_HEIGHT/2);
+//			}
+//			
 			player.draw(this);
 		
 			
@@ -349,7 +363,7 @@ public class DrawingSurface extends PApplet {
 			
 			popMatrix();
 		}
-		else
+		else 
 		{
 			pushStyle();
 			textAlign(CENTER);
@@ -357,20 +371,27 @@ public class DrawingSurface extends PApplet {
 			this.rect(0,0, getWidth(), getHeight());
 			fill(255);
 			textSize(40);
-			this.text("Thanks For Playing!",getWidth() /2 ,getHeight()/4);
-			this.text("Developed By:", getWidth() /2 , getHeight()/2 - 180);
-			this.text("Christopher Lew", getWidth() /2 , getHeight()/2 - 140);
-			this.text("Joseph Huang", getWidth() /2 , getHeight()/2 - 100);
-			this.text("Lakshya Shrivatava", getWidth() /2 , getHeight()/2 - 60);
+			String s = "Thanks For Playing!\n"
+					+ "Developed By:\n"
+					+ "Christopher Lew\n"
+					+ "Joseph Huang\n"
+					+ "Lakshya Shrivatava\n";
+			this.text(s,getWidth() /2 ,getHeight()/4);
+//			this.text("Thanks For Playing!",getWidth() /2 ,getHeight()/4);
+//			this.text("Developed By:", getWidth() /2 , getHeight()/2 - 180);
+//			this.text("Christopher Lew", getWidth() /2 , getHeight()/2 - 140);
+//			this.text("Joseph Huang", getWidth() /2 , getHeight()/2 - 100);
+//			this.text("Lakshya Shrivatava", getWidth() /2 , getHeight()/2 - 60);
 			popStyle();
 		}
 		
-		if (debugEnabled) {
+		if (debugEnabled && !gameComplete) {
 			pushStyle();
 			String debugStr = "Debug On\n"
-					+ "= toggle debug\n"
-					+ "m go to next maze\n"
-					+ "";
+					+ "= Toggle debug\n"
+					+ "m Go to next maze\n"
+					+ "k Increase Health\n"
+					+ "l Increase Lives";
 			fill(32);
 			textSize(16);
 			this.text(debugStr, DRAWING_WIDTH - 200, 20);
@@ -411,18 +432,43 @@ public class DrawingSurface extends PApplet {
 				toggleDebugCooldown = 60;
 			}
 		}
+		
+		if (debugEnabled) {
+			if (isPressed(KeyEvent.VK_M)) { //TOGGLE MAZE
+				
+				String s = "" + toggleMaze();
+				System.out.println("Maze Selected: "+s);
+			}
+			if (isPressed(KeyEvent.VK_K) && otherCooldown == 0) {
+				player.healBy(1);
+				otherCooldown = 20;
+			}
+			if (isPressed(KeyEvent.VK_L) && lives < 100 && otherCooldown == 0) {
+				lives++;
+				otherCooldown = 30;
 
-		if (isPressed(KeyEvent.VK_M)) { //TOGGLE MAZE
-			String s = "" + toggleMaze();
-			System.out.println("Maze Selected: "+s);
+			}
 		}
+		if (lives > 9) {
+			lives = 9;
+		}
+		
 		//make Creatures act
 		player.act(obstacles);
 
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 		
-		
+		if(lives<=0) {
+			//player.removeSelfFromMaze(thisMaze, 1);
+			fill(0);
+			textSize(48);
+			
+			this.rect(0,0, DRAWING_WIDTH, DRAWING_HEIGHT);
+			fill(255,0,0);
+			textAlign(CENTER);
+			this.text("YOU DIED", DRAWING_WIDTH /2,DRAWING_HEIGHT/2);
+		}
 	}
 
 
@@ -449,14 +495,25 @@ public class DrawingSurface extends PApplet {
 		if (mazeChangeCooldown == 0) {
 			mazeChangeCooldown = 30;
 			mazeSelected++;
-			if (mazeSelected >= allMazes.size()) {
-				mazeSelected = 0;
+			if(mazeSelected < allMazes.size()) {
+				gameComplete = false;
 			}
-//			System.out.println("Maze Selected: "+mazeSelected);
-			
+			else {
+				gameComplete = true;
+
+			}
 			
 			if(mazeSelected < allMazes.size())
 				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);	 
+			if (mazeSelected >= allMazes.size()) {
+				gameComplete = true;
+				mazeSelected = 0;
+			}
+			
+//			System.out.println("Maze Selected: "+mazeSelected);
+			
+			
+			
 		}
 		return mazeSelected;
 	}

@@ -9,7 +9,7 @@ import processing.core.PImage;
 
 public class Player extends Creature{
 //	private int lives;
-	private final int MAX_SPEED = 3;
+	public static final double MAX_SPEED = 3;
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
@@ -108,13 +108,22 @@ public class Player extends Creature{
 		if (DrawingSurface.playerDmgCooldown > 0) {
 			marker.fill(248, 44, 0);
 			marker.text("Ow!", (float)(x - width/4), (float)(y - width/8));
+			speed = 1;
+			
 		}
 		else {
 			marker.fill(0);
+			speed = MAX_SPEED;
 		}
 		
 		marker.popStyle();
 		super.draw(marker);;
 		
+	}
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public double getSpeed() {
+		return speed;
 	}
 }

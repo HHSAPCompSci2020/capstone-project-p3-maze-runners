@@ -81,18 +81,10 @@ public class Spike extends Enemy {
 //	}
 
 	public void draw(PApplet marker) {
-		
-		if (DrawingSurface.getIterations() % 120 <= 60) {
-			setVisibility(false);
-//			marker.pushStyle();
-//			marker.fill(200,200,200);
-//			marker.rect((float)x, (float)y, (float)width, (float)height);
-			
-		}
-		else {
-			setVisibility(true);
-			super.draw(marker);
-		}
+
+
+		super.draw(marker);
+
 	}
 	
 }

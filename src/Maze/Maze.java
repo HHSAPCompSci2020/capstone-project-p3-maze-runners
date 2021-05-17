@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
 import entities.*;
+import entities.enemies.Spike;
 import entities.enemies.TimingTrap;
 import entities.*;
 
@@ -134,12 +135,12 @@ public class Maze {
 					
 				}
 				
-//				if(c == 'S') //Exit
-//				{
-//					Spike e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
-//					this.addExit(e);
-//					
-//				}
+				if(c == 'S') //Exit
+				{
+					Spike e = new Spike(marker.loadImage("data//spike2.png"), x, y, cellWidth, cellHeight);
+					this.addEnemy(e);
+					
+				}
 				
 //				if (System.nanoTime() % 100 == 0) {
 //					System.out.println("timing trap symbol: " + TimingTrap.getSymbol());
