@@ -93,7 +93,7 @@ public class DrawingSurface extends PApplet {
 		maze1.addCreature(new TimingTrap(loadImage("data//spike.png"), 100,50, 50, 50) );
 
 
-//		allMazes.add(maze1);
+
 		
 //		horizontal lines
 		maze0.addWall(new Rectangle(0,0,1000,WALL_THICKNESS ));
@@ -143,8 +143,7 @@ public class DrawingSurface extends PApplet {
 //		Abilities
 		maze0.addAbility(new Heal(loadImage("data//heal.png"), 250, 250, 40, 60));
 		
-//		allMazes.add(maze0);
-		
+
 		maze2 = new Maze(this, "data//txtmaze0.txt", 15, 15);
 //		System.out.println("3rd maze in allMazes:");
 //		maze2.printCharArray(maze2.getGrid());
@@ -154,6 +153,12 @@ public class DrawingSurface extends PApplet {
 		maze2.printCharArray(maze3.getGrid());
 
 		//add each maze to ArrayList<Maze> allMazes 
+//		allMazes.add(maze0);
+//		allMazes.add(maze1);
+		
+		
+		
+		
 		allMazes.add(maze2);
 		allMazes.add(maze3);
 
