@@ -310,6 +310,7 @@ public class DrawingSurface extends PApplet {
 			spawnNewPlayer(thisMaze.playerStartX, thisMaze.playerStartY);
 		}
 		
+		
 		player.draw(this);
 	
 		
@@ -322,7 +323,15 @@ public class DrawingSurface extends PApplet {
 
 		
 		popMatrix();
-
+		
+		if(lives<=0) {
+			this.fill(0);
+			String endStr = "YOU DIED";
+			endStr += "\nGAME OVER ";
+			this.textSize(100);
+			this.text(endStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
+			this.fill(0);
+		}
 
 		// modifying stuff
 
