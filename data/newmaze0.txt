@@ -1,0 +1,19 @@
+#########
+#C..#h#X#
+###.#.#.#
+#.#T#.#.#
+#.....#.#
+#.#####.#
+#.#...T.#
+#...T...#
+#########
+\
+
+
+
+
+C->StartingLocation
+#->Walls
+T=TimingTrap
+
+h = heal powerup

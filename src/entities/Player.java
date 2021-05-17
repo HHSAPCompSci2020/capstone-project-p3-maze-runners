@@ -9,10 +9,11 @@ import processing.core.PImage;
 
 public class Player extends Creature{
 //	private int lives;
+	private final int MAX_SPEED = 3;
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		super.maxHealth = 5;
+		super.maxHealth = 3;
 		health = maxHealth;
 		imageName = "player.png";
 		
@@ -39,15 +40,22 @@ public class Player extends Creature{
 	
 	public void act(ArrayList<Shape> obstacles) {
 		if (DrawingSurface.playerDmgCooldown == 0) {
-			speed= 2.0;
+			speed= MAX_SPEED;
 		}
 		else {
-			speed = 0.5;
+//			speed = 0.5;
 		}
 		super.act(obstacles);
 	}
 	
-	
+	/**
+	 * 
+	 * @param damage How much damage to take (int)
+	 * @param otherX x coordinate of the other Creature
+	 * @param otherY y coordinate of the other Creature
+	 * @param otherWidth width of the other Creature
+	 * @param otherHeight height of the other Creature
+	 */
 	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight) {
 		
 		if (DrawingSurface.playerDmgCooldown== 0) {
