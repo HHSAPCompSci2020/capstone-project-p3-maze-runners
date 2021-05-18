@@ -84,9 +84,11 @@ public class TimingTrap extends Enemy {
 		
 		if (DrawingSurface.getIterations() % 120 <= 60) {
 			setVisibility(false);
-//			marker.pushStyle();
-//			marker.fill(200,200,200);
-//			marker.rect((float)x, (float)y, (float)width, (float)height);
+			marker.pushStyle();
+			marker.noStroke();
+			marker.fill(200,200,200, 160 );
+			marker.rect((float)x, (float)y, (float)width, (float)height);
+			marker.popStyle();
 			
 		}
 		else {
