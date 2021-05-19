@@ -209,6 +209,18 @@ public class DrawingSurface extends PApplet {
 		this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
 		this.fill(0);
 
+		if (lives <= 0) {
+			pushStyle();
+			textAlign(CENTER);
+			fill(0);
+			this.rect(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
+			
+			fill(255, 0, 0);
+			textSize(40);
+			this.text("YOU DIED", DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
+			popStyle();
+		}
+		
 //   End of game scren
 		if (gameComplete) {
 
@@ -223,6 +235,7 @@ public class DrawingSurface extends PApplet {
 			this.text(s, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
 			popStyle();
 		}
+		
 		
 
 //		debug mode: to be deleted or commented in final version
@@ -339,17 +352,6 @@ public class DrawingSurface extends PApplet {
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 
-		if (lives <= 0) {
-			pushStyle();
-			fill(0);
-			textSize(48);
-
-			this.rect(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-			fill(255, 0, 0);
-			textAlign(CENTER);
-			this.text("YOU DIED", DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
-			popStyle();
-		}
 	}
 
 	public void keyPressed() {
