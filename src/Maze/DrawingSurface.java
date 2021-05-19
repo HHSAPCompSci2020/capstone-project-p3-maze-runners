@@ -78,7 +78,9 @@ public class DrawingSurface extends PApplet {
 				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
 		System.out.println(instructions);
 		allMazes = new ArrayList<Maze>();
-
+		
+		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
+		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
 		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
 //		System.out.println("3rd maze in allMazes:");
 //		maze2.printCharArray(maze2.getGrid());
@@ -86,20 +88,21 @@ public class DrawingSurface extends PApplet {
 		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
 //		maze2.printCharArray(maze3.getGrid());
 
-		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
-		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
+		
 		 
 		Maze maze4 = new Maze(this, "data//maze4.txt", 18, 25);
-		// add each maze to ArrayList<Maze> allMazes
-//		allMazes.add(maze0);
-//		allMazes.add(maze1);
 
+		Maze maze5 = new Maze(this, "data//maze5.txt", 20, 15);
+		Maze maze6 = new Maze(this, "data//maze6.txt", 15, 15);
+		
 		allMazes.add(newMaze0);
 		allMazes.add(newMaze1);
 
 		allMazes.add(maze2);
 		allMazes.add(maze3);
 		allMazes.add(maze4);
+		allMazes.add(maze5);
+		allMazes.add(maze6);
 
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -216,7 +219,7 @@ public class DrawingSurface extends PApplet {
 			fill(0);
 			textSize(40);
 			String s = "Thanks For Playing!\n" + "Developed By:\n" + "Christopher Lew\n" + "Joseph Huang\n"
-					+ "Lakshya Shrivatava\n";
+					+ "Lakshya Shrivastava\n";
 			this.text(s, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
 			popStyle();
 		}
@@ -337,6 +340,7 @@ public class DrawingSurface extends PApplet {
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 
 		if (lives <= 0) {
+			pushStyle();
 			fill(0);
 			textSize(48);
 
@@ -344,6 +348,7 @@ public class DrawingSurface extends PApplet {
 			fill(255, 0, 0);
 			textAlign(CENTER);
 			this.text("YOU DIED", DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
+			popStyle();
 		}
 	}
 
