@@ -14,7 +14,8 @@ public class Main extends JFrame {
 
 	public Main(String title) {
 		super(title);
-		setBounds(0, 0, screenSize.width, screenSize.height);
+		setBounds(100, 100, 800, 600);
+//		setBounds(0, 0, screenSize.width, screenSize.height);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		cardPanel = new JPanel();
