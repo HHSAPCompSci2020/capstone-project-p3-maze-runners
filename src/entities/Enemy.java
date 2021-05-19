@@ -39,7 +39,9 @@ public abstract class Enemy extends Creature {
 		
 	}
 	
-	abstract public void attack(Player p) ;
+	public void attack(Player p) {
+		p.reduceHealthBy(1, x, y, width, height);
+	}
 	
 	/**
 	 * the pattern in which the enemy moves around

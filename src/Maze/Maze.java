@@ -14,6 +14,7 @@ import entities.*;
 import entities.enemies.Spike;
 import entities.enemies.TimingTrap;
 import entities.*;
+import entities.enemies.*;
 
 public class Maze {
 
@@ -143,9 +144,15 @@ public class Maze {
 					playerStartX = col * cellWidth;
 					playerStartY = row * cellHeight;
 				}
+				if (c == 'M') {
+					Monster M = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
+					addEnemy(M);
+				}
+				
 				if (c == WALKABLE) {
 					// add nothing
 				}
+				
 			}
 		}
 

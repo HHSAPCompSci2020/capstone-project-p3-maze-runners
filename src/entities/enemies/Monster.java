@@ -3,6 +3,7 @@ package entities.enemies;
 import java.awt.Shape;
 import java.util.ArrayList;
 
+import Maze.DrawingSurface;
 import entities.Enemy;
 import entities.Player;
 import processing.core.PImage;
@@ -22,6 +23,7 @@ public class Monster extends Enemy {
 		directions[1] = EAST;
 		directions[2] = WEST; 
 		directions[3] = SOUTH; 
+		speed = 2;
 //		symbol = 'M';
 	}
 
@@ -39,7 +41,29 @@ public class Monster extends Enemy {
 	
 	public void act(ArrayList<Shape> obstacles) {
 		super.act(obstacles);
-		move();
+//		move(); doesn't work as expected
+		
+		
+		double rand1 = Math.random();
+		double rand2 = Math.random();
+		
+		if (rand2*100 < 10) {
+			int x0 = 0, y0 = 0;
+			if (rand1 < 0.25) {
+				x0 = (int)speed;
+			}
+			else if (rand1<0.5) {
+				x0 = -(int)speed;
+			}
+			else if (rand1<0.75) {
+				y0= (int)speed;
+			}
+			else {
+				y0 = -(int)speed;
+			}
+			
+			moveBy(x0,y0);
+		}
 	}
 	
 	
@@ -48,17 +72,16 @@ public class Monster extends Enemy {
 		return (int)(Math.random() * directions.length);
 	}
 
-	public void attack() {
-	}
+//	public void attack() {
+//	}
+	
 
 	public void reduceHealth() {
 	}
 
 	@Override
 	public void attack(Player p) {
-		// TODO Auto-generated method stub
-		
+		p.reduceHealthBy(1, x, y, width, height);
 	}
-
 }
 
