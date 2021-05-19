@@ -45,13 +45,13 @@ public class DrawingSurface extends PApplet {
 	 */
 	private int mazeChangeCooldown;
 	private int otherCooldown = 0;
-	private int respawnCooldown = 0;
+	private static int respawnCooldown = 0;
 
 	/**
 	 * how many invincibility frames the player has. Player cannot take a damage for
 	 */
 	public static int playerDmgCooldown;
-	public static final int DMG_MAX_COOLDOWN = 30;
+	public static final int DMG_MAX_COOLDOWN = 60;
 	/**
 	 * how many abilities are to be spawned randomly in the maze
 	 */
@@ -82,7 +82,8 @@ public class DrawingSurface extends PApplet {
 
 		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
 		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
-
+		 
+		Maze maze4 = new Maze(this, "data//maze4.txt", 18, 25);
 		// add each maze to ArrayList<Maze> allMazes
 //		allMazes.add(maze0);
 //		allMazes.add(maze1);
@@ -92,6 +93,7 @@ public class DrawingSurface extends PApplet {
 
 		allMazes.add(maze2);
 		allMazes.add(maze3);
+		allMazes.add(maze4);
 
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -130,7 +132,7 @@ public class DrawingSurface extends PApplet {
 
 		if (respawnCooldown > 0) {
 			respawnCooldown--;
-			player.setSpeed(0.25);
+			player.setSpeed(0.0);
 		} else {
 			player.setSpeed(Player.MAX_SPEED);
 		}
@@ -356,7 +358,7 @@ public class DrawingSurface extends PApplet {
 	public int toggleMaze() {
 		System.out.println("maze change CD" + mazeChangeCooldown);
 		if (mazeChangeCooldown == 0) {
-			mazeChangeCooldown = 30;
+			mazeChangeCooldown = 20;
 			mazeSelected++;
 			if (mazeSelected < allMazes.size()) {
 				gameComplete = false;
@@ -377,5 +379,9 @@ public class DrawingSurface extends PApplet {
 
 	public static long getIterations() {
 		return iterations;
+	}
+	
+	public static int getRespawnTimer() {
+		return respawnCooldown;
 	}
 }

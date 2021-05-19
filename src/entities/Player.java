@@ -9,7 +9,9 @@ import processing.core.PImage;
 
 public class Player extends Creature{
 //	private int lives;
-	public static final double MAX_SPEED = 3;
+	public static final double MAX_SPEED = 2;
+	public static final double DAMAGED_SPEED = 0.3;
+	private static final int knockback = 9;
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
@@ -47,6 +49,14 @@ public class Player extends Creature{
 		}
 		super.act(obstacles);
 	}
+	public void moveBy(int x, int y) {
+		if (DrawingSurface.getRespawnTimer() != 0) {
+			return;
+		}
+		else {
+			super.moveBy(x, y);
+		}
+	}
 	
 	/**
 	 * 
@@ -69,19 +79,19 @@ public class Player extends Creature{
 			//get Knocked back
 			if (otherX <= this.x && this.x <= otherX+otherWidth) {
 				if (y >= otherY) {
-					moveBy(0, 10);
+					moveBy(0, knockback);
 				}
 				else {
-					moveBy(0, -10);
+					moveBy(0, -knockback);
 				}
 			}
 			
 			if (otherY <= this.y && this.y <= otherY+otherHeight) {
 				if (x >= otherX) {
-					moveBy(10, 0);
+					moveBy(knockback, 0);
 				}
 				else {
-					moveBy(-10, 0);
+					moveBy(-knockback, 0);
 				}
 			}
 			
@@ -108,7 +118,7 @@ public class Player extends Creature{
 		if (DrawingSurface.playerDmgCooldown > 0) {
 			marker.fill(248, 44, 0);
 			marker.text("Ow!", (float)(x - width/4), (float)(y - width/8));
-			speed = 1;
+			speed = DAMAGED_SPEED;
 			
 		}
 		else {
