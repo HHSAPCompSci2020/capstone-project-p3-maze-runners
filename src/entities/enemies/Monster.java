@@ -23,7 +23,7 @@ public class Monster extends Enemy {
 		directions[1] = EAST;
 		directions[2] = WEST; 
 		directions[3] = SOUTH; 
-		speed = 2;
+		speed = 3 ;
 //		symbol = 'M';
 	}
 
@@ -64,6 +64,11 @@ public class Monster extends Enemy {
 			
 			moveBy(x0,y0);
 		}
+		
+		
+		
+		
+		
 	}
 	
 	

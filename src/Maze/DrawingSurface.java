@@ -22,7 +22,7 @@ public class DrawingSurface extends PApplet {
 
 	private Rectangle screenRect;
 
-	private Player player;
+	private static Player player;
 
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Integer> keys;
@@ -199,7 +199,7 @@ public class DrawingSurface extends PApplet {
 			this.text(s, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
 			popStyle();
 		}
-		popMatrix();
+		
 
 //		debug mode: to be deleted or commented in final version
 		if (debugEnabled && !gameComplete) {
@@ -211,7 +211,9 @@ public class DrawingSurface extends PApplet {
 			this.text(debugStr, DRAWING_WIDTH - 200, 20);
 
 		}
-
+		
+		
+		popMatrix();//this should be after any drawing to scale properly
 		if (debugEnabled) {
 			if (isPressed(KeyEvent.VK_M)) { // TOGGLE MAZE
 
@@ -393,5 +395,14 @@ public class DrawingSurface extends PApplet {
 	
 	public static int getRespawnTimer() {
 		return respawnCooldown;
+	}
+	
+	
+	/**
+	 * @post This method modified the one and only Player on screen so use carefully
+	 * @return the Player that the user controls
+	 */
+	public static Player getPlayer() {
+		return player;
 	}
 }

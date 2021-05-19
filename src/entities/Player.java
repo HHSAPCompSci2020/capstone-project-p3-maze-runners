@@ -99,6 +99,19 @@ public class Player extends Creature{
 			
 		}
 	}
+	public void reduceHealthBy(int damage, int otherX, int otherY) {
+		health -= damage;
+		DrawingSurface.playerDmgCooldown = 60;
+		if (health <= 0) {
+			health = 0;
+			DrawingSurface.lives -= 1;
+		}
+		if (DrawingSurface.playerDmgCooldown== 0) {
+			//take knockback
+			
+			double direction;
+		}
+	}
 	public char getSymbol() {
 		return 'C';
 	}
