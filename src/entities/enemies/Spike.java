@@ -86,5 +86,8 @@ public class Spike extends Enemy {
 		super.draw(marker);
 
 	}
+	public boolean isMovable() {
+		return false;
+	}
 	
 }

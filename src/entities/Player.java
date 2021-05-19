@@ -11,7 +11,6 @@ public class Player extends Creature{
 //	private int lives;
 	public static final double MAX_SPEED = 2;
 	public static final double DAMAGED_SPEED = 0.3;
-	private static final int knockback = 9;
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
@@ -75,27 +74,7 @@ public class Player extends Creature{
 				health = 0;
 				DrawingSurface.lives -= 1;
 			}
-			
-			
-			
-			//get Knocked back
-			if (otherX <= this.x && this.x <= otherX+otherWidth) {
-				if (y >= otherY) {
-					moveBy(0, knockback);
-				}
-				else {
-					moveBy(0, -knockback);
-				}
-			}
-			
-			if (otherY <= this.y && this.y <= otherY+otherHeight) {
-				if (x >= otherX) {
-					moveBy(knockback, 0);
-				}
-				else {
-					moveBy(-knockback, 0);
-				}
-			}
+			receiveKnockback(otherX, otherY, otherWidth, otherHeight, 1.0);
 			
 		}
 	}
@@ -112,6 +91,9 @@ public class Player extends Creature{
 			double direction;
 		}
 	}
+	
+	
+	
 	public char getSymbol() {
 		return 'C';
 	}

@@ -145,7 +145,11 @@ public class Maze {
 					playerStartY = row * cellHeight;
 				}
 				if (c == 'M') {
-					Monster M = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
+					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+					addEnemy(M);
+				}
+				if (c == 'H') {
+					Monster M = new HomingMonster(marker.loadImage("data//HomingMonster.png"), x, y, cellWidth, cellHeight);
 					addEnemy(M);
 				}
 				

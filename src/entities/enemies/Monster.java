@@ -88,5 +88,8 @@ public class Monster extends Enemy {
 	public void attack(Player p) {
 		p.reduceHealthBy(1, x, y, width, height);
 	}
+	public boolean isMovable() {
+		return true;
+	}
 }
 

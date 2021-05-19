@@ -17,6 +17,7 @@ public abstract class Enemy extends Creature {
 //	protected int y;
 	protected int attackDamage;
 	
+	
 	public Enemy(PImage img, int x, int y) 
 	{
 		super(img,x,y);
@@ -51,4 +52,8 @@ public abstract class Enemy extends Creature {
 //	 abstract public void attack();
 	 
 	 abstract public void reduceHealth();
+	 
+	 abstract public boolean isMovable();
+		 
+	 
 }

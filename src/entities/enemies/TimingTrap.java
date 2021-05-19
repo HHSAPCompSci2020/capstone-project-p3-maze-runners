@@ -97,4 +97,7 @@ public class TimingTrap extends Enemy {
 		}
 	}
 	
+	public boolean isMovable() {
+		return false;
+	}
 }

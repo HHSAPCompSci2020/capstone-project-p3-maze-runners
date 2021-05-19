@@ -339,8 +339,26 @@ public class DrawingSurface extends PApplet {
 					e.attack(player);
 
 				}
-				// ADD NEW ENEMIES ATTACK METHODS HERE OR MODIFY attack() METHOD
+				
+				
+				
+				
+				// MODIFY Enemies' attack() METHOD
 
+			}
+			
+			//Make sure enemies don't run into each other
+			for (int j = 0; j < thisMaze.getEnemies().size(); j++) {
+				Enemy e2 = thisMaze.getEnemies().get(j);
+				if (i != j) {
+					if (e.touchingCreature(e2)) {
+						if (e.isMovable())
+							e.receiveKnockback(e2.x, e2.y, e2.width, e2.height, 0.2);
+						if (e2.isMovable())
+							e2.receiveKnockback(e.x, e.y, e.width, e.height, 0.2);
+
+					}
+				}
 			}
 
 		}
@@ -370,7 +388,7 @@ public class DrawingSurface extends PApplet {
 	public int toggleMaze() {
 		System.out.println("maze change CD" + mazeChangeCooldown);
 		if (mazeChangeCooldown == 0) {
-			mazeChangeCooldown = 20;
+			mazeChangeCooldown = 10;
 			mazeSelected++;
 			if (mazeSelected < allMazes.size()) {
 				gameComplete = false;

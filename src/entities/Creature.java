@@ -20,6 +20,7 @@ public abstract class Creature extends MovingImage {
 	private double gravity;
 	private double jumpStrength;
 	
+	protected int knockback = 9;
 //	public static char symbol;
 	
 	
@@ -97,6 +98,15 @@ public abstract class Creature extends MovingImage {
 	
 	//New movement methods
 	public void moveBy(int x, int y) {
+		if (xVelocity <= 10 && xVelocity >= -10) {
+			xVelocity += speed*x;
+		}
+		if (yVelocity <= 10 && yVelocity >= -10) {
+			yVelocity += speed*y;
+		}
+	}
+	
+	public void moveBy(double x, double y) {
 		if (xVelocity <= 10 && xVelocity >= -10) {
 			xVelocity += speed*x;
 		}
@@ -224,7 +234,26 @@ public abstract class Creature extends MovingImage {
 	
 //	public abstract char getSymbol();
 	
-	
+	public void receiveKnockback( double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
+		//get Knocked back
+		if (otherX <= this.x && this.x <= otherX+otherWidth) {
+			if (y >= otherY) {
+				moveBy(0, kbMultiplier*knockback);
+			}
+			else {
+				moveBy(0, -kbMultiplier*knockback);
+			}
+		}
+		
+		if (otherY <= this.y && this.y <= otherY+otherHeight) {
+			if (x >= otherX) {
+				moveBy(kbMultiplier*knockback, 0);
+			}
+			else {
+				moveBy(-kbMultiplier*knockback, 0);
+			}
+		}
+	}
 	
 
 
