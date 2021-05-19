@@ -255,6 +255,14 @@ public abstract class Creature extends MovingImage {
 		}
 	}
 	
+	public double getXVelocity() {
+		return xVelocity;
+	}
+	public double getYVelocity() {
+		return yVelocity;
+	}
+	
+	
 
 
 }

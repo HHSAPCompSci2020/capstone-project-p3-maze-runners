@@ -280,8 +280,9 @@ public class DrawingSurface extends PApplet {
 
 		// Player movement modification
 
-		if (isPressed(KeyEvent.VK_LEFT))
+		if (isPressed(KeyEvent.VK_LEFT)) {
 			player.moveBy(-1, 0);
+		}
 		// mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
 			player.moveBy(1, 0);
@@ -304,6 +305,16 @@ public class DrawingSurface extends PApplet {
 		// mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
+		
+		
+		if (player.getXVelocity() < 0) {
+			player.facingRight = false;
+		}
+		else if (player.getXVelocity() > 0){
+			player.facingRight = true;
+		}
+		
+		
 		
 		if (currentAbility!= null) {
 			if (isPressed(KeyEvent.VK_SPACE)) {
@@ -373,7 +384,7 @@ public class DrawingSurface extends PApplet {
 
 	public void spawnNewPlayer(int x, int y) {
 		respawnCooldown = 30;
-		player = new Player(loadImage("data//player.png"), x, y, 25, 25);
+		player = new Player(loadImage("data//luigi.png"), x, y, 25, 25, loadImage("data//luigiLeft.png"));
 	}
 
 	private void spawnWalls(ArrayList<Shape> obstacles, Maze thisMaze) {

@@ -15,13 +15,14 @@ import processing.core.PImage;
 public class MovingImage extends Rectangle2D.Double {
 
 	// FIELDS
-	private PImage image;
-
+	protected PImage image;
+	protected boolean facingRight;
 
 	// CONSTRUCTORS
 	public MovingImage(PImage img, int x, int y, int w, int h) {
 		super(x, y, w, h);
 		image = img;
+		facingRight = true;
 	}
 
 	// METHODS
@@ -44,5 +45,9 @@ public class MovingImage extends Rectangle2D.Double {
 
 	public void draw(PApplet g) {
 		g.image(image, (int) x, (int) y, (int) width, (int) height);
+	}
+	
+	public void setDirection(boolean faceRight) {
+		facingRight = faceRight;
 	}
 }

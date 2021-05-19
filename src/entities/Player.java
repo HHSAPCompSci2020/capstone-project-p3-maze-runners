@@ -10,15 +10,22 @@ import processing.core.PImage;
 public class Player extends Creature{
 //	private int lives;
 	public static final double MAX_SPEED = 2;
-	public static final double DAMAGED_SPEED = 0.3;
-	
+	public static final double DAMAGED_SPEED = 0.6;
+	private PImage flippedImage;
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
 		health = maxHealth;
-		imageName = "player.png";
-		
+		imageName = "luigi.png";
+	} 
+	
+	public Player(PImage img, int x, int y, int width, int height, PImage flipped) {
+		super(img, x, y, width, height);
+		super.maxHealth = 3;
+		health = maxHealth;
+		imageName = "luigi.png";
+		flippedImage = flipped;
 	} 
 	
 	public void reduceHealthBy(int damage) {
@@ -124,8 +131,21 @@ public class Player extends Creature{
 			speed = MAX_SPEED;
 		}
 		
+		
+		int a = 1;
+		
+		
 		marker.popStyle();
-		super.draw(marker);;
+		
+		
+		if (!facingRight) {
+			marker.image(flippedImage, (int) x, (int) y, (int) width, (int) height);
+		}
+		else {
+			marker.image(image, (int) x, (int) y, (int) width, (int) height);
+		}
+		
+//		super.draw(marker);
 		
 	}
 	public void setSpeed(double speed) {
@@ -134,4 +154,10 @@ public class Player extends Creature{
 	public double getSpeed() {
 		return speed;
 	}
+	
+	
+	
+	
+	
+	
 }

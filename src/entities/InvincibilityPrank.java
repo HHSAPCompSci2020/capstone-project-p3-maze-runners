@@ -9,7 +9,7 @@ public class InvincibilityPrank  extends Ability{
 	
 	public InvincibilityPrank(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		super.uses=3;
+		super.uses=1;
 //		imageName = "heal.png";
 	}
 
