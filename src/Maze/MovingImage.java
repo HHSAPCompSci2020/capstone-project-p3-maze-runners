@@ -11,6 +11,7 @@ import processing.core.PImage;
  * on: 5/3/13
  */
 
+@SuppressWarnings("serial")
 public class MovingImage extends Rectangle2D.Double {
 
 	// FIELDS

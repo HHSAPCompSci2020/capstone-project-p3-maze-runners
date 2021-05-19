@@ -5,7 +5,6 @@ import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import entities.enemies.TimingTrap;
 import processing.core.PApplet;
 
 import entities.*;
