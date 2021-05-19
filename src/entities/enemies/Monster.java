@@ -1,5 +1,8 @@
 package entities.enemies;
 
+import java.awt.Shape;
+import java.util.ArrayList;
+
 import entities.Enemy;
 import entities.Player;
 import processing.core.PImage;
@@ -33,6 +36,12 @@ public class Monster extends Enemy {
 		else
 			y+= WEST;
 	}
+	
+	public void act(ArrayList<Shape> obstacles) {
+		super.act(obstacles);
+		move();
+	}
+	
 	
 	private int pickDirection()
 	{

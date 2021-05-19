@@ -36,8 +36,9 @@ public class InvisibilityPrank extends Ability{
 		
 	}
 	
-	public static char getSymbol() {
-		return sSymbol;
-	}
+	//Inheriting static methods is very weird, just put 's'
+//	public static char getSymbol() {
+//		return sSymbol;
+//	}
 	
 }

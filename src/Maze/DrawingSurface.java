@@ -83,7 +83,7 @@ public class DrawingSurface extends PApplet {
 		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
 		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
 		 
-		Maze maze4 = new Maze(this, "data//maze4.txt", 18, 25);
+//		Maze maze4 = new Maze(this, "data//maze4.txt", 18, 25);
 		// add each maze to ArrayList<Maze> allMazes
 //		allMazes.add(maze0);
 //		allMazes.add(maze1);
@@ -93,7 +93,7 @@ public class DrawingSurface extends PApplet {
 
 		allMazes.add(maze2);
 		allMazes.add(maze3);
-		allMazes.add(maze4);
+//		allMazes.add(maze4);
 
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -264,6 +264,16 @@ public class DrawingSurface extends PApplet {
 
 		// make Creatures act
 		player.act(obstacles);
+		for (Enemy e: thisMaze.getEnemies()) {
+			e.act(obstacles);
+		}
+		for (Ability ab: thisMaze.getAbilities()) {
+			ab.act(obstacles);
+		}
+		for (Exit exit: thisMaze.getExits()) {
+			exit.act(obstacles);
+		}
+		
 
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);

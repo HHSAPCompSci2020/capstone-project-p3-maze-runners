@@ -76,6 +76,8 @@ public class Player extends Creature{
 				DrawingSurface.lives -= 1;
 			}
 			
+			
+			
 			//get Knocked back
 			if (otherX <= this.x && this.x <= otherX+otherWidth) {
 				if (y >= otherY) {
