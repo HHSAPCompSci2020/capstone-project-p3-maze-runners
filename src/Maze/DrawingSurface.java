@@ -239,8 +239,8 @@ public class DrawingSurface extends PApplet {
 			rect(0, 0, DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
 			textAlign(CENTER);
 			fill(255,255,255);
-			textSize(100);
-			text("pranked!",DrawingSurface.DRAWING_WIDTH/2,DrawingSurface.DRAWING_HEIGHT/2);
+			textSize(25);
+			text("Did you honestly think we would give you invincibility?",DrawingSurface.DRAWING_WIDTH/2,DrawingSurface.DRAWING_HEIGHT/2);
 			popStyle();
 		}
 		
@@ -293,9 +293,9 @@ public class DrawingSurface extends PApplet {
 			if (isPressed(KeyEvent.VK_SPACE)) {
 				int cd = currentAbility.getCooldown();
 				if (abilityCooldown == 0) {
-					if (currentAbility instanceof InvisibilityPrank) {
+					if (currentAbility instanceof InvincibilityPrank) {
 						System.out.println("pranked");
-						InvisibilityPrank p = (InvisibilityPrank)currentAbility;
+						InvincibilityPrank p = (InvincibilityPrank)currentAbility;
 						prankedTime = 200;
 						p.use();//decrements uses only
 					}

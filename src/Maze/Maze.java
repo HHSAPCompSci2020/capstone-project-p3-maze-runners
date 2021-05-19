@@ -120,7 +120,7 @@ public class Maze {
 //					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
 //				}
 				if (c == 's') {
-					InvisibilityPrank s = new InvisibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
+					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(s);
 				}
 
@@ -149,7 +149,7 @@ public class Maze {
 					playerStartY = row * cellHeight;
 				}
 				if (c == 'M') {
-					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+					Monster M = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
 					addEnemy(M);
 				}
 				if (c == 'H') {

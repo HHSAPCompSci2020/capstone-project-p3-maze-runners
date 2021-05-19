@@ -3,11 +3,11 @@ import Maze.DrawingSurface;
 import entities.Ability;
 import processing.core.PApplet;
 import processing.core.PImage;
-public class InvisibilityPrank extends Ability{
+public class InvincibilityPrank  extends Ability{
 	
 	private static char sSymbol = 's';
 	
-	public InvisibilityPrank(PImage img, int x, int y, int width, int height) {
+	public InvincibilityPrank(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.uses=3;
 //		imageName = "heal.png";
@@ -26,7 +26,7 @@ public class InvisibilityPrank extends Ability{
 	
 	
 	public String toString() {
-		String s = "Fake Invis";
+		String s = "Invincibility";
 		return s;
 	}
 	
