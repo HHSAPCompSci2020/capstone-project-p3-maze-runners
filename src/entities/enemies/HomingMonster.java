@@ -18,20 +18,20 @@ public class HomingMonster extends Monster{
 		super.act(obstacles);
 		//Make Monster slowly go towards player
 				if (DrawingSurface.getIterations()%10 == 0) {
-					double x0 = 0, y0 = 0;
+					double dx = 0, dy = 0;
 					if (DrawingSurface.getPlayer().getCenterX() < this.getCenterX() ) {
-						x0 = -speed;
+						dx = -speed;
 					}
 					else {
-						x0 = speed;
+						dx = speed;
 					}
 					if (DrawingSurface.getPlayer().getCenterY() < this.getCenterY() ) {
-						y0 = -speed;
+						dy = -speed;
 					}
 					else {
-						y0 = speed;
+						dy = speed;
 					}
-					moveBy(x0,y0);
+					moveBy(dx,dy);
 
 				}
 	}

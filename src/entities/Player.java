@@ -12,13 +12,14 @@ public class Player extends Creature{
 	public static final double MAX_SPEED = 2;
 	public static final double DAMAGED_SPEED = 0.3;
 	
+	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
 		health = maxHealth;
 		imageName = "player.png";
 		
-	}
+	} 
 	
 	public void reduceHealthBy(int damage) {
 		

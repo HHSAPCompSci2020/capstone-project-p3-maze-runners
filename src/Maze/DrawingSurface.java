@@ -18,7 +18,7 @@ public class DrawingSurface extends PApplet {
 
 	private static long iterations = 0;
 	public static int lives = 3;
-	private static boolean debugEnabled = false;
+	private static boolean debugEnabled = true;
 
 	private Rectangle screenRect;
 
@@ -44,8 +44,11 @@ public class DrawingSurface extends PApplet {
 	 * most once per 30 frames or once per 0.5 seconds
 	 */
 	private int mazeChangeCooldown;
+	private int abilityCooldown;
 	private int otherCooldown = 0;
 	private static int respawnCooldown = 0;
+	
+	private int prankedTime = 0;
 
 	/**
 	 * how many invincibility frames the player has. Player cannot take a damage for
@@ -56,6 +59,9 @@ public class DrawingSurface extends PApplet {
 	 * how many abilities are to be spawned randomly in the maze
 	 */
 	public int abilityNum;
+	
+	private Ability currentAbility = null;
+	
 	private boolean gameComplete = false;
 
 	/*
@@ -129,6 +135,10 @@ public class DrawingSurface extends PApplet {
 			toggleDebugCooldown--;
 		if (otherCooldown > 0)
 			otherCooldown--;
+		if (abilityCooldown > 0)
+			abilityCooldown--;
+		if (prankedTime> 0)
+			prankedTime--;
 
 		if (respawnCooldown > 0) {
 			respawnCooldown--;
@@ -178,11 +188,22 @@ public class DrawingSurface extends PApplet {
 		player.draw(this);
 
 //	Text that Displays the players health
-		this.fill(0);
+		this.fill(0, 0, 0, 200);
 		String healthStr = "Lives: " + lives;
 		healthStr += "\nHealth: " + player.getHealth();
-		this.textSize(20);
-		this.text(healthStr, DRAWING_WIDTH - 100, DRAWING_HEIGHT - 50);
+		if (currentAbility!= null) {
+			this.textSize(16);
+			String s = "";
+			if (currentAbility.getUses() == 1000) {
+				s = "";
+			}
+			else {
+				s = currentAbility.getUses() + "x ";
+			}
+			healthStr += "\nAbility: (press SPACE)\n"+  s + currentAbility.toString();
+		}
+		this.textSize(16);
+		this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
 		this.fill(0);
 
 //   End of game scren
@@ -212,6 +233,16 @@ public class DrawingSurface extends PApplet {
 
 		}
 		
+		if (prankedTime >0) {
+			pushStyle();
+			fill(0,64,0, 220);
+			rect(0, 0, DrawingSurface.DRAWING_WIDTH, DrawingSurface.DRAWING_HEIGHT);
+			textAlign(CENTER);
+			fill(255,255,255);
+			textSize(100);
+			text("pranked!",DrawingSurface.DRAWING_WIDTH/2,DrawingSurface.DRAWING_HEIGHT/2);
+			popStyle();
+		}
 		
 		popMatrix();//this should be after any drawing to scale properly
 		if (debugEnabled) {
@@ -257,6 +288,31 @@ public class DrawingSurface extends PApplet {
 		// mario.jump();
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
+		
+		if (currentAbility!= null) {
+			if (isPressed(KeyEvent.VK_SPACE)) {
+				int cd = currentAbility.getCooldown();
+				if (abilityCooldown == 0) {
+					if (currentAbility instanceof InvisibilityPrank) {
+						System.out.println("pranked");
+						InvisibilityPrank p = (InvisibilityPrank)currentAbility;
+						prankedTime = 200;
+						p.use();//decrements uses only
+					}
+					else {
+						currentAbility.use();
+
+					}
+					if (currentAbility.getUses()<= 0) {
+						currentAbility = null;
+					}
+
+				}
+				abilityCooldown = 30*cd;
+			}
+	}
+		
+		
 		if (isPressed(KeyEvent.VK_EQUALS)) {
 			if (toggleDebugCooldown == 0) {
 				debugEnabled = !debugEnabled;
@@ -309,7 +365,7 @@ public class DrawingSurface extends PApplet {
 	 */
 
 	public void spawnNewPlayer(int x, int y) {
-		respawnCooldown = 60;
+		respawnCooldown = 30;
 		player = new Player(loadImage("data//player.png"), x, y, 25, 25);
 	}
 
@@ -374,6 +430,17 @@ public class DrawingSurface extends PApplet {
 					System.out.println("Should be healing");
 					ab.removeSelfFromMaze(thisMaze, i);
 				}
+				else {
+					currentAbility = ab;
+					System.out.println("Picked up!");
+					ab.removeSelfFromMaze(thisMaze, i);
+				}
+				
+				
+				
+				
+				
+				
 			}
 
 		}

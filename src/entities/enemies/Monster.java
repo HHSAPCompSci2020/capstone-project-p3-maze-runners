@@ -48,21 +48,21 @@ public class Monster extends Enemy {
 		double rand2 = Math.random();
 		
 		if (rand2*100 < 10) {
-			int x0 = 0, y0 = 0;
+			int dx = 0, dy = 0;
 			if (rand1 < 0.25) {
-				x0 = (int)speed;
+				dx = (int)speed;
 			}
 			else if (rand1<0.5) {
-				x0 = -(int)speed;
+				dx = -(int)speed;
 			}
 			else if (rand1<0.75) {
-				y0= (int)speed;
+				dy= (int)speed;
 			}
 			else {
-				y0 = -(int)speed;
+				dy = -(int)speed;
 			}
 			
-			moveBy(x0,y0);
+			moveBy(dx,dy);
 		}
 		
 		

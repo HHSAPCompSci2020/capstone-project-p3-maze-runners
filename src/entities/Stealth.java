@@ -48,4 +48,7 @@ public class Stealth extends Ability{
 		return sSymbol;
 	}
 	
+	public String toString() {
+		return "Fake Invis";
+	}
 }

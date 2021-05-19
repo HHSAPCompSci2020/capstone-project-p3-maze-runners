@@ -32,6 +32,7 @@ public class Ability extends Creature{
 	 * e.g. Shooting a bullet, striking once with a sword
 	 */
 	public void use() {
+		System.out.println("Use ability!");
 		uses--;
 	}
 	
@@ -55,5 +56,21 @@ public class Ability extends Creature{
 	
 	public void removeSelfFromMaze(Maze m, int index) {
 		m.getAbilities().remove(index);
+	}
+	
+	/**
+	 * 
+	 * @return the Ability's cooldown in seconds
+	 */
+	public int getCooldown() {
+		return 1;
+	}
+	
+	public String toString() {
+		return "Ability";
+	}
+	
+	public int getUses() {
+		return uses;
 	}
 }

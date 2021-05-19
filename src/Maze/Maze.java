@@ -115,9 +115,13 @@ public class Maze {
 				if (c == HEAL_CROSS) {
 					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight));
 				}
-
-				if (c == STEALTH) {
-					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
+//
+//				if (c == STEALTH) {
+//					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
+//				}
+				if (c == 's') {
+					InvisibilityPrank s = new InvisibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(s);
 				}
 
 				if (c == TIMING_TRAP) {

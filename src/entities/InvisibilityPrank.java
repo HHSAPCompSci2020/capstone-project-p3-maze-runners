@@ -1,4 +1,5 @@
 package entities;
+import Maze.DrawingSurface;
 import entities.Ability;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -16,25 +17,31 @@ public class InvisibilityPrank extends Ability{
 	/**
 	 * increments usage
 	 */
-	public void use() {
+	public void use(PApplet marker) {
 		super.use();
+		
+		
 	}
 	
+	
+	
 	public String toString() {
-		String s = "Heal ability at x="+this.x + "y="+this.y;
+		String s = "Fake Invis";
 		return s;
 	}
 	
+//	
+//	public void draw(PApplet marker) {
+//		marker.pushStyle();
+//		marker.fill(248, 44, 0);
+//		marker.noStroke();
+//		marker.rect((float)x, (float)(y+height/3), (float)width , (float)height/3);
+//		marker.rect((float)(x+width/3), (float)(y), (float)width/3 , (float)height);
+//		marker.popStyle();
+//		
+//	}
 	
-	public void draw(PApplet marker) {
-		marker.pushStyle();
-		marker.fill(248, 44, 0);
-		marker.noStroke();
-		marker.rect((float)x, (float)(y+height/3), (float)width , (float)height/3);
-		marker.rect((float)(x+width/3), (float)(y), (float)width/3 , (float)height);
-		marker.popStyle();
-		
-	}
+	
 	
 	//Inheriting static methods is very weird, just put 's'
 //	public static char getSymbol() {
