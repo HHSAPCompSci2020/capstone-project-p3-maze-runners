@@ -18,7 +18,7 @@ public class DrawingSurface extends PApplet {
 
 	private static long iterations = 0;
 	public static int lives = 3;
-	private static boolean debugEnabled = true;
+	private static boolean debugEnabled = false;
 
 	private Rectangle screenRect;
 
