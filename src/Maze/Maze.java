@@ -23,7 +23,7 @@ public class Maze {
 
 	// characters that represents objects in grid
 	private final char START_LOCATION = 'C', WALL = '#', WALKABLE = '.', HEAL_CROSS = 'h', STEALTH = 's',
-			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S';
+			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I';
 
 	public int playerStartX, playerStartY;
 	/**
@@ -122,7 +122,7 @@ public class Maze {
 //				if (c == STEALTH) {
 //					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
 //				}
-				if (c == 's') {
+				if (c == INVINCIBILITY_PRANK) {
 					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(s);
 				}
@@ -156,7 +156,7 @@ public class Maze {
 					playerStartY = row * cellHeight;
 				}
 				if (c == 'M') {
-					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+					Monster M = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
 					addEnemy(M);
 				}
 				if (c == 'H') {
