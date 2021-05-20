@@ -297,7 +297,7 @@ public class DrawingSurface extends PApplet {
 			if (isPressed(KeyEvent.VK_M)) { // TOGGLE MAZE
 
 				String s = "" + toggleMaze();
-				System.out.println("Maze Selected: " + s);
+//				System.out.println("Maze Selected: " + s);
 			}
 			if (isPressed(KeyEvent.VK_K) && otherCooldown == 0) {
 				player.healBy(1);
@@ -538,14 +538,14 @@ public class DrawingSurface extends PApplet {
 			if (mazeSelected < allMazes.size()) {
 				gameComplete = false;
 			} else {
-//				gameComplete = true;
+				gameComplete = true;
 
 			}
 
 			if (mazeSelected < allMazes.size())
 				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 			if (mazeSelected >= allMazes.size()) {
-//				gameComplete = true;
+				gameComplete = true;
 				mazeSelected = 0;
 			}
 		}
