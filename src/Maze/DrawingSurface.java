@@ -15,6 +15,11 @@ import entities.abilities.Star;
 import entities.enemies.Enemy;
 
 @SuppressWarnings("serial")
+/**
+ * 
+ * @author Christopher Lew, Lakshya Shrivastava, Joseph Huang
+ *
+ */
 public class DrawingSurface extends PApplet {
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -257,7 +262,7 @@ public class DrawingSurface extends PApplet {
 		this.textSize(16);
 		this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
 		this.fill(0);
-
+		//author Joseph Huang
 		if (lives <= 0) {
 			pushStyle();
 			textAlign(CENTER);

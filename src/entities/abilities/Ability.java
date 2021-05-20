@@ -14,7 +14,8 @@ import processing.core.PImage;
 public class Ability extends Entity{
 	protected int uses;
 	private boolean pickedUp;
-	int locX, locY;
+	//private int locX, locY;
+	private int coolDown =1;
 	
 	
 	public Ability(PImage img, int x, int y, int width, int height) {
@@ -72,7 +73,7 @@ public class Ability extends Entity{
 	 * @return the Ability's cooldown in seconds
 	 */
 	public int getCooldown() {
-		return 1;
+		return coolDown;
 	}
 	
 	public String toString() {
