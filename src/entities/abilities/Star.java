@@ -1,6 +1,8 @@
-package entities;
+package entities.abilities;
 
 import Maze.DrawingSurface;
+import entities.Ability;
+import entities.Player;
 import processing.core.PImage;
 
 /**

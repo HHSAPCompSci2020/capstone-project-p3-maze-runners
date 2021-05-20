@@ -1,4 +1,4 @@
-package entities;
+package entities.abilities;
 import Maze.DrawingSurface;
 import entities.Ability;
 import processing.core.PApplet;

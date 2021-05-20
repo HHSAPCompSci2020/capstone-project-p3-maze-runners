@@ -1,5 +1,7 @@
-package entities;
+package entities.abilities;
 import entities.Ability;
+import entities.Creature;
+import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 public class Heal extends Ability{
