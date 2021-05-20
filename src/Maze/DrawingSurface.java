@@ -37,7 +37,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
 
-	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8;
+	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9;
 
 	private int toggleDebugCooldown;
 
@@ -103,7 +103,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze6);
 		allMazes.add(maze7);
 		allMazes.add(maze8);
-//		allMazes.add(maze9);
+		allMazes.add(maze9);
 //		maze9.setNewCellWidthHeight(35, 35);
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -128,7 +128,7 @@ public class DrawingSurface extends PApplet {
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
 		
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
-//		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
+		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
 		
 
 	}
@@ -319,8 +319,8 @@ public class DrawingSurface extends PApplet {
 		popMatrix();//this should be after any drawing to scale properly
 		if (debugEnabled) {
 			if (isPressed(KeyEvent.VK_M)) { // TOGGLE MAZE
-
-//				String s = "" + toggleMaze();
+				
+				String s = "" + toggleMaze();
 //				System.out.println("Maze Selected: " + s);
 			}
 			if (isPressed(KeyEvent.VK_K) && otherCooldown == 0) {
