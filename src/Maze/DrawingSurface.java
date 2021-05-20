@@ -461,7 +461,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 /**
- * 
+ * @author Lakshya
  * @param thisMaze the current Maze that holds the exit
  */
 	private void checkExitCollision(Maze thisMaze) {

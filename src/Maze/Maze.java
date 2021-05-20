@@ -11,14 +11,19 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
 import entities.*;
-import entities.abilities.Heal;
-import entities.abilities.InvincibilityPrank;
-import entities.abilities.Star;
+//import entities.abilities.Heal;
+//import entities.abilities.InvincibilityPrank;
+//import entities.abilities.Star;
 import entities.enemies.Spike;
 import entities.enemies.TimingTrap;
 import entities.*;
 import entities.enemies.*;
 
+/**
+ * Maze holds all the Walls, Abilities, and Enemies on the screen and can be loaded from a .txt file
+ * @author Chris
+ *
+ */
 public class Maze {
 
 	// characters that represents objects in grid
