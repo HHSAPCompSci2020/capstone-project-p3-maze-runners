@@ -13,6 +13,7 @@ import entities.abilities.Heal;
 import entities.abilities.InvincibilityPrank;
 import entities.abilities.Star;
 import entities.enemies.Enemy;
+import entities.enemies.Spike;
 
 @SuppressWarnings("serial")
 /**
@@ -518,12 +519,14 @@ public class DrawingSurface extends PApplet {
 			for (int j = 0; j < thisMaze.getEnemies().size(); j++) {
 				Enemy e2 = thisMaze.getEnemies().get(j);
 				if (i != j) {
-					if (e.touchingCreature(e2)) {
-						if (e.isMovable())
-							e.receiveKnockback(e2.x, e2.y, e2.width, e2.height, 0.2);
-						if (e2.isMovable())
-							e2.receiveKnockback(e.x, e.y, e.width, e.height, 0.2);
+					if ( ! (e instanceof Spike && e2 instanceof Spike) ) {
+						if (e.touchingCreature(e2)) {
+							if (e.isMovable())
+								e.receiveKnockback(e2.x, e2.y, e2.width, e2.height, 0.2);
+							if (e2.isMovable())
+								e2.receiveKnockback(e.x, e.y, e.width, e.height, 0.2);
 
+						}
 					}
 				}
 			}
