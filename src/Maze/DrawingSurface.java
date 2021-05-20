@@ -174,7 +174,7 @@ public class DrawingSurface extends PApplet {
 				}
 
 
-				abilityStr += "Ability (press spacebar): "+  s + currentAbility.toString();
+				abilityStr += "Ability (press spacebar): "+  s + currentAbility.toString() + " | ";
 			}
 			if (player.invincible == true) {
 //				healthStr += "star";
@@ -182,7 +182,7 @@ public class DrawingSurface extends PApplet {
 				abilityStr += " | " + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
 			}
 			if (stealthDuration >0) {
-				abilityStr += " | "+(int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
+				abilityStr += (int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
 			}
 			this.textSize(20);
 			this.text(livesStr, 0 + 20, DRAWING_HEIGHT - 20);
