@@ -38,6 +38,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
 
+
 	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9;
 
 	private int toggleDebugCooldown;
@@ -140,7 +141,8 @@ public class DrawingSurface extends PApplet {
 	 * @author Christopher Lew
 	 */
 	private void reloadMaze(int mazeIndex) {
-		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
+//		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
+		Maze temp = new Maze(allMazes.get(mazeSelected), this);
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
 	}

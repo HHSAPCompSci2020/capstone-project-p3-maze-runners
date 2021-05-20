@@ -24,7 +24,8 @@ public class Maze {
 	@SuppressWarnings("unused")
 	private final char START_LOCATION = 'C', WALL = '#', WALKABLE = '.', HEAL_CROSS = 'h', STEALTH = 's',
 			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I';
-
+	
+	private int mazeWidth, mazeHeight;
 	public int playerStartX, playerStartY;
 	/**
 	 * grid is a 2D char array initialized from Maze's constructor, indexes are at
@@ -39,12 +40,15 @@ public class Maze {
 	private ArrayList<Shape> walls;
 	private ArrayList<Exit> exits;
 
+	private String fileName;
+	
 	public Maze() {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
 
+		fileName = "none";
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
 		playerStartX = 25;
 		playerStartY = 25;
@@ -55,12 +59,41 @@ public class Maze {
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
-
+		
+		this.fileName = filename;
 		grid = new char[gridHeight][gridWidth];
+		mazeWidth = gridHeight;
+		mazeHeight = gridHeight;
+		
 		this.readData(filename, grid);
 		addObjectsFromGrid(marker);
 	}
+	
+	/**
+	 * Construct a maze from another Maze. Skips reading the text file
+	 * @param old
+	 * @param marker
+	 */
+	public Maze(Maze old, PApplet marker) {
+		this.fileName = old.getFileName();
+		grid = old.grid;
+		
+		walls = new ArrayList<Shape>();
+		enemies = new ArrayList<Enemy>();
+		abilities = new ArrayList<Ability>();
+		exits = new ArrayList<Exit>();
+		addObjectsFromGrid(marker); //Add objects to the ArrayLists from the char array
+//		
+	}
 
+	/**
+	 * 
+	 * @return the name of the .txt file used to initialize this Maze's ArrayLists of
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+	
 	/**
 	 * @return the reference to the ArrayList of Shapes representing the walls in a
 	 *         particular maze
