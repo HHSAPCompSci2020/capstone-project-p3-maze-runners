@@ -101,6 +101,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze5);
 		allMazes.add(maze6);
 		allMazes.add(maze7);
+		allMazes.add(maze8);
 
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -123,6 +124,7 @@ public class DrawingSurface extends PApplet {
 		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
+		maze8 = new Maze(this, "data//maze8.txt", 20, 15);
 	}
 	
 	/**
