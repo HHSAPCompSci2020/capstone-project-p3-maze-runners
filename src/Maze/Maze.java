@@ -168,7 +168,7 @@ public class Maze {
 				if (c == 'M') {
 //					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
 					Monster monster; 
-					monster = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+					monster = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
 
 					addEnemy(monster);
 				}

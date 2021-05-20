@@ -16,14 +16,10 @@ import entities.enemies.Enemy;
 
 @SuppressWarnings("serial")
 public class DrawingSurface extends PApplet {
-	//
-	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 	public static final int FPS = 60;
 	
-	private long temp1;
-	private int temp2;
 	private static long iterations = 0;
 	public static int lives = 3;
 	private static boolean debugEnabled = false;
@@ -126,10 +122,9 @@ public class DrawingSurface extends PApplet {
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
 		
-		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
-
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
-
+		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
+		
 
 	}
 	
@@ -555,14 +550,7 @@ public class DrawingSurface extends PApplet {
 					System.out.println("Picked up!");
 					ab.removeSelfFromMaze(thisMaze, i);
 				}
-				
-				
-				
-				
-				
-				
 			}
-
 		}
 	}
 

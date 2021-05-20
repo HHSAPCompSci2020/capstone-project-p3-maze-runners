@@ -11,7 +11,13 @@ import Maze.*;
 @SuppressWarnings("serial")
 public abstract class Entity extends MovingImage {
 
+	/**
+	 * Default Width of the Creature
+	 */
 	public static final int DEFAULT_WIDTH = 50;
+	/**
+	 * Default Height of the Creature
+	 */
 	public static final int DEFAULT_HEIGHT = 50;
 	
 	//NOTE: Positive x is right and positive y or positive yVelocity is DOWN!!!
@@ -307,6 +313,5 @@ public abstract class Entity extends MovingImage {
 	}
 	
 	
-
 
 }
