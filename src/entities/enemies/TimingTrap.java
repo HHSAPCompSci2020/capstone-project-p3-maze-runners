@@ -98,8 +98,8 @@ public class TimingTrap extends Spike {
 	 */
 	public void draw(PApplet marker) {
 
-		//&&!pl.visibleByEnemies
-		if (DrawingSurface.getIterations() % 120 <= 60) {
+		
+		if (DrawingSurface.getIterations() % 120 <= 60&&!pl.visibleByEnemies) {
 			setVisibility(false);
 			marker.pushStyle();
 			marker.noStroke();
