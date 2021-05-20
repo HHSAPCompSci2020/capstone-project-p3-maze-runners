@@ -52,7 +52,7 @@ public class Player extends Entity{
 	}
 	
 	/**
-	 * 
+	 * reduces the health of the player
 	 * @param damage How much damage to take (int)
 	 * @param otherX x coordinate of the other Creature
 	 * @param otherY y coordinate of the other Creature
@@ -73,6 +73,13 @@ public class Player extends Entity{
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @param damage how much health is lost
+	 * @param otherX x coordinate of the entity causing health lost
+	 * @param otherY y coordinate of the entity causing health lost
+	 */
 	public void reduceHealthBy(int damage, int otherX, int otherY) {
 		if (!invincible) {
 			health -= damage;
@@ -89,12 +96,19 @@ public class Player extends Entity{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param amount amount of health recovered
+	 */
 	public void healBy(int amount) {
 		health+= amount;
 		if(health>maxHealth)
 			health=maxHealth;
 	}
 	
+	/**
+	 * @param obstacles list of obstacles 
+	 */
 	public void act(ArrayList<Shape> obstacles) {
 		if (DrawingSurface.playerDmgCooldown == 0) {
 			speed= WALK_SPEED;
@@ -104,6 +118,10 @@ public class Player extends Entity{
 		}
 		super.act(obstacles);
 	}
+	
+	/**
+	 * @param x, y the x and y corrdinates of the move location
+	 */
 	public void moveBy(int x, int y) {
 		if (DrawingSurface.getRespawnTimer() != 0) {
 			return;

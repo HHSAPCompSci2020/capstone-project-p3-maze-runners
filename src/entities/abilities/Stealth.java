@@ -3,6 +3,11 @@ import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
+/**
+ * makes the player not visible 
+ * @author Joseph Huang
+ *
+ */
 public class Stealth extends Ability{
 	
 	private static char sSymbol = 's';
@@ -57,6 +62,6 @@ public class Stealth extends Ability{
 	}
 	
 	public String toString() {
-		return "Fake Invis";
+		return "Stealthed";
 	}
 }
