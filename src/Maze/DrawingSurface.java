@@ -179,7 +179,10 @@ public class DrawingSurface extends PApplet {
 			if (player.invincible == true) {
 //				healthStr += "star";
 //				System.out.println("wow");
-				abilityStr += " " + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
+				abilityStr += " | " + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
+			}
+			if (stealthDuration >0) {
+				abilityStr += " | "+(int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
 			}
 			this.textSize(20);
 			this.text(livesStr, 0 + 20, DRAWING_HEIGHT - 20);
@@ -329,7 +332,7 @@ public class DrawingSurface extends PApplet {
 			rect(DRAWING_WIDTH - 200, 0, 220, 200);
 			
 
-			String debugStr = "[Debug On]\n" + "Debug controls:" + "= Toggle debug mode\n" + "m Go to next maze\n" 
+			String debugStr = "[Debug On]\n" + "Debug controls:\n" + "= Toggle debug mode\n" + "m Go to next maze\n" 
 			+ "k Increase Health\n" + "l Increase Lives";
 			fill(32);
 			textSize(16);

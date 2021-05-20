@@ -156,10 +156,7 @@ public class Maze {
 				if (c == HEAL_CROSS) {//h
 					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight));
 				}
-//
-//				if (c == STEALTH) {
-//					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
-//				}
+
 				if (c == INVINCIBILITY_PRANK) {//I
 //					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					InvincibilityPrank  s = new InvincibilityPrank(null, x, y, cellWidth, cellHeight);
@@ -211,7 +208,7 @@ public class Maze {
 				}
 				
 				if(c== 's') {
-					Stealth sneak = new Stealth(marker.loadImage("data//heal.png"), x, y, cellWidth, cellHeight);
+					Stealth sneak = new Stealth(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(sneak);
 				}
 			}

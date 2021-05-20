@@ -28,6 +28,7 @@ public class Monster extends Enemy {
 	 */
 	public Monster(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
+		speed = 2;
 	}
 
 	/**
