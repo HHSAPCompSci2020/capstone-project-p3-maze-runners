@@ -83,6 +83,7 @@ public class DrawingSurface extends PApplet {
 		System.out.println(instructions);
 		allMazes = new ArrayList<Maze>();
 		
+		//Go to loadMazes() to add new Mazes, use the exact same name style
 		loadMazes();
 		allMazes.add(maze0);
 		allMazes.add(maze1);
@@ -114,6 +115,11 @@ public class DrawingSurface extends PApplet {
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
 	}
+	
+	/**
+	 * @pre Maze txt file is in the exact format mazeN.txt, where N is the index of the maze in allMazes
+	 * @param mazeIndex
+	 */
 	private void reloadMaze(int mazeIndex) {
 		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
 		allMazes.remove(mazeIndex);
