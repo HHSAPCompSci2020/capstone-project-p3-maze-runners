@@ -148,7 +148,36 @@ public class DrawingSurface extends PApplet {
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
 	}
-	
+	private void drawMenu() {
+//		Text that Displays the players health
+			this.fill(0, 0, 0, 200);
+			String healthStr = "Lives: " + lives;
+			healthStr += "\nHealth: " + player.getHealth();
+			if (currentAbility!= null) {
+				this.textSize(16);
+				String s = "";
+				
+				if (currentAbility.getUses() == 1000) {
+					s = "";
+				}
+				if (currentAbility.getUses() != 1000) {
+					s = currentAbility.getUses() + "x ";
+				}
+
+
+				healthStr += "\nAbility: (press SPACE)\n"+  s + currentAbility.toString();
+
+
+			}
+			if (player.invincible == true) {
+//				healthStr += "star";
+//				System.out.println("wow");
+				healthStr += "\n" + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
+			}
+			this.textSize(16);
+			this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
+			this.fill(0);
+	}
 	
 
 	/*
@@ -247,34 +276,10 @@ public class DrawingSurface extends PApplet {
 
 		player.draw(this);
 
-//	Text that Displays the players health
-		this.fill(0, 0, 0, 200);
-		String healthStr = "Lives: " + lives;
-		healthStr += "\nHealth: " + player.getHealth();
-		if (currentAbility!= null) {
-			this.textSize(16);
-			String s = "";
-			
-			if (currentAbility.getUses() == 1000) {
-				s = "";
-			}
-			if (currentAbility.getUses() != 1000) {
-				s = currentAbility.getUses() + "x ";
-			}
-
-
-			healthStr += "\nAbility: (press SPACE)\n"+  s + currentAbility.toString();
-
-
-		}
-		if (player.invincible == true) {
-//			healthStr += "star";
-//			System.out.println("wow");
-			healthStr += "\n" + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
-		}
-		this.textSize(16);
-		this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
-		this.fill(0);
+		//Print the health, lives, ability, debug information
+		drawMenu();
+		
+		
 		//author Joseph Huang
 		if (lives <= 0) {
 			pushStyle();
