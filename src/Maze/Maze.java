@@ -24,7 +24,8 @@ public class Maze {
 	@SuppressWarnings("unused")
 	private final char START_LOCATION = 'C', WALL = '#', WALKABLE = '.', HEAL_CROSS = 'h', STEALTH = 's',
 			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I';
-
+	
+	private int mazeWidth, mazeHeight;
 	public int playerStartX, playerStartY;
 	/**
 	 * grid is a 2D char array initialized from Maze's constructor, indexes are at
@@ -39,12 +40,15 @@ public class Maze {
 	private ArrayList<Shape> walls;
 	private ArrayList<Exit> exits;
 
+	private String fileName;
+	
 	public Maze() {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
 
+		fileName = "none";
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
 		playerStartX = 25;
 		playerStartY = 25;
@@ -55,12 +59,41 @@ public class Maze {
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
-
+		
+		this.fileName = filename;
 		grid = new char[gridHeight][gridWidth];
+		mazeWidth = gridHeight;
+		mazeHeight = gridHeight;
+		
 		this.readData(filename, grid);
 		addObjectsFromGrid(marker);
 	}
+	
+	/**
+	 * Construct a maze from another Maze. Skips reading the text file
+	 * @param old
+	 * @param marker
+	 */
+	public Maze(Maze old, PApplet marker) {
+		this.fileName = old.getFileName();
+		grid = old.grid;
+		
+		walls = new ArrayList<Shape>();
+		enemies = new ArrayList<Enemy>();
+		abilities = new ArrayList<Ability>();
+		exits = new ArrayList<Exit>();
+		addObjectsFromGrid(marker); //Add objects to the ArrayLists from the char array
+//		
+	}
 
+	/**
+	 * 
+	 * @return the name of the .txt file used to initialize this Maze's ArrayLists of
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+	
 	/**
 	 * @return the reference to the ArrayList of Shapes representing the walls in a
 	 *         particular maze
@@ -120,14 +153,14 @@ public class Maze {
 				int x = col * cellWidth;
 				int y = row * cellHeight;
 
-				if (c == HEAL_CROSS) {
+				if (c == HEAL_CROSS) {//h
 					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight));
 				}
 //
 //				if (c == STEALTH) {
 //					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
 //				}
-				if (c == INVINCIBILITY_PRANK) {
+				if (c == INVINCIBILITY_PRANK) {//I
 					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(s);
 				}
@@ -136,27 +169,27 @@ public class Maze {
 					this.addAbility(star);
 				}
 
-				if (c == TIMING_TRAP) {
+				if (c == TIMING_TRAP) {//T
 					TimingTrap temp = new TimingTrap(marker.loadImage("data//spike.png"), x, y, cellWidth, cellHeight);
 					this.addEnemy(temp);
 
 				}
-				if (c == EXIT) {
+				if (c == EXIT) {//X
 					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
 					this.addExit(e);
 				}
 
-				if (c == SPIKE) {
+				if (c == SPIKE) {//S
 					Spike e = new Spike(marker.loadImage("data//spike2.png"), x, y, cellWidth, cellHeight);
 					this.addEnemy(e);
 				}
 
-				if (c == WALL) {
+				if (c == WALL) { // #
 					// Rectangle(int x, int y, int width, int height)
 					Rectangle r = new Rectangle(col * cellWidth, row * cellHeight, cellWidth, cellHeight);
 					walls.add(r);
 				}
-				if (c == START_LOCATION) {
+				if (c == START_LOCATION) {//C
 					playerStartX = col * cellWidth;
 					playerStartY = row * cellHeight;
 				}

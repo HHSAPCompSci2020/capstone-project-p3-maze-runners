@@ -23,8 +23,8 @@ import entities.enemies.Spike;
  *
  */
 public class DrawingSurface extends PApplet {
-	public static final int DRAWING_WIDTH = 800;
-	public static final int DRAWING_HEIGHT = 600;
+	public static final int DRAWING_WIDTH = 900;
+	public static final int DRAWING_HEIGHT = 675;
 	public static final int FPS = 60;
 	
 	private static long iterations = 0;
@@ -38,6 +38,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Shape> obstacles;
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
+
 
 	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9;
 
@@ -142,7 +143,8 @@ public class DrawingSurface extends PApplet {
 	 * @author Christopher Lew
 	 */
 	private void reloadMaze(int mazeIndex) {
-		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
+//		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
+		Maze temp = new Maze(allMazes.get(mazeSelected), this);
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
 	}
@@ -312,7 +314,7 @@ public class DrawingSurface extends PApplet {
 					+ "l Increase Lives";
 			fill(32);
 			textSize(16);
-			this.text(debugStr, DRAWING_WIDTH - 200, 20);
+			this.text(debugStr, DRAWING_WIDTH - 190, 20);
 
 		}
 		
