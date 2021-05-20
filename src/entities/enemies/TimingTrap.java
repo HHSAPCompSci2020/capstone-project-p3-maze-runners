@@ -12,7 +12,7 @@ import processing.core.PImage;
  * @author Lakshya Shrivastava
  */
 @SuppressWarnings("serial")
-public class TimingTrap extends Enemy {
+public class TimingTrap extends Spike {
 	private boolean isVisible;
 
 	/**
