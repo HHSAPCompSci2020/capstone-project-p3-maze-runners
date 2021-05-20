@@ -21,24 +21,39 @@ public abstract class Entity extends MovingImage {
 
 	// NOTE: Positive x is right and positive y or positive yVelocity is DOWN!!!
 	private double xVelocity, yVelocity;
-	private boolean onASurface;
 	private double friction;// lower friction means you slow down faster, (velocity is multiplied by
 							// friction every act() call)
 	private double gravity;
 	private double jumpStrength;
+	private boolean onASurface;
 
+	/**
+	 * how far the entity gets knocked back
+	 */
 	protected int knockback = 9;
 //	public static char symbol;
 
+	/**
+	 * name of the image that this entity is represented by 
+	 */
 	protected static String imageName;
 
 	// New fields
+	/**
+	 * Speed of the entity
+	 */
 	protected double speed; // higher speeds mean you move faster
+	/**
+	 * Maximum health of the entity
+	 */
 	protected int maxHealth;
+	/**
+	 * current health of the entity
+	 */
 	protected int health; // to be implemented
 
 	/**
-	 * 
+	 *  Constructs this Entity at position x,y with the given image and default dimensions
 	 * @param img the PImage that is drawn for this Creature
 	 * @param x   the top left x coordinate
 	 * @param y   the top left x coordinate
@@ -59,7 +74,7 @@ public abstract class Entity extends MovingImage {
 	}
 
 	/**
-	 * 
+	 * Constructs this Entity at position x,y with the given image and user provided dimensions
 	 * @param img    the PImage that is drawn for this Creature
 	 * @param x      the top left x coordinate
 	 * @param y      the top left x coordinate
@@ -82,7 +97,7 @@ public abstract class Entity extends MovingImage {
 	}
 
 	/**
-	 * Check collision between this Creature and the other
+	 * Check collision between this Entity and the other
 	 * 
 	 * @author Christopher Lew
 	 * @param other the other Creature to check collision with
@@ -116,6 +131,10 @@ public abstract class Entity extends MovingImage {
 		m.getEnemies().remove(index);
 	}
 
+	/**
+	 * Returns a string representation of the entity
+	 * @return the string representation of the entity
+	 */
 	public String toString() {
 		String s = "";
 		s += "Creature at x=" + this.x + "y=" + this.y;
@@ -124,7 +143,7 @@ public abstract class Entity extends MovingImage {
 
 	// New movement methods
 	/**
-	 * Move the Creatures by an x and y amount (given integers)
+	 * Move the Entity  by an x and y amount (given integers)
 	 * 
 	 * @param x amount to move in x direction (right positive)
 	 * @param y amount to move in y direction (down positive)
@@ -139,7 +158,7 @@ public abstract class Entity extends MovingImage {
 	}
 
 	/**
-	 * Move the Creatures by an x and y amount (given doubles)
+	 * Move the Entity by an x and y amount (given doubles)
 	 * 
 	 * @param x amount to move in x direction (right positive)
 	 * @param y amount to move in y direction (down positive)
@@ -276,7 +295,7 @@ public abstract class Entity extends MovingImage {
 //	public abstract char getSymbol();
 
 	/**
-	 * Make this Creature get "bumped" by the other Creature
+	 * Make this Entity get "bumped" by the other Entity
 	 * 
 	 * @param otherX       x position of other Creature
 	 * @param otherY       y position of other Creature
