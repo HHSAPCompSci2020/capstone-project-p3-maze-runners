@@ -37,7 +37,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
 
-	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9;
+	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8;
 
 	private int toggleDebugCooldown;
 
@@ -320,7 +320,7 @@ public class DrawingSurface extends PApplet {
 		if (debugEnabled) {
 			if (isPressed(KeyEvent.VK_M)) { // TOGGLE MAZE
 
-				String s = "" + toggleMaze();
+//				String s = "" + toggleMaze();
 //				System.out.println("Maze Selected: " + s);
 			}
 			if (isPressed(KeyEvent.VK_K) && otherCooldown == 0) {

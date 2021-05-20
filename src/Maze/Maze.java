@@ -8,14 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import processing.core.PApplet;
 import java.awt.Rectangle;
-import java.awt.Shape;
-import java.util.ArrayList;
 import entities.*;
 import entities.abilities.Ability;
-import entities.*;
-//import entities.abilities.Heal;
-//import entities.abilities.InvincibilityPrank;
-//import entities.abilities.Star;
 import entities.enemies.*;
 import entities.abilities.*;
 
@@ -27,6 +21,7 @@ import entities.abilities.*;
 public class Maze {
 
 	// characters that represents objects in grid
+	@SuppressWarnings("unused")
 	private final char START_LOCATION = 'C', WALL = '#', WALKABLE = '.', HEAL_CROSS = 'h', STEALTH = 's',
 			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I';
 
