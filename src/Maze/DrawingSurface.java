@@ -102,7 +102,8 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze6);
 		allMazes.add(maze7);
 		allMazes.add(maze8);
-
+		allMazes.add(maze9);
+		maze9.setNewCellWidthHeight(35, 35);
 //		DEBUG PRINT TO BE REMOVED
 		{
 			Maze thisMaze = allMazes.get(mazeSelected);
@@ -124,13 +125,12 @@ public class DrawingSurface extends PApplet {
 		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
-<<<<<<< Updated upstream
 		
 		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
-=======
+
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
 
->>>>>>> Stashed changes
+
 	}
 	
 	/**
@@ -464,6 +464,7 @@ public class DrawingSurface extends PApplet {
 		respawnCooldown = 30;
 //		loadMazes();	
 		reloadMaze(mazeSelected);
+		starDuration = 0;
 		player = new Player(loadImage("data//luigi.png"), x, y, 25, 25, loadImage("data//luigiLeft.png"));
 	}
 
