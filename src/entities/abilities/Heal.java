@@ -49,7 +49,7 @@ public class Heal extends Ability{
 	}
 	
 	public String toString() {
-		String s = "Heal ability at x="+this.x + "y="+this.y;
+		String s = "Instant Health";
 		return s;
 	}
 	

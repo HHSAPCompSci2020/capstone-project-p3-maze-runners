@@ -23,5 +23,9 @@ public class Star extends Ability{
 		int duration = 5;
 		DrawingSurface.starDuration = duration * DrawingSurface.FPS;
 	}
+	
+	public String toString() {
+		return "Star Invincibility";
+	}
 
 }

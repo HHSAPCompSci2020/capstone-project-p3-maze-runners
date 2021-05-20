@@ -148,11 +148,20 @@ public class DrawingSurface extends PApplet {
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
 	}
-	private void drawMenu() {
+	private void drawBanner() {
 //		Text that Displays the players health
+			int bannerHeight = 50;
+			
+			this.fill(0, 0, 0, 64);
+			this.noStroke();
+			rect(0, DRAWING_HEIGHT - bannerHeight, DRAWING_WIDTH, bannerHeight);
+			this.stroke(0);
 			this.fill(0, 0, 0, 200);
-			String healthStr = "Lives: " + lives;
-			healthStr += "\nHealth: " + player.getHealth();
+			String healthStr = "";
+			String livesStr = "Lives: " + lives;
+			
+			healthStr += "Health: " + player.getHealth();
+			String abilityStr = "";
 			if (currentAbility!= null) {
 				this.textSize(16);
 				String s = "";
@@ -165,17 +174,17 @@ public class DrawingSurface extends PApplet {
 				}
 
 
-				healthStr += "\nAbility: (press SPACE)\n"+  s + currentAbility.toString();
-
-
+				abilityStr += "Ability (press spacebar): "+  s + currentAbility.toString();
 			}
 			if (player.invincible == true) {
 //				healthStr += "star";
 //				System.out.println("wow");
-				healthStr += "\n" + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
+				abilityStr += " " + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
 			}
-			this.textSize(16);
-			this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
+			this.textSize(20);
+			this.text(livesStr, 0 + 20, DRAWING_HEIGHT - 20);
+			this.text(healthStr, 120, DRAWING_HEIGHT - 20);
+			this.text(abilityStr, 300, DRAWING_HEIGHT - 20);
 			this.fill(0);
 	}
 	
@@ -277,7 +286,7 @@ public class DrawingSurface extends PApplet {
 		player.draw(this);
 
 		//Print the health, lives, ability, debug information
-		drawMenu();
+		drawBanner();
 		
 		
 		//author Joseph Huang
@@ -315,11 +324,17 @@ public class DrawingSurface extends PApplet {
 //		debug mode: to be deleted or commented in final version
 		if (debugEnabled && !gameComplete) {
 			pushStyle();
-			String debugStr = "Debug On\n" + "= Toggle debug\n" + "m Go to next maze\n" + "k Increase Health\n"
-					+ "l Increase Lives";
+			noStroke();
+			fill(0,0,0,16);
+			rect(DRAWING_WIDTH - 200, 0, 220, 200);
+			
+
+			String debugStr = "[Debug On]\n" + "Debug controls:" + "= Toggle debug mode\n" + "m Go to next maze\n" 
+			+ "k Increase Health\n" + "l Increase Lives";
 			fill(32);
 			textSize(16);
 			this.text(debugStr, DRAWING_WIDTH - 190, 20);
+			popStyle();
 
 		}
 		
@@ -432,6 +447,13 @@ public class DrawingSurface extends PApplet {
 		
 		
 		if (isPressed(KeyEvent.VK_EQUALS)) {
+			if (toggleDebugCooldown == 0) {
+				debugEnabled = !debugEnabled;
+				toggleDebugCooldown = 60;
+			}
+		}
+		
+		if (isPressed(KeyEvent.VK_O) && isPressed(KeyEvent.VK_P)) {
 			if (toggleDebugCooldown == 0) {
 				debugEnabled = !debugEnabled;
 				toggleDebugCooldown = 60;

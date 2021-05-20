@@ -161,7 +161,8 @@ public class Maze {
 //					this.addAbility(new Stealth(null, x, y, cellWidth, cellHeight));
 //				}
 				if (c == INVINCIBILITY_PRANK) {//I
-					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
+//					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
+					InvincibilityPrank  s = new InvincibilityPrank(null, x, y, cellWidth, cellHeight);
 					this.addAbility(s);
 				}
 				if (c == 'i') {

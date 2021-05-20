@@ -51,4 +51,6 @@ public class Stealth extends Ability{
 	public String toString() {
 		return "Stealthed";
 	}
+	
+	
 }
