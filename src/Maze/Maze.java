@@ -97,7 +97,7 @@ public class Maze {
 	/**
 	 * adds a Creature to the maze. allows Enemies too because of polymorphism
 	 */
-	public void addCreature(Creature creature) {
+	public void addCreature(Entity creature) {
 		enemies.add((Enemy) creature);
 	}
 
@@ -113,6 +113,11 @@ public class Maze {
 		exits.add(e);
 	}
 
+	/**Loads objects stored in Maze's enemies, abilities, walls, and exits ArrayLists
+	 * Traverses through the .txt file saved for this Maze and matches characters on the .txt file to corresponding Entities
+	 * @author Christopher Lew, with help from Lakshya Shrivastava
+	 * @param marker the PApplet object used for drawing
+	 */
 	private void addObjectsFromGrid(PApplet marker) {
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
@@ -161,8 +166,11 @@ public class Maze {
 					playerStartY = row * cellHeight;
 				}
 				if (c == 'M') {
-					Monster M = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
-					addEnemy(M);
+//					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+					Monster monster; 
+					monster = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
+
+					addEnemy(monster);
 				}
 				if (c == 'H') {
 					Monster M = new HomingMonster(marker.loadImage("data//HomingMonster.png"), x, y, cellWidth, cellHeight);

@@ -1,9 +1,17 @@
 package entities.abilities;
 
 import Maze.*;
-import entities.Creature;
+
+
+import entities.Entity;
 import processing.core.PImage;
-public class Ability extends Creature{
+
+/**
+ * 
+ * @author Joseph Huang
+ *
+ */
+public class Ability extends Entity{
 	protected int uses;
 	private boolean pickedUp;
 	int locX, locY;

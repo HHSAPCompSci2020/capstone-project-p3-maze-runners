@@ -7,7 +7,12 @@ import Maze.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Player extends Creature{
+/**
+ * 
+ * @author Christopher Lew
+ *
+ */
+public class Player extends Entity{
 //	private int lives;
 	public static final double WALK_SPEED = 2;
 	public static final double RUN_SPEED = 4;
@@ -15,6 +20,7 @@ public class Player extends Creature{
 	private PImage flippedImage;
 	public boolean invincible = false;
 	public boolean visibleByEnemies = true;
+	
 	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);

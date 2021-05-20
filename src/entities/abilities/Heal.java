@@ -1,10 +1,17 @@
 package entities.abilities;
-import entities.Creature;
+import entities.Entity;
+
 import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+/**
+ * 
+ * @author Joseph Huang
+ *
+ */
 public class Heal extends Ability{
-	Creature a ;
+	Entity a ;
 	
 	private static char hSymbol = 'h';
 	
@@ -47,7 +54,9 @@ public class Heal extends Ability{
 	}
 	
 	/**
-	 * So a heal ability is an a Creature that deals negative damage
+	 * Attacks by dealind -1 damage, do not use
+	 * @author Christopher Lew
+	 * 
 	 */
 	public void attack(Player p) {
 		if(super.getPickedUp())
@@ -55,6 +64,10 @@ public class Heal extends Ability{
 		//p.healBy(1); //i think this should work the same
 	}
 	
+	/**Draws two rectangles for the green cross
+	 * @author Christopher Lew
+	 * @param marker the PApplet object used for drawing
+	 */
 	public void draw(PApplet marker) {
 		marker.pushStyle();
 		marker.fill(95, 252, 0);

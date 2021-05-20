@@ -8,7 +8,7 @@ import processing.core.PImage;
  * @author Lakshya Shrivastava
  *
  */
-public class Exit extends Creature{
+public class Exit extends Entity{
 	
 	private static final char SYMBOL = 'X';
 	

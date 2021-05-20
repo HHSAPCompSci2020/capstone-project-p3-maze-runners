@@ -2,7 +2,11 @@ package Maze;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * 
+ * @author Shelby
+ *
+ */
 public class Main extends JFrame {
 
 	private JPanel cardPanel;

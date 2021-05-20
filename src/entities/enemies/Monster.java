@@ -7,6 +7,7 @@ import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PImage;
 
+
 public class Monster extends Enemy {
 	
 	private int[] directions; // -> NEWS
@@ -38,6 +39,9 @@ public class Monster extends Enemy {
 			y+= WEST;
 	}
 	
+	/**
+	 * @author Christopher Lew
+	 */
 	public void act(ArrayList<Shape> obstacles) {
 		super.act(obstacles);
 //		move(); doesn't work as expected

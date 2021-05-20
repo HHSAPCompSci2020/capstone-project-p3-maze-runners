@@ -41,8 +41,9 @@ public class TimingTrap extends Enemy {
 		
 	}
 
-	/**
-	 * 
+	/**Attacks player p and knocks them back
+	 * @author Christopher Lew
+	 * @param p the Player being attacked
 	 * @override
 	 */
 	public void attack(Player p) //Chris:I think this is unused?

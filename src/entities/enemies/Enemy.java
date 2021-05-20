@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.*;
 import processing.core.PImage;
 import Maze.*;
-import entities.Creature;
+import entities.Entity;
 import entities.Player;
 
 
@@ -12,7 +12,7 @@ import entities.Player;
  * @author Lakshya Shrivastava
  *	General super class for all the enemies that will be in the maze
  */
-public abstract class Enemy extends Creature {
+public abstract class Enemy extends Entity {
 
 //	protected  double health;
 //	protected int x;

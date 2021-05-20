@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import Maze.DrawingSurface;
 import processing.core.PImage;
 
+/**
+ * A monster but it moves towards the player
+ * @author Chris
+ *
+ */
 public class HomingMonster extends Monster{
 
 	public HomingMonster(PImage img, int x, int y, int width, int height) {

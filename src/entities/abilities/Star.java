@@ -5,9 +5,8 @@ import entities.Player;
 import processing.core.PImage;
 
 /**
- * gives you invincibility and a way to kill monsters
+ * Gives you invincibility and makes it so you kill any Enemies you touch
  * @author Chris
- *
  */
 public class Star extends Ability{
 

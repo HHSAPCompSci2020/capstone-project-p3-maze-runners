@@ -8,7 +8,8 @@ import java.util.*;
 import processing.core.PImage;
 import Maze.*;
 
-public abstract class Creature extends MovingImage {
+@SuppressWarnings("serial")
+public abstract class Entity extends MovingImage {
 
 	public static final int DEFAULT_WIDTH = 50;
 	public static final int DEFAULT_HEIGHT = 50;
@@ -32,8 +33,13 @@ public abstract class Creature extends MovingImage {
 	protected int health; //to be implemented
 	
 	
-
-	public Creature(PImage img, int x, int y) {
+	/**
+	 * 
+	 * @param img the PImage that is drawn for this Creature
+	 * @param x the top left x coordinate
+	 * @param y the top left x coordinate
+	 */
+	public Entity(PImage img, int x, int y) {
 		super(img, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		xVelocity = 0;
 		yVelocity = 0;
@@ -48,7 +54,15 @@ public abstract class Creature extends MovingImage {
 		speed = 4.0;
 	}
 	
-	public Creature(PImage img, int x, int y, int width, int height) {
+	/**
+	 * 
+	 * @param img the PImage that is drawn for this Creature
+	 * @param x the top left x coordinate
+	 * @param y the top left x coordinate
+	 * @param width the width of this Creature
+	 * @param height the height of this Creature
+	 */
+	public Entity(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		xVelocity = 0;
 		yVelocity = 0;
@@ -63,7 +77,13 @@ public abstract class Creature extends MovingImage {
 		speed = 4.0;
 	}
 	
-	public boolean touchingCreature(Creature other) {
+	/**
+	 * Check collision between this Creature and the other 
+	 * @author Christopher Lew
+	 * @param other the other Creature to check collision with
+	 * @return true if Creatures touching, false if not touching
+	 */
+	public boolean touchingCreature(Entity other) {
 		boolean isTouching = false;
 		
 		isTouching = other.intersects(this);
@@ -80,7 +100,13 @@ public abstract class Creature extends MovingImage {
 	}
 	
 	
-	
+	/**
+	 * Removes itself from a given Maze 
+	 * @pre this is already added to the enemies arraylist in Maze m
+	 * @author Christopher Lew
+	 * @param m
+	 * @param index
+	 */
 	public void removeSelfFromMaze(Maze m, int index) {
 		m.getEnemies().remove(index);
 	}
@@ -97,6 +123,11 @@ public abstract class Creature extends MovingImage {
 	
 	
 	//New movement methods
+	/**
+	 * Move the Creatures by an x and y amount (given integers)
+	 * @param x amount to move in x direction (right positive)
+	 * @param y amount to move in y direction (down positive)
+	 */
 	public void moveBy(int x, int y) {
 		if (xVelocity <= 10 && xVelocity >= -10) {
 			xVelocity += speed*x;
@@ -106,6 +137,11 @@ public abstract class Creature extends MovingImage {
 		}
 	}
 	
+	/**
+	 * Move the Creatures by an x and y amount (given doubles)
+	 * @param x amount to move in x direction (right positive)
+	 * @param y amount to move in y direction (down positive)
+	 */
 	public void moveBy(double x, double y) {
 		if (xVelocity <= 10 && xVelocity >= -10) {
 			xVelocity += speed*x;
@@ -234,6 +270,14 @@ public abstract class Creature extends MovingImage {
 	
 //	public abstract char getSymbol();
 	
+	/**
+	 * Make this Creature get "bumped" by the other Creature
+	 * @param otherX x position of other Creature
+	 * @param otherY y position of other Creature
+	 * @param otherWidth width of other Creature
+	 * @param otherHeight height of other Creature
+	 * @param kbMultiplier how far to be knocked back (larger value = farther push)
+	 */
 	public void receiveKnockback( double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
 		//get Knocked back
 		if (otherX <= this.x && this.x <= otherX+otherWidth) {

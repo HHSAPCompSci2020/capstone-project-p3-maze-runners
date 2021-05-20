@@ -124,8 +124,13 @@ public class DrawingSurface extends PApplet {
 		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
+<<<<<<< Updated upstream
 		
 		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
+=======
+		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
+
+>>>>>>> Stashed changes
 	}
 	
 	/**
@@ -251,7 +256,7 @@ public class DrawingSurface extends PApplet {
 		}
 		if (player.invincible == true) {
 //			healthStr += "star";
-			System.out.println("wow");
+//			System.out.println("wow");
 			healthStr += "\n" + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
 		}
 		this.textSize(16);
