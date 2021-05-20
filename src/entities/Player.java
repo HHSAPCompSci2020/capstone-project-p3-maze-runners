@@ -35,7 +35,7 @@ public class Player extends Entity {
 	/**
 	 * Represents whether the Player is visible to enemies in the mazes
 	 */
-	public boolean visibleByEnemies = true;
+	public static boolean visibleByEnemies = true;
 //<<<<<<< Updated upstream
 	private PImage flippedImage;
 
@@ -237,6 +237,9 @@ public class Player extends Entity {
 	public double getSpeed() {
 		return speed;
 	}
+//	public static boolean getVisibleByEnemies() {
+//		return this.visibleByEnemies;
+//	}
 
 	/*
 	 * public void rgbColorStuff(PApplet marker) { float p = 255; float amp = 255;
@@ -260,5 +263,5 @@ public class Player extends Entity {
 	 * 
 	 * marker.noFill(); marker.strokeWeight(2); marker.stroke(r,g,b); }
 	 */
-
+	
 }
