@@ -39,6 +39,7 @@ public class Stealth extends Ability{
 		String s = "Heal ability at x="+this.x + "y="+this.y;
 		return s;
 	}*/
+	
 	public void invincible() {
 		time=DrawingSurface.getIterations()+120;
 		while(DrawingSurface.getIterations()<=time) {
