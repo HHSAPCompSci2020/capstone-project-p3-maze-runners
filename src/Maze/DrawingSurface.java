@@ -98,8 +98,8 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze6);
 		allMazes.add(maze7);
 		allMazes.add(maze8);
-		allMazes.add(maze9);
-		maze9.setNewCellWidthHeight(35, 35);
+//		allMazes.add(maze9);
+//		maze9.setNewCellWidthHeight(35, 35);
 //		DEBUG PRINT TO BE REMOVED
 		{
 			Maze thisMaze = allMazes.get(mazeSelected);
@@ -123,7 +123,7 @@ public class DrawingSurface extends PApplet {
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
 		
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
-		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
+//		maze9 = new Maze(this, "data//maze9.txt", 20, 15);
 		
 
 	}
