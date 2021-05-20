@@ -209,6 +209,10 @@ public class Maze {
 					// add nothing
 				}
 				
+				if(c== 's') {
+					Stealth sneak = new Stealth(marker.loadImage("data//heal.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(sneak);
+				}
 			}
 		}
 
