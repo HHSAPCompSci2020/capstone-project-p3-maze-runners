@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 import entities.*;
-import entities.abilities.Heal;
-import entities.abilities.InvincibilityPrank;
-import entities.abilities.Star;
 
 @SuppressWarnings("serial")
 public class DrawingSurface extends PApplet {
@@ -74,7 +71,9 @@ public class DrawingSurface extends PApplet {
 	/*
 	 * ------------------------Constructor------------------------
 	 */
-
+	/**
+	 * @author Christopher Lew
+	 */
 	public DrawingSurface() {
 		super();
 		keys = new ArrayList<Integer>();
@@ -106,7 +105,9 @@ public class DrawingSurface extends PApplet {
 		}
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 	}
-	
+	/**
+	 * @author Christopher Lew
+	 */
 	private void loadMazes() {
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
 		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
@@ -122,6 +123,7 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * @pre Maze txt file is in the exact format mazeN.txt, where N is the index of the maze in allMazes
 	 * @param mazeIndex
+	 * @author Christopher Lew
 	 */
 	private void reloadMaze(int mazeIndex) {
 		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
@@ -440,6 +442,11 @@ public class DrawingSurface extends PApplet {
 	 * ------------------------Our Methods------------------------
 	 */
 
+	/**
+	 * @author Christopher Lew
+	 * @param x the x position of the top left of the new Player
+	 * @param y the y position of the top left of the new Player
+	 */
 	public void spawnNewPlayer(int x, int y) {
 		respawnCooldown = 30;
 //		loadMazes();	
@@ -453,6 +460,10 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+/**
+ * 
+ * @param thisMaze the current Maze that holds the exit
+ */
 	private void checkExitCollision(Maze thisMaze) {
 		for (int i = 0; i < thisMaze.getExits().size(); i++) {
 			Exit e = thisMaze.getExits().get(i);
@@ -463,6 +474,10 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**Checks collision between the Player and every Enemy, also each Enemy with every other Enemy
+	 * @author Christopher Lew
+	 * @param thisMaze
+	 */
 	private void checkEnemyCollisions(Maze thisMaze) {
 		// Check if any creature is touching Player. If yes, make player take damage
 		for (int i = 0; i < thisMaze.getEnemies().size(); i++) {
@@ -502,6 +517,10 @@ public class DrawingSurface extends PApplet {
 		}
 	}
 
+	/**Checks collision between the Player and all Abilities
+	 * @author Christopher Lew
+	 * @param thisMaze the current Maze
+	 */
 	private void checkAbilityCollisions(Maze thisMaze) {
 		for (int i = 0; i < thisMaze.getAbilities().size(); i++) {
 			Ability ab = thisMaze.getAbilities().get(i);
@@ -536,7 +555,7 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * Change the current maze on the screen from allMazes.get(i) to
 	 * allMazes.get(i+1) (or allMazes.get(0) if i+1 > allMazes.size() )
-	 * 
+	 * @author Christopher Lew
 	 * @return the index of the new Maze selected that will be shown on the screen
 	 */
 	public int toggleMaze() {
@@ -582,17 +601,24 @@ public class DrawingSurface extends PApplet {
 //	}
 
 	
-	
+	/**
+	 * @author Christopher Lew
+	 * @return number of draw() iterations
+	 */
 	public static long getIterations() {
 		return iterations;
 	}
 	
+	/**
+	 * @author Christopher Lew
+	 * @return how many frames on the respawn cooldown there's left
+	 */
 	public static int getRespawnTimer() {
 		return respawnCooldown;
 	}
 	
 	
-	/**
+	/**@author Christopher Lew
 	 * @post This method modified the one and only Player on screen so use carefully
 	 * @return the Player that the user controls
 	 */
