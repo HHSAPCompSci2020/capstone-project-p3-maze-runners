@@ -27,7 +27,7 @@ public class Stealth extends Ability{
 		super.use();
 
 		int duration = 5;
-		DrawingSurface.starDuration = duration * DrawingSurface.FPS;
+		DrawingSurface.stealthDuration = duration * DrawingSurface.FPS;
 
 	}
 

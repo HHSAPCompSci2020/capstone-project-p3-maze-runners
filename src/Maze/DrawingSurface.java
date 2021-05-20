@@ -12,6 +12,7 @@ import entities.abilities.Ability;
 import entities.abilities.Heal;
 import entities.abilities.InvincibilityPrank;
 import entities.abilities.Star;
+import entities.abilities.Stealth;
 import entities.enemies.Enemy;
 import entities.enemies.Spike;
 
@@ -71,6 +72,7 @@ public class DrawingSurface extends PApplet {
 	public int abilityNum;
 	
 	public static int starDuration;
+	public static int stealthDuration;
 	private Ability currentAbility = null;
 	
 	private boolean gameComplete = false;
@@ -187,11 +189,19 @@ public class DrawingSurface extends PApplet {
 		}
 		if (starDuration > 0) {
 			player.invincible = true;
+			
 //			System.out.println("invincible for "+ (starDuration/60) + "more seconds");
 			starDuration--;
 		}
 		else {
 			player.invincible = false;
+		}
+		if (stealthDuration > 0) {
+			player.visibleByEnemies=false;			
+			stealthDuration--;
+		}
+		else {
+			player.visibleByEnemies=true;			
 		}
 		
 
@@ -550,6 +560,9 @@ public class DrawingSurface extends PApplet {
 				}
 				else if (ab instanceof Star) {
 //					starDuration = 5 * FPS;
+					currentAbility = ab;
+					ab.removeSelfFromMaze(thisMaze, i);
+				}else if (ab instanceof Stealth) {
 					currentAbility = ab;
 					ab.removeSelfFromMaze(thisMaze, i);
 				}

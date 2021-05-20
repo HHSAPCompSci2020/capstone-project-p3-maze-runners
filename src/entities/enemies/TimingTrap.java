@@ -14,6 +14,7 @@ import processing.core.PImage;
 @SuppressWarnings("serial")
 public class TimingTrap extends Spike {
 	private boolean isVisible;
+	private Player pl;
 
 	/**
 	 * Constructs this TimingTrap at position x,y with the given image and default
@@ -60,6 +61,8 @@ public class TimingTrap extends Spike {
 		} else {
 //			System.out.println("safe to pass");
 		}
+		super.attack(p);
+		pl=p;
 	}
 
 	/**
@@ -95,7 +98,8 @@ public class TimingTrap extends Spike {
 	 */
 	public void draw(PApplet marker) {
 
-		if (DrawingSurface.getIterations() % 120 <= 60) {
+		
+		if (DrawingSurface.getIterations() % 120 <= 60&&!pl.visibleByEnemies) {
 			setVisibility(false);
 			marker.pushStyle();
 			marker.noStroke();
