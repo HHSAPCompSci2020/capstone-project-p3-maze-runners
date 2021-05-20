@@ -266,7 +266,10 @@ public class Maze {
 		}
 		return s0;
 	}
-	
+	public void setNewCellWidthHeight(int width, int height) {
+		cellWidth = width;
+		cellHeight = height;
+	}
 	
 	
 }
