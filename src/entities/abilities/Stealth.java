@@ -25,14 +25,12 @@ public class Stealth extends Ability{
 	 */
 	public void use() {
 		super.use();
+		/*
+		 * int duration = 5;
+		*DrawingSurface.starDuration = duration * DrawingSurface.FPS;
+		 */
 	}
-	/**
-	 * increments usage
-	 */
-	public void use(Player p) {
-		super.use();
-		
-	}
+	
 	
 	/*
 	public String toString() {

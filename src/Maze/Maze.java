@@ -176,6 +176,10 @@ public class Maze {
 					// add nothing
 				}
 				
+				if(c== 's') {
+					Star star = new Star(marker.loadImage("data//star.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(star);
+				}
 			}
 		}
 
