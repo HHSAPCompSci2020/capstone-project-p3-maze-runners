@@ -33,13 +33,6 @@ public class Spike extends Enemy {
 
 	}
 	
-	/**
-	 * spikes dont move, they are toggled at a fixed location
-	 */
-	public void move() 
-	{
-		
-	}
 
 	/**
 	 * 

@@ -27,18 +27,6 @@ public class Monster extends Enemy {
 //		symbol = 'M';
 	}
 
-	public void move() {
-		int direction = pickDirection();
-		if(direction == NORTH)
-				x+=NORTH;
-		else if(direction == EAST)
-				y+= EAST;
-		else if(direction == SOUTH)
-				x+= SOUTH;
-		else
-			y+= WEST;
-	}
-	
 	/**
 	 * @author Christopher Lew
 	 */
