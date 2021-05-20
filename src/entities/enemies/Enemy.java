@@ -1,7 +1,6 @@
 package entities.enemies;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.*;
 import processing.core.PImage;
 import Maze.*;
@@ -13,6 +12,7 @@ import entities.Player;
  * 
  * @author Lakshya Shrivastava
  */
+@SuppressWarnings("serial")
 public abstract class Enemy extends Entity {
 
 	/**

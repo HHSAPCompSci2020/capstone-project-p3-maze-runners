@@ -3,28 +3,31 @@ package entities.enemies;
 import java.awt.Shape;
 import java.util.ArrayList;
 
-import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PImage;
 
-
+/**
+ * Represents a monster that moves around randomly in the maze
+ * 
+ * @author Lakshya Shrivastava (most of the code was improved/replaced by Chris
+ *         though)
+ *
+ */
+@SuppressWarnings("serial")
 public class Monster extends Enemy {
-	
-	private int[] directions; // -> NEWS
-	private static final int NORTH = -1;
-	private static final int SOUTH= 1;
-	private static final int EAST= 1;
-	private static final int WEST= -1;
-	
+
+	/**
+	 * Constructs this Monster at position x,y with the given image and user
+	 * provided dimensions
+	 * 
+	 * @param img    the PImage that is drawn for this Creature
+	 * @param x      the top left x coordinate
+	 * @param y      the top left x coordinate
+	 * @param width  the width of this Creature
+	 * @param height the height of this Creature
+	 */
 	public Monster(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		directions = new int[4];
-		directions[0] = NORTH;
-		directions[1] = EAST;
-		directions[2] = WEST; 
-		directions[3] = SOUTH; 
-		speed = 3 ;
-//		symbol = 'M';
 	}
 
 	/**
@@ -32,55 +35,49 @@ public class Monster extends Enemy {
 	 */
 	public void act(ArrayList<Shape> obstacles) {
 		super.act(obstacles);
-//		move(); doesn't work as expected
-		
-		
+
 		double rand1 = Math.random();
 		double rand2 = Math.random();
-		
-		if (rand2*100 < 10) {
+
+		if (rand2 * 100 < 10) {
 			int dx = 0, dy = 0;
 			if (rand1 < 0.25) {
-				dx = (int)speed;
+				dx = (int) speed;
+			} else if (rand1 < 0.5) {
+				dx = -(int) speed;
+			} else if (rand1 < 0.75) {
+				dy = (int) speed;
+			} else {
+				dy = -(int) speed;
 			}
-			else if (rand1<0.5) {
-				dx = -(int)speed;
-			}
-			else if (rand1<0.75) {
-				dy= (int)speed;
-			}
-			else {
-				dy = -(int)speed;
-			}
-			
-			moveBy(dx,dy);
+
+			moveBy(dx, dy);
 		}
-		
-		
-		
-		
-		
-	}
-	
-	
-	private int pickDirection()
-	{
-		return (int)(Math.random() * directions.length);
 	}
 
-//	public void attack() {
-//	}
-	
-
+	/**
+	 * Does nothing, this enemy cannot be damaged, is only killable by the star
+	 * powerup
+	 */
 	public void reduceHealth() {
 	}
 
-	@Override
+	/**
+	 * Method is used for attacking a player
+	 * 
+	 * @param p the player to attack
+	 */
 	public void attack(Player p) {
 		p.reduceHealthBy(1, x, y, width, height);
 	}
+
+	/**
+	 * Returns whether this enemy is moveable or not. Must by implemented by all
+	 * subclasses
+	 * 
+	 * @return true if this enemy is moveable, false otherwise
+	 */
 	public boolean isMovable() {
 		return true;
 	}
 }
-

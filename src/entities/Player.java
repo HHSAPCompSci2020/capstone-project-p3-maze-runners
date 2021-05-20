@@ -13,6 +13,7 @@ import processing.core.PImage;
  * @author Christopher Lew
  *
  */
+@SuppressWarnings("serial")
 public class Player extends Entity {
 //	private int lives;
 	/**

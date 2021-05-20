@@ -23,9 +23,9 @@ public abstract class Entity extends MovingImage {
 	private double xVelocity, yVelocity;
 	private double friction;// lower friction means you slow down faster, (velocity is multiplied by
 							// friction every act() call)
-	private double gravity;
-	private double jumpStrength;
-	private boolean onASurface;
+//	private double gravity;
+//	private double jumpStrength;
+//	private boolean onASurface;
 
 	/**
 	 * how far the entity gets knocked back
@@ -34,7 +34,7 @@ public abstract class Entity extends MovingImage {
 //	public static char symbol;
 
 	/**
-	 * name of the image that this entity is represented by 
+	 * name of the image that this entity is represented by
 	 */
 	protected static String imageName;
 
@@ -53,7 +53,9 @@ public abstract class Entity extends MovingImage {
 	protected int health; // to be implemented
 
 	/**
-	 *  Constructs this Entity at position x,y with the given image and default dimensions
+	 * Constructs this Entity at position x,y with the given image and default
+	 * dimensions
+	 * 
 	 * @param img the PImage that is drawn for this Creature
 	 * @param x   the top left x coordinate
 	 * @param y   the top left x coordinate
@@ -62,11 +64,11 @@ public abstract class Entity extends MovingImage {
 		super(img, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		xVelocity = 0;
 		yVelocity = 0;
-		onASurface = false;
-		gravity = 0.7;
+//		onASurface = false;
+//		gravity = 0.7;
 //		friction = .85;
 		friction = 0.6;
-		jumpStrength = 15;
+//		jumpStrength = 15;
 
 		maxHealth = 1;
 		health = maxHealth;
@@ -74,7 +76,9 @@ public abstract class Entity extends MovingImage {
 	}
 
 	/**
-	 * Constructs this Entity at position x,y with the given image and user provided dimensions
+	 * Constructs this Entity at position x,y with the given image and user provided
+	 * dimensions
+	 * 
 	 * @param img    the PImage that is drawn for this Creature
 	 * @param x      the top left x coordinate
 	 * @param y      the top left x coordinate
@@ -85,11 +89,11 @@ public abstract class Entity extends MovingImage {
 		super(img, x, y, width, height);
 		xVelocity = 0;
 		yVelocity = 0;
-		onASurface = false;
-		gravity = 0.7;
+//		onASurface = false;
+//		gravity = 0.7;
 //		friction = .85;
 		friction = 0.6;
-		jumpStrength = 15;
+//		jumpStrength = 15;
 
 		maxHealth = 1;
 		health = maxHealth;
@@ -133,6 +137,7 @@ public abstract class Entity extends MovingImage {
 
 	/**
 	 * Returns a string representation of the entity
+	 * 
 	 * @return the string representation of the entity
 	 */
 	public String toString() {
@@ -143,7 +148,7 @@ public abstract class Entity extends MovingImage {
 
 	// New movement methods
 	/**
-	 * Move the Entity  by an x and y amount (given integers)
+	 * Move the Entity by an x and y amount (given integers)
 	 * 
 	 * @param x amount to move in x direction (right positive)
 	 * @param y amount to move in y direction (down positive)
@@ -218,13 +223,13 @@ public abstract class Entity extends MovingImage {
 		Rectangle2D.Double strechY = new Rectangle2D.Double(xCoord, Math.min(yCoord, yCoord2), width,
 				height + Math.abs(yVelocity));
 
-		onASurface = false;
+//		onASurface = false;
 
 		if (yVelocity > 0) {
 			Shape standingSurface = null;
 			for (Shape s : obstacles) {
 				if (s.intersects(strechY)) {
-					onASurface = true;
+//					onASurface = true;
 					standingSurface = s;
 					yVelocity = 0;
 				}
