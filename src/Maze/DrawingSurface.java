@@ -543,12 +543,12 @@ public class DrawingSurface extends PApplet {
 			if (e.touchingCreature(player)) {
 				if (e instanceof Enemy) {
 					e.attack(player);
-
 				}
 				if (player.invincible) {
 					if (e.canDie()) {
 						e.removeSelfFromMaze(thisMaze, i);
 					}
+					
 				}
 				
 				

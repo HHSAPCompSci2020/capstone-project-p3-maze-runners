@@ -58,11 +58,7 @@ public class TimingTrap extends Spike {
 	{
 		if (isVisible) {
 			p.reduceHealthBy(1, x, y, width, height);
-		} else {
-//			System.out.println("safe to pass");
-		}
-		super.attack(p);
-//		pl=p;
+		} 
 	}
 
 	/**

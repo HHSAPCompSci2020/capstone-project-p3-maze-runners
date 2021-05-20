@@ -41,19 +41,19 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.setBorder(tb);
 
 		JLabel instructions = new JLabel("Instructions: Use arrow keys or WASD to move."); // Press '=' to enter Debug Mode
-		instructions.setBounds(w.getWidth()/2, w.getHeight()/2, 800, 100);
+		instructions.setBounds(w.getWidth()/2 - 350, 120, 800, 100);
 		instructions.setFont(new Font(Font.SERIF, Font.PLAIN, 35));
 		instructions.setForeground(Color.WHITE);
 		this.add(instructions);
 		
 		JLabel instructions2 = new JLabel("Use spacebar to use a picked up ability"); // Press '=' to enter Debug Mode
-		instructions2.setBounds(10, 150, 800, 100);
+		instructions2.setBounds(w.getWidth()/2 - 320, 150, 800, 100);
 		instructions2.setFont(new Font(Font.SERIF, Font.PLAIN, 35));
 		instructions2.setForeground(Color.WHITE);
 		this.add(instructions2);
 
 		JButton button = new JButton("Click To Start Game");
-		button.setBounds(10, 230, 760, 100);
+		button.setBounds(w.getWidth()/2 - 390, w.getHeight()/2-50, 760, 100);
 		button.addActionListener(this);
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
