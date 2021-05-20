@@ -21,6 +21,14 @@ public class Stealth extends Ability{
 	public void use() {
 		super.use();
 	}
+	/**
+	 * increments usage
+	 */
+	public void use(Player p) {
+		super.use();
+		
+	}
+	
 	/*
 	public String toString() {
 		String s = "Heal ability at x="+this.x + "y="+this.y;

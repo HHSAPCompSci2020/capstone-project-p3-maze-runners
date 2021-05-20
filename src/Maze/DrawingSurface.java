@@ -60,6 +60,7 @@ public class DrawingSurface extends PApplet {
 	 */
 	public int abilityNum;
 	
+	private int starDuration;
 	private Ability currentAbility = null;
 	
 	private boolean gameComplete = false;
@@ -149,6 +150,14 @@ public class DrawingSurface extends PApplet {
 		} else {
 			player.setSpeed(Player.MAX_SPEED);
 		}
+		if (starDuration > 0) {
+			player.invincible = true;
+			starDuration--;
+		}
+		else {
+			player.invincible = false;
+		}
+		
 
 		// Loading walls
 		Maze thisMaze = allMazes.get(mazeSelected);
@@ -306,6 +315,10 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
 		
+		if (isPressed(KeyEvent.VK_F)) {
+			starDuration = 300;
+			System.out.println("star");
+		}
 		
 		if (player.getXVelocity() < 0) {
 			player.facingRight = false;
