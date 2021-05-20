@@ -177,8 +177,8 @@ public class Maze {
 				}
 				
 				if(c== 's') {
-					Star star = new Star(marker.loadImage("data//star.png"), x, y, cellWidth, cellHeight);
-					this.addAbility(star);
+					Stealth sneak = new Stealth(marker.loadImage("data//heal.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(sneak);
 				}
 			}
 		}
