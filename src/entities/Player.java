@@ -36,6 +36,7 @@ public class Player extends Entity {
 	 * Represents whether the Player is visible to enemies in the mazes
 	 */
 	public boolean visibleByEnemies = true;
+<<<<<<< Updated upstream
 	private PImage flippedImage;
 
 	/**
@@ -48,6 +49,11 @@ public class Player extends Entity {
 	 * @param width  the width of this Creature
 	 * @param height the height of this Creature
 	 */
+=======
+	public boolean visible=true;
+	
+	
+>>>>>>> Stashed changes
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
@@ -138,7 +144,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * 
+	 * @author Joseph
 	 * @param amount amount of health recovered
 	 */
 	public void healBy(int amount) {
