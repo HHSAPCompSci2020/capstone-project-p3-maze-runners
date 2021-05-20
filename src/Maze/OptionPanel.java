@@ -3,14 +3,17 @@ package Maze;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -31,13 +34,14 @@ public class OptionPanel extends JPanel implements ActionListener {
 		}
 
 		TitledBorder tb = new TitledBorder("Maze Of Legends");
-		tb.setTitlePosition(TitledBorder.BELOW_TOP);
+		tb.setTitlePosition(TitledBorder.CENTER);
+		tb.setTitleJustification(TitledBorder.CENTER);
 		tb.setTitleColor(Color.WHITE);
 		tb.setTitleFont(new Font(Font.MONOSPACED, Font.ITALIC, 80));
 		this.setBorder(tb);
 
 		JLabel instructions = new JLabel("Instructions: Use arrow keys or WASD to move."); // Press '=' to enter Debug Mode
-		instructions.setBounds(10, 120, 800, 100);
+		instructions.setBounds(w.getWidth()/2, w.getHeight()/2, 800, 100);
 		instructions.setFont(new Font(Font.SERIF, Font.PLAIN, 35));
 		instructions.setForeground(Color.WHITE);
 		this.add(instructions);
@@ -69,6 +73,14 @@ public class OptionPanel extends JPanel implements ActionListener {
 	
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        AffineTransform at = g2.getTransform();
+        float ratioX = (float) getWidth() / 800;
+		float ratioY = (float) getHeight() / 600;
+
+		g2.scale(ratioX, ratioY);
         g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+        
+        g2.setTransform(at);
     }
 }
