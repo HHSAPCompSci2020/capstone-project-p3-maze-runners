@@ -123,6 +123,10 @@ public class Maze {
 					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(s);
 				}
+				if (c == 'i') {
+					Star star = new Star(marker.loadImage("data//star.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(star);
+				}
 
 				if (c == TIMING_TRAP) {
 					TimingTrap temp = new TimingTrap(marker.loadImage("data//spike.png"), x, y, cellWidth, cellHeight);

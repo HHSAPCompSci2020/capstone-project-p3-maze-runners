@@ -41,6 +41,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 		instructions.setFont(new Font(Font.SERIF, Font.PLAIN, 35));
 		instructions.setForeground(Color.WHITE);
 		this.add(instructions);
+		
+		JLabel instructions2 = new JLabel("Use spacebar to use a picked up ability"); // Press '=' to enter Debug Mode
+		instructions2.setBounds(10, 150, 800, 100);
+		instructions2.setFont(new Font(Font.SERIF, Font.PLAIN, 35));
+		instructions2.setForeground(Color.WHITE);
+		this.add(instructions2);
 
 		JButton button = new JButton("Click To Start Game");
 		button.setBounds(10, 230, 760, 100);

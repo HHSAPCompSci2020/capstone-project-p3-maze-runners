@@ -16,7 +16,7 @@ public abstract class Enemy extends Creature {
 //	protected int x;
 //	protected int y;
 	protected int attackDamage;
-	
+	protected boolean canDie = true;
 	
 	public Enemy(PImage img, int x, int y) 
 	{
@@ -55,5 +55,8 @@ public abstract class Enemy extends Creature {
 	 
 	 abstract public boolean isMovable();
 		 
+	 public boolean canDie() {
+		 return canDie;
+	 }
 	 
 }

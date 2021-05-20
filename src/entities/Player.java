@@ -9,7 +9,8 @@ import processing.core.PImage;
 
 public class Player extends Creature{
 //	private int lives;
-	public static final double MAX_SPEED = 2;
+	public static final double WALK_SPEED = 2;
+	public static final double RUN_SPEED = 4;
 	public static final double DAMAGED_SPEED = 0.6;
 	private PImage flippedImage;
 	public boolean invincible = false;
@@ -90,7 +91,7 @@ public class Player extends Creature{
 	
 	public void act(ArrayList<Shape> obstacles) {
 		if (DrawingSurface.playerDmgCooldown == 0) {
-			speed= MAX_SPEED;
+			speed= WALK_SPEED;
 		}
 		else {
 //			speed = 0.5;
@@ -131,16 +132,19 @@ public class Player extends Creature{
 		if (DrawingSurface.playerDmgCooldown > 0) {
 			marker.fill(248, 44, 0);
 			marker.text("Ow!", (float)(x - width/4), (float)(y - width/8));
-			speed = DAMAGED_SPEED;
 			
 		}
 		else {
 			marker.fill(0);
-			speed = MAX_SPEED;
+			speed = WALK_SPEED;
+		}
+		if (DrawingSurface.playerDmgCooldown > 30) {
+			speed = DAMAGED_SPEED;
+		}
+		else {
+			speed = WALK_SPEED;
 		}
 		
-		
-		int a = 1;
 		
 		
 		
@@ -153,29 +157,10 @@ public class Player extends Creature{
 		}
 		
 		if (invincible) {
-			long t = DrawingSurface.getIterations() % 300;
-			float r,g,b;
-			
-			
-			double B = 2* Math.PI / 30;
-			
-//			
-//			r = (float)(128 * (Math.sin( B * (t - 0) +0.5) ));
-//			g = (float)(128 * (Math.sin( B * (t - Math.PI/3) +0.5) ));
-//			b = (float)(128 * (Math.sin( B * (t - 2*Math.PI/3) +0.5) ));
-			if ( 0 <= t && t < 10) {
-				r = -t;
-			}
-			
-			r =  Math.max(0,  Math.abs(t) );
-			g =  Math.max(0,  Math.abs(t) );
-			
-			
-			 r= g = b = 255;
+			marker.strokeWeight(3);
+			marker.stroke(255, 255, 0);
 			marker.noFill();
-			marker.strokeWeight(2);
-			marker.stroke(r,g,b);
-			marker.ellipse((float)x, (float)y, (float)width, (float)height);
+			marker.ellipse((float)this.getCenterX(), (float)this.getCenterY(), (float)(1.4f*width), (float)(1.4f*height));
 		}
 		marker.popStyle();
 
@@ -189,8 +174,50 @@ public class Player extends Creature{
 		return speed;
 	}
 	
-	
-	
+	/*
+	public void rgbColorStuff(PApplet marker) {
+		float p = 255;
+		float amp = 255;
+		float t = DrawingSurface.getIterations() % p;
+		float r = 255, g = 255, b = 255;
+		float m = amp / (p/3);
+				
+//		
+//		r = (float)(128 * (Math.sin( B * (t - 0) +0.5) ));
+//		g = (float)(128 * (Math.sin( B * (t - Math.PI/3) +0.5) ));
+//		b = (float)(128 * (Math.sin( B * (t - 2*Math.PI/3) +0.5) ));
+		if ( 0 <= t && t < p/3) { 
+			r = - t * m + amp;
+			g = m*t;
+			b = 0;
+			System.out.println("1");
+		}
+		else if (p/3 <= t && t < 2*p/3 ) {
+			r = 0;
+			g = -m * t + 2*amp;
+			b = m* (t - p/3);
+			System.out.println("2");
+
+		}
+		else if (t >= p/3) {
+			r= m * (t-2*p/3);
+			g = 0;
+			b = -m*t + 3*amp;
+			System.out.println("3");
+
+		}
+		
+		
+//		r = 255 * r/p;
+//		g = 255 * g/p;
+//		b = 255 * b/p;
+//		if (t == 10) 
+			System.out.println(r+","+g+","+b);
+
+		marker.noFill();
+		marker.strokeWeight(2);
+		marker.stroke(r,g,b);
+	}*/
 	
 	
 	

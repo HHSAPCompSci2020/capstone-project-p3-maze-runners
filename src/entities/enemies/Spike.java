@@ -23,6 +23,7 @@ public class Spike extends Enemy {
 //		symbol = 'T';
 //		imageName = "spike.png";
 		attackDamage = 1;
+		canDie = false;
 	}
 	
 	public Spike(PImage img, int x, int y, int width, int height) {
@@ -87,6 +88,10 @@ public class Spike extends Enemy {
 
 	}
 	public boolean isMovable() {
+		return false;
+	}
+	
+	public boolean canDie() {
 		return false;
 	}
 	

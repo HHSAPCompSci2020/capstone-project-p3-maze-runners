@@ -26,7 +26,7 @@ public class InvincibilityPrank  extends Ability{
 	
 	
 	public String toString() {
-		String s = "Invincibility";
+		String s = "Instant Win :)";
 		return s;
 	}
 	

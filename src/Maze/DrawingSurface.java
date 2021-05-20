@@ -15,7 +15,10 @@ public class DrawingSurface extends PApplet {
 	//
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
-
+	public static final int FPS = 60;
+	
+	private long temp1;
+	private int temp2;
 	private static long iterations = 0;
 	public static int lives = 3;
 	private static boolean debugEnabled = false;
@@ -28,7 +31,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
 
-	private Maze maze0, maze1, maze2, maze3, newMaze0, newMaze1;
+	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8;
 
 	private int toggleDebugCooldown;
 
@@ -60,7 +63,7 @@ public class DrawingSurface extends PApplet {
 	 */
 	public int abilityNum;
 	
-	private int starDuration;
+	public static int starDuration;
 	private Ability currentAbility = null;
 	
 	private boolean gameComplete = false;
@@ -80,30 +83,16 @@ public class DrawingSurface extends PApplet {
 		System.out.println(instructions);
 		allMazes = new ArrayList<Maze>();
 		
-		newMaze0 = new Maze(this, "data//newmaze0.txt", 9, 9);
-		newMaze1 = new Maze(this, "data//newmaze1.txt", 12, 12);
-		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
-//		System.out.println("3rd maze in allMazes:");
-//		maze2.printCharArray(maze2.getGrid());
-
-		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
-//		maze2.printCharArray(maze3.getGrid());
-
-		
-		 
-		Maze maze4 = new Maze(this, "data//maze4.txt", 18, 25);
-
-		Maze maze5 = new Maze(this, "data//maze5.txt", 20, 15);
-		Maze maze6 = new Maze(this, "data//maze6.txt", 15, 15);
-		
-		allMazes.add(newMaze0);
-		allMazes.add(newMaze1);
+		loadMazes();
+		allMazes.add(maze0);
+		allMazes.add(maze1);
 
 		allMazes.add(maze2);
 		allMazes.add(maze3);
 		allMazes.add(maze4);
 		allMazes.add(maze5);
 		allMazes.add(maze6);
+		allMazes.add(maze7);
 
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -113,6 +102,25 @@ public class DrawingSurface extends PApplet {
 		}
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 	}
+	
+	private void loadMazes() {
+		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
+		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
+		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
+		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
+		maze4 = new Maze(this, "data//maze4.txt", 18, 25);
+
+		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
+		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
+		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
+	}
+	private void reloadMaze(int mazeIndex) {
+		Maze temp = new Maze(this, "data//maze" + mazeIndex+".txt", 25, 25);
+		allMazes.remove(mazeIndex);
+		allMazes.add(mazeIndex, temp);
+	}
+	
+	
 
 	/*
 	 * ------------------------PApplet Methods------------------------
@@ -130,7 +138,9 @@ public class DrawingSurface extends PApplet {
 	// line is executed again.
 	public void draw() {
 		iterations++;
-
+//		if (iterations == temp1+1) {
+//			toggleMaze();
+//		}
 		if (mazeChangeCooldown > 0)
 			mazeChangeCooldown--;
 		if (playerDmgCooldown > 0)
@@ -148,10 +158,11 @@ public class DrawingSurface extends PApplet {
 			respawnCooldown--;
 			player.setSpeed(0.0);
 		} else {
-			player.setSpeed(Player.MAX_SPEED);
+			player.setSpeed(Player.WALK_SPEED);
 		}
 		if (starDuration > 0) {
 			player.invincible = true;
+//			System.out.println("invincible for "+ (starDuration/60) + "more seconds");
 			starDuration--;
 		}
 		else {
@@ -167,7 +178,7 @@ public class DrawingSurface extends PApplet {
 		spawnWalls(obstacles, thisMaze);
 		// drawing stuff
 
-		background(128, 212, 255);
+		background(162, 218, 247);
 
 		pushMatrix();
 
@@ -206,13 +217,23 @@ public class DrawingSurface extends PApplet {
 		if (currentAbility!= null) {
 			this.textSize(16);
 			String s = "";
+			
 			if (currentAbility.getUses() == 1000) {
 				s = "";
 			}
-			else {
+			if (currentAbility.getUses() != 1000) {
 				s = currentAbility.getUses() + "x ";
 			}
+
+
 			healthStr += "\nAbility: (press SPACE)\n"+  s + currentAbility.toString();
+
+
+		}
+		if (player.invincible == true) {
+//			healthStr += "star";
+			System.out.println("wow");
+			healthStr += "\n" + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
 		}
 		this.textSize(16);
 		this.text(healthStr, DRAWING_WIDTH - 200, DRAWING_HEIGHT - 100);
@@ -228,6 +249,8 @@ public class DrawingSurface extends PApplet {
 			textSize(40);
 			this.text("YOU DIED", DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
 			popStyle();
+//			toggleBackMaze();
+//			temp1 = DrawingSurface.iterations;
 		}
 		
 //   End of game scren
@@ -265,7 +288,7 @@ public class DrawingSurface extends PApplet {
 			textAlign(CENTER);
 			fill(255,255,255);
 			textSize(25);
-			text("Did you honestly think we would give you invincibility?",DrawingSurface.DRAWING_WIDTH/2,DrawingSurface.DRAWING_HEIGHT/2);
+			text("Did you honestly think we would give you that?",DrawingSurface.DRAWING_WIDTH/2,DrawingSurface.DRAWING_HEIGHT/2);
 			popStyle();
 		}
 		
@@ -315,10 +338,20 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
 		
-		if (isPressed(KeyEvent.VK_F)) {
-			starDuration = 300;
-			System.out.println("star");
-		}
+//		if (isPressed(KeyEvent.VK_SHIFT) ||  isPressed(KeyEvent.SHIFT_DOWN_MASK) ) {
+//			System.out.println("run");
+//
+//			player.setSpeed(player.RUN_SPEED);
+//		}
+//		else {
+//			player.setSpeed(player.WALK_SPEED);
+//		}
+		
+		
+//		if (isPressed(KeyEvent.VK_F)) {
+//			starDuration = 3000;
+//			System.out.println("star");
+//		}
 		
 		if (player.getXVelocity() < 0) {
 			player.facingRight = false;
@@ -334,14 +367,17 @@ public class DrawingSurface extends PApplet {
 				int cd = currentAbility.getCooldown();
 				if (abilityCooldown == 0) {
 					if (currentAbility instanceof InvincibilityPrank) {
-						System.out.println("pranked");
+//						System.out.println("pranked");
 						InvincibilityPrank p = (InvincibilityPrank)currentAbility;
 						prankedTime = 200;
 						p.use();//decrements uses only
 					}
+					else if (currentAbility instanceof Star) {
+						Star tempAb = (Star)currentAbility;
+						tempAb.use(player);
+					}
 					else {
 						currentAbility.use();
-
 					}
 					if (currentAbility.getUses()<= 0) {
 						currentAbility = null;
@@ -397,6 +433,8 @@ public class DrawingSurface extends PApplet {
 
 	public void spawnNewPlayer(int x, int y) {
 		respawnCooldown = 30;
+//		loadMazes();	
+		reloadMaze(mazeSelected);
 		player = new Player(loadImage("data//luigi.png"), x, y, 25, 25, loadImage("data//luigiLeft.png"));
 	}
 
@@ -426,7 +464,11 @@ public class DrawingSurface extends PApplet {
 					e.attack(player);
 
 				}
-				
+				if (player.invincible) {
+					if (e.canDie()) {
+						e.removeSelfFromMaze(thisMaze, i);
+					}
+				}
 				
 				
 				
@@ -458,7 +500,12 @@ public class DrawingSurface extends PApplet {
 			if (ab.touchingCreature(player)) {
 				if (ab instanceof Heal) {
 					player.healBy(1);
-					System.out.println("Should be healing");
+//					System.out.println("Should be healing");
+					ab.removeSelfFromMaze(thisMaze, i);
+				}
+				else if (ab instanceof Star) {
+//					starDuration = 5 * FPS;
+					currentAbility = ab;
 					ab.removeSelfFromMaze(thisMaze, i);
 				}
 				else {
@@ -484,27 +531,49 @@ public class DrawingSurface extends PApplet {
 	 * @return the index of the new Maze selected that will be shown on the screen
 	 */
 	public int toggleMaze() {
-		System.out.println("maze change CD" + mazeChangeCooldown);
+//		System.out.println("maze change CD" + mazeChangeCooldown);
 		if (mazeChangeCooldown == 0) {
 			mazeChangeCooldown = 10;
 			mazeSelected++;
 			if (mazeSelected < allMazes.size()) {
 				gameComplete = false;
 			} else {
-				gameComplete = true;
+//				gameComplete = true;
 
 			}
 
 			if (mazeSelected < allMazes.size())
 				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 			if (mazeSelected >= allMazes.size()) {
-				gameComplete = true;
+//				gameComplete = true;
 				mazeSelected = 0;
 			}
 		}
 		return mazeSelected;
 	}
+	
+//	public void toggleBackMaze() {
+//		if (mazeChangeCooldown == 0) {
+//			mazeChangeCooldown = 10;
+//			mazeSelected--;
+////			if (mazeSelected < allMazes.size()) {
+////				gameComplete = false;
+////			} else {
+////				gameComplete = true;
+////
+////			}
+//
+//			if (mazeSelected < allMazes.size())
+//				spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
+//			if (mazeSelected >= allMazes.size()) {
+//				gameComplete = true;
+//				mazeSelected = 0;
+//			}
+//		}		
+//	}
 
+	
+	
 	public static long getIterations() {
 		return iterations;
 	}
@@ -521,4 +590,5 @@ public class DrawingSurface extends PApplet {
 	public static Player getPlayer() {
 		return player;
 	}
+	
 }

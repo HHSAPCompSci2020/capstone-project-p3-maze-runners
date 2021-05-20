@@ -23,6 +23,7 @@ public class TimingTrap extends Enemy {
 //		symbol = 'T';
 //		imageName = "spike.png";
 		attackDamage = 1;
+		canDie = false;
 	}
 	
 	public TimingTrap(PImage img, int x, int y, int width, int height) {
@@ -86,7 +87,7 @@ public class TimingTrap extends Enemy {
 			setVisibility(false);
 			marker.pushStyle();
 			marker.noStroke();
-			marker.fill(200,200,200, 160 );
+			marker.fill(180,180,180, 180 );
 			marker.rect((float)x, (float)y, (float)width, (float)height);
 			marker.popStyle();
 			
@@ -98,6 +99,9 @@ public class TimingTrap extends Enemy {
 	}
 	
 	public boolean isMovable() {
+		return false;
+	}
+	public boolean canDie() {
 		return false;
 	}
 }
