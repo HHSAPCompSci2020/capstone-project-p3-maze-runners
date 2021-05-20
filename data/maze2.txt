@@ -1,0 +1,38 @@
+###############
+#C...........h#
+######.###.####
+#.#.M.T##..#.h#
+#.#.#.##..##.##
+#.#...###.#I..#
+#.###..#.T#.#.#
+#.###...#.#..H#
+#.###.###.###.#
+#.#...h.......#
+#...#####.#####
+#.#...H.......#
+#.#...###T#####
+#H..M........X#
+###############
+\
+
+
+
+
+
+
+
+C->StartingLocation
+#->Walls
+.->walkingspaces
+
+T=TimingTrap
+M = Monster
+B = Blockade
+
+h = heal powerup
+
+
+
+If you fall off to the right you will be returned to the begining
+
+More to be added?

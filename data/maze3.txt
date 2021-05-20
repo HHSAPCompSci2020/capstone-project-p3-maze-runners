@@ -1,0 +1,34 @@
+###############
+#C.....I.....h#
+#.............#
+###.#.........#
+#T.T..........#
+#.#.#.#########
+#.#.#...TT.TT.#
+#TSSSSSSSSSSST#
+#.............#
+#####h##.......
+#########T#####
+#TTTT.........#
+#.###S###S###.#
+#XT.......SSS.#
+#########.....#
+\
+
+
+
+
+
+
+
+C->StartingLocation
+#->Walls
+T=TimingTrap
+
+h = heal powerup
+
+.->walkingspaces
+
+If you fall off to the right you will be returned to the begining
+
+More to be added?
