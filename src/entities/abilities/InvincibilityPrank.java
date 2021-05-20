@@ -1,6 +1,5 @@
 package entities.abilities;
 import Maze.DrawingSurface;
-import entities.Ability;
 import processing.core.PApplet;
 import processing.core.PImage;
 public class InvincibilityPrank  extends Ability{

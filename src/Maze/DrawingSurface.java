@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 import entities.*;
+import entities.abilities.Ability;
+import entities.abilities.Heal;
+import entities.abilities.InvincibilityPrank;
+import entities.abilities.Star;
+import entities.enemies.Enemy;
 
 @SuppressWarnings("serial")
 public class DrawingSurface extends PApplet {

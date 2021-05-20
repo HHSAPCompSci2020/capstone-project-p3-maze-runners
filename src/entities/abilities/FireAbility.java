@@ -1,5 +1,4 @@
 package entities.abilities;
-import entities.Ability;
 import processing.core.PApplet;
 import processing.core.PImage;
 

@@ -1,6 +1,7 @@
-package entities;
+package entities.abilities;
 
 import Maze.*;
+import entities.Creature;
 import processing.core.PImage;
 public class Ability extends Creature{
 	protected int uses;

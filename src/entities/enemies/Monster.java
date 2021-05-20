@@ -4,7 +4,6 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 import Maze.DrawingSurface;
-import entities.Enemy;
 import entities.Player;
 import processing.core.PImage;
 
