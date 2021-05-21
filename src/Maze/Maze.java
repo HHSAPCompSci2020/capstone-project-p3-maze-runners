@@ -75,7 +75,8 @@ public class Maze {
 			cellWidth = 25;
 			cellHeight = 25;
 		}
-		/*
+	
+
 		if (gridWidth < 15) {
 			cellWidth = 60;
 			cellHeight = 60;
@@ -92,7 +93,7 @@ public class Maze {
 			cellWidth = 15;
 			cellHeight = 15;
 		}
-		*/
+		
 //		System.out.println("gw" + gridWidth);
 		
 		this.readData(filename, grid);
