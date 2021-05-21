@@ -1,6 +1,5 @@
 package entities.enemies;
 
-import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;

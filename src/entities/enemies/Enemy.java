@@ -83,7 +83,7 @@ public abstract class Enemy extends Entity {
 	 * @param p the player to attack
 	 */
 	public void attack(Player p, double kbMultiplier) {
-		if (p.visibleByEnemies) {
+		if (Player.visibleByEnemies) {
 			p.reduceHealthBy(1, x, y, width, height, kbMultiplier);
 		}
 	}
