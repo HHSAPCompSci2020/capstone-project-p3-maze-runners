@@ -83,7 +83,7 @@ public class Maze {
 			cellWidth = 15;
 			cellHeight = 15;
 		}
-		System.out.println("gw" + gridWidth);
+//		System.out.println("gw" + gridWidth);
 		
 		this.readData(filename, grid);
 		addObjectsFromGrid(marker);
@@ -97,7 +97,7 @@ public class Maze {
 	public Maze(Maze old, PApplet marker) {
 		cellWidth = old.cellWidth;
 		cellHeight = old.cellHeight;
-		System.out.println("gw" + old.grid.length);
+//		System.out.println("gw" + old.grid.length);
 
 
 		this.fileName = old.getFileName();
@@ -175,7 +175,7 @@ public class Maze {
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
 				char c = grid[row][col];
-				System.out.println("cellWidth = "+cellWidth);
+//				System.out.println("cellWidth = "+cellWidth);
 				int x = col * cellWidth;
 				int y = row * cellHeight;
 

@@ -30,6 +30,10 @@ public class DrawingSurface extends PApplet {
 	private static long iterations = 0;
 	public static int lives = 3;
 	private static boolean debugEnabled = false;
+	/**
+	 * Draw lines every 100 pixels as a guide to know the coordinates of objects
+	 */
+	private final boolean drawGridLines = true;
 
 	private Rectangle screenRect;
 
@@ -186,17 +190,25 @@ public class DrawingSurface extends PApplet {
 				abilityStr += (int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
 			}
 			
-			String combined = levelStr + livesStr + healthStr;
+			String combined = levelStr + "    "+ livesStr + healthStr;
 
 			this.textSize(20);
-//			this.text(levelStr, 0 + 20, DRAWING_HEIGHT - 20);
-//			this.text(livesStr, 0 + 100, DRAWING_HEIGHT - 20);
-//			this.text(healthStr, 180, DRAWING_HEIGHT - 20);
 			
-			this.text(combined, 20, DRAWING_HEIGHT - 20);
+			this.text(levelStr, 10, DRAWING_HEIGHT - 20);
+			this.text(livesStr, 0 + 100, DRAWING_HEIGHT - 20);
+			this.text(healthStr, 180, DRAWING_HEIGHT - 20);
+			
+//			this.text(combined, 10, DRAWING_HEIGHT - 20);
 			this.text(abilityStr, 350, DRAWING_HEIGHT - 20);
 			
 			this.fill(0);
+			//draw guide lines
+			if (drawGridLines) {
+				for (int i = 0; i <= DRAWING_WIDTH; i += 100) {
+					this.line(i, 0, i, DRAWING_HEIGHT);
+					this.line(0, i, this.DRAWING_WIDTH, i);
+				}
+			}
 	}
 	
 
@@ -379,7 +391,8 @@ public class DrawingSurface extends PApplet {
 		}
 
 		// Player movement modification
-
+		if (isPressed(KeyEvent.VK_LEFT))
+		
 		if (isPressed(KeyEvent.VK_LEFT)) {
 			player.moveBy(-1, 0);
 		}
