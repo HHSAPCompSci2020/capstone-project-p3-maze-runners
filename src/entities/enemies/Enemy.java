@@ -58,7 +58,9 @@ public abstract class Enemy extends Entity {
 	 * Taken from APCS animation demo Handles the basic behavior of all Entities.
 	 * This includes move speed.
 	 * 
-	 * @param obstacles
+	 * @param obstacles obstacles in the maze
+	 * @param p the player 
+	 * @param m the maze 
 	 */
 	public void act(ArrayList<Shape> obstacles, Player p, Maze m) {
 		if (touchingCreature(p)) {
@@ -81,6 +83,7 @@ public abstract class Enemy extends Entity {
 	 * Method is used for attacking a player
 	 * 
 	 * @param p the player to attack
+	 * @param kbMultiplier the multiplier for the knock back
 	 */
 	public void attack(Player p, double kbMultiplier) {
 		if (Player.visibleByEnemies) {

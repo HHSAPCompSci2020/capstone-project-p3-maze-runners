@@ -38,6 +38,9 @@ public class Player extends Entity {
 	public static boolean visibleByEnemies = true;
 	private PImage flippedImage;
 
+	
+	public boolean visible=true;
+	
 	/**
 	 * Constructs this Player at position x,y with the given image and user provided
 	 * dimensions
@@ -48,9 +51,6 @@ public class Player extends Entity {
 	 * @param width  the width of this Creature
 	 * @param height the height of this Creature
 	 */
-	public boolean visible=true;
-	
-	
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
@@ -215,15 +215,26 @@ public class Player extends Entity {
 		return 'C';
 	}
 
+	/**
+	 *Can be used in multiplayer, NOT USED IN THIS PROJECT
+	 * @param p the other player
+	 */
 	public void attack(Player p) {
 		System.out.println("Player attacked player");
 		p.reduceHealthBy(1, x, y, width, height);
 	}
 
+	/**
+	 * Returns the player's health
+	 * @return player health
+	 */
 	public int getHealth() {
 		return this.health;
 	}
 
+	/**
+	 *@param marker the PApplet to which the player will be drawn
+	 */
 	public void draw(PApplet marker) {
 		marker.pushStyle();
 		if (DrawingSurface.playerDmgCooldown > 0) {
@@ -274,38 +285,19 @@ public class Player extends Entity {
 
 	}
 
+	/**
+	 * sets the speed of the player
+	 * @param speed speed to set
+	 */
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 
+	/**
+	 * Returns the current speed of the player
+	 * @return the current speed of the player
+	 */
 	public double getSpeed() {
 		return speed;
 	}
-//	public static boolean getVisibleByEnemies() {
-//		return this.visibleByEnemies;
-//	}
-
-	/*
-	 * public void rgbColorStuff(PApplet marker) { float p = 255; float amp = 255;
-	 * float t = DrawingSurface.getIterations() % p; float r = 255, g = 255, b =
-	 * 255; float m = amp / (p/3);
-	 * 
-	 * // // r = (float)(128 * (Math.sin( B * (t - 0) +0.5) )); // g = (float)(128 *
-	 * (Math.sin( B * (t - Math.PI/3) +0.5) )); // b = (float)(128 * (Math.sin( B *
-	 * (t - 2*Math.PI/3) +0.5) )); if ( 0 <= t && t < p/3) { r = - t * m + amp; g =
-	 * m*t; b = 0; System.out.println("1"); } else if (p/3 <= t && t < 2*p/3 ) { r =
-	 * 0; g = -m * t + 2*amp; b = m* (t - p/3); System.out.println("2");
-	 * 
-	 * } else if (t >= p/3) { r= m * (t-2*p/3); g = 0; b = -m*t + 3*amp;
-	 * System.out.println("3");
-	 * 
-	 * }
-	 * 
-	 * 
-	 * // r = 255 * r/p; // g = 255 * g/p; // b = 255 * b/p; // if (t == 10)
-	 * System.out.println(r+","+g+","+b);
-	 * 
-	 * marker.noFill(); marker.strokeWeight(2); marker.stroke(r,g,b); }
-	 */
-	
 }

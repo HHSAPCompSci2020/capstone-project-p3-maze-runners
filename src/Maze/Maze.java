@@ -92,8 +92,8 @@ public class Maze {
 	/**
 	 * Construct a maze from another Maze. Skips reading the text file
 	 * 
-	 * @param old
-	 * @param marker
+	 * @param old the old maze
+	 * @param marker The PApplet to which the maze will be drawn
 	 */
 	public Maze(Maze old, PApplet marker) {
 		cellWidth = old.cellWidth;
@@ -163,7 +163,7 @@ public class Maze {
 	}
 
 	/**
-	 * 
+	 * Rectangle representing a wall
 	 * @param shape the Shape object to add to the maze, should be a Rectangle
 	 */
 	public void addWall(Shape shape) {
@@ -173,7 +173,7 @@ public class Maze {
 	/**
 	 * adds an Entity to the maze(includes enemies, ability, exits, etc.)
 	 * 
-	 * @param the entity to add
+	 * @param entity the entity to add
 	 */
 	public void addEntity(Entity entity) {
 		enemies.add((Enemy) entity);
@@ -182,7 +182,7 @@ public class Maze {
 	/**
 	 * adds an enemy to the maze
 	 * 
-	 * @param the enemy to add
+	 * @param e the enemy to add
 	 */
 	public void addEnemy(Enemy e) {
 		enemies.add(e);
@@ -191,7 +191,7 @@ public class Maze {
 	/**
 	 * adds an ability to the maze
 	 * 
-	 * @param the ability to add
+	 * @param ability the ability to add
 	 */
 	public void addAbility(Ability ability) {
 		abilities.add(ability);
@@ -200,7 +200,7 @@ public class Maze {
 	/**
 	 * adds an exit to the maze
 	 * 
-	 * @param the exit to add
+	 * @param e the exit to add
 	 */
 	public void addExit(Exit e) {
 		exits.add(e);
@@ -312,8 +312,9 @@ public class Maze {
 	}
 
 	/**
+	 * prints the specified 2D array of chars
 	 * @pre chars is a rectangular 2D char array that is initialized
-	 * @param chars
+	 * @param chars the 2d array to be printed
 	 */
 	public void printCharArray(char[][] chars) {
 		String s0 = "";

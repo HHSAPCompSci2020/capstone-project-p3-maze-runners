@@ -77,7 +77,7 @@ public class Heal extends Ability {
 	 * Attacks by dealind -1 damage, do not use
 	 * 
 	 * @author Christopher Lew
-	 * 
+	 * @param p  the player to be attack
 	 */
 	public void attack(Player p) {
 		if (super.getPickedUp()) {

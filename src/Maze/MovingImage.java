@@ -15,7 +15,13 @@ import processing.core.PImage;
 public class MovingImage extends Rectangle2D.Double {
 
 	// FIELDS
+	/**
+	 * The image to be drawn
+	 */
 	protected PImage image;
+	/**
+	 * 	Whether the image should be facing right or not
+	 */
 	protected boolean facingRight;
 
 	// CONSTRUCTORS

@@ -16,26 +16,63 @@ import entities.abilities.Stealth;
 import entities.enemies.Enemy;
 import entities.enemies.Spike;
 
-@SuppressWarnings("serial")
+
 /**
+ * The PApplet that contains all the mazes and other UI components
  * 
  * @author Christopher Lew, Lakshya Shrivastava, Joseph Huang
  *
  */
 public class DrawingSurface extends PApplet {
-	public static final int DRAWING_WIDTH = 900;
-	public static final int DRAWING_HEIGHT = 675;
-	public static final int FPS = 60;
-
-	private static long iterations = 0;
-	public static int lives = 5;
-	private static boolean debugEnabled = false;
+	
+	
 	/**
-	 * Draw lines every 100 pixels as a guide to know the coordinates of objects
+	 * Default Width of the drawing
 	 */
-	private final boolean drawGridLines = false;
-//	private static boolean gamePaused = false;
+	public static final int DRAWING_WIDTH = 900;
+	/**
+	 * Default Height of the drawing
+	 */
+	public static final int DRAWING_HEIGHT = 675;
+	/**
+	 * The refresh rate of the program
+	 */
+	public static final int FPS = 60;
+	/**
+	 * The number of lives that the player has
+	 */
+	public static int lives = 5;
+	/**
+	 * mazeSelected is the index of allMazes that will be loaded on screen
+	 * 
+	 */
+	public static int mazeSelected = 0;
+	
+	/**
+	 * how many invincibility frames the player has. Player cannot take a damage for
+	 */
+	public static int playerDmgCooldown;
+	/**
+	 * The cooldown where the player does not take damage
+	 */
+	public static final int DMG_MAX_COOLDOWN = 120;
+	/**
+	 * how many abilities are to be spawned randomly in the maze
+	 */
+	public int abilityNum;
+	/**
+	 * 	Duration of the star powerup
+	 */
+	public static int starDuration;
+	/**
+	 * 	Duration of the stealth powerup
+	 */
+	public static int stealthDuration;
 
+	private static final long serialVersionUID = -3647651722594954917L;
+	private static long iterations = 0;
+	private static boolean debugEnabled = false;
+	private final boolean drawGridLines = false;
 	private Rectangle screenRect;
 
 	private static Player player;
@@ -49,13 +86,7 @@ public class DrawingSurface extends PApplet {
 	private boolean doTestMaze = false;
 	private int toggleDebugCooldown;
 
-	/**
-	 * mazeSelected is the index of allMazes that will be loaded on screen
-	 * 
-	 */
-	public static int mazeSelected = 0;
-
-	/**
+	/*
 	 * mazeChangeCooldown is the number of draw() method calls that pass between
 	 * each maze change. So at mazeChangeCooldown = 30, you can change the maze at
 	 * most once per 30 frames or once per 0.5 seconds
@@ -66,21 +97,7 @@ public class DrawingSurface extends PApplet {
 	private static int respawnCooldown = 0;
 
 	private int prankedTime = 0;
-
-	/**
-	 * how many invincibility frames the player has. Player cannot take a damage for
-	 */
-	public static int playerDmgCooldown;
-	public static final int DMG_MAX_COOLDOWN = 120;
-	/**
-	 * how many abilities are to be spawned randomly in the maze
-	 */
-	public int abilityNum;
-
-	public static int starDuration;
-	public static int stealthDuration;
 	private Ability currentAbility = null;
-
 	private boolean gameComplete = false;
 
 	/*
@@ -695,7 +712,8 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Change the current maze on the screen from allMazes.get(i) to
-	 * allMazes.get(i+1) (or allMazes.get(0) if i+1 > allMazes.size() )
+	 * allMazes.get(i+1) (or allMazes.get(0) if i+1 is greater than allMazes.size()
+	 * )
 	 * 
 	 * @author Christopher Lew
 	 * @return the index of the new Maze selected that will be shown on the screen

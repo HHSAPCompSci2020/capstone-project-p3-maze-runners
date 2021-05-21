@@ -5,9 +5,10 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * @author Lakshya Shrivastava A timing trap will be spikes that appear and
- *         disappear every few seconds. If the player touches the timing trap,
- *         their health will go down by 1
+ * A timing trap will be spikes that appear and disappear every few seconds. If
+ * the player touches the timing trap, their health will go down by 1
+ * 
+ * @author Lakshya Shrivastava
  */
 @SuppressWarnings("serial")
 public class Spike extends Enemy {
@@ -55,7 +56,7 @@ public class Spike extends Enemy {
 			p.reduceHealthBy(1, x, y, width, height);
 		}
 		if (p.invincible) {
-			p.receiveKnockback( x, y, width, height, 1.0);
+			p.receiveKnockback(x, y, width, height, 1.0);
 		}
 	}
 

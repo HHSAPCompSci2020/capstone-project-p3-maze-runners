@@ -7,6 +7,9 @@ import java.util.*;
 import processing.core.PImage;
 import Maze.*;
 
+/**
+ *	Represents anything that is in the maze. Players, enemies, abilities
+ */
 @SuppressWarnings("serial")
 public abstract class Entity extends MovingImage {
 

@@ -27,6 +27,7 @@ public class InvincibilityPrank extends Ability {
 
 	/**
 	 * increments usage
+	 * @param marker PApplet 
 	 */
 	public void use(PApplet marker) {
 		super.use();
