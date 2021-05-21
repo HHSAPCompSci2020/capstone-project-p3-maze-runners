@@ -34,7 +34,8 @@ public class DrawingSurface extends PApplet {
 	 * Draw lines every 100 pixels as a guide to know the coordinates of objects
 	 */
 	private final boolean drawGridLines = true;
-
+	private static boolean gamePaused = false;
+	
 	private Rectangle screenRect;
 
 	private static Player player;
@@ -62,6 +63,7 @@ public class DrawingSurface extends PApplet {
 	private int abilityCooldown;
 	private int otherCooldown = 0;
 	private static int respawnCooldown = 0;
+	private int pauseCooldown = 0;
 	
 	private int prankedTime = 0;
 
@@ -227,10 +229,13 @@ public class DrawingSurface extends PApplet {
 	// sequence and after the last line is read, the first
 	// line is executed again.
 	public void draw() {
+		
 		iterations++;
 //		if (iterations == temp1+1) {
 //			toggleMaze();
 //		}
+		if (pauseCooldown>0)
+			pauseCooldown--;
 		if (mazeChangeCooldown > 0)
 			mazeChangeCooldown--;
 		if (playerDmgCooldown > 0)
@@ -419,6 +424,8 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
 		
+		
+		
 //		if (isPressed(KeyEvent.VK_SHIFT) ||  isPressed(KeyEvent.SHIFT_DOWN_MASK) ) {
 //			System.out.println("run");
 //
@@ -477,13 +484,6 @@ public class DrawingSurface extends PApplet {
 			}
 		}
 		
-		if (isPressed(KeyEvent.VK_O) && isPressed(KeyEvent.VK_P)) {
-			if (toggleDebugCooldown == 0) {
-				debugEnabled = !debugEnabled;
-				toggleDebugCooldown = 60;
-			}
-		}
-
 		// make Creatures act
 		player.act(obstacles);
 		for (Enemy e: thisMaze.getEnemies()) {
@@ -499,6 +499,38 @@ public class DrawingSurface extends PApplet {
 
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
+		
+		
+		/*
+		if (isPressed(KeyEvent.VK_P) && pauseCooldown == 0) {
+			gamePaused = true;
+			pauseCooldown = 30;
+		}
+		//Chris: This game pausing is kinda bad coding I think but idk how to implement it better
+		while(gamePaused) {
+			try {
+				Thread.sleep(16, 667);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			if (pauseCooldown>0)
+				pauseCooldown--;
+
+			if (isPressed(KeyEvent.VK_P) && pauseCooldown == 0) {
+				gamePaused = false;
+				pauseCooldown = 30;
+			}
+			
+			if (iterations %60 == 0) {
+				System.out.println("paused at time = " +(iterations/60));
+			}
+			iterations++;
+
+		}
+		*/
+		
 
 	}
 
