@@ -60,6 +60,12 @@ public class TimingTrap extends Spike {
 			p.reduceHealthBy(1, x, y, width, height);
 		} 
 	}
+	public void attack(Player p, double kbMultiplier) {
+		if (isVisible) {
+			p.reduceHealthBy(1, x, y, width, height, kbMultiplier);
+		} 
+	}
+	
 
 	/**
 	 * This method will be used to toggle whether the spike will be draw or not and

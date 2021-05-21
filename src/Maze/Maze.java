@@ -247,6 +247,10 @@ public class Maze {
 					Stealth sneak = new Stealth(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
 					this.addAbility(sneak);
 				}
+				if (c== 'F') {
+					Fence f = new Fence(null, x, y, cellWidth, cellHeight);
+					this.addEnemy(f);
+				}
 			}
 		}
 

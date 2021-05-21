@@ -614,7 +614,8 @@ public class DrawingSurface extends PApplet {
 			e.draw(this);
 			if (e.touchingCreature(player)) {
 				if (e instanceof Enemy) {
-					e.attack(player, 1/getCellRatio() );
+//					e.attack(player);
+					e.attack(player, 1/getCellRatio());
 				}
 				if (player.invincible) {
 					if (e.canDie()) {
@@ -756,6 +757,7 @@ public class DrawingSurface extends PApplet {
 	public double getCellRatio() {
 		double d = 1.0;
 		d = allMazes.get(mazeSelected).getCellLength() / 40.0;
+		System.out.println("length"+allMazes.get(mazeSelected).getCellLength());
 		return d;
 		
 	}

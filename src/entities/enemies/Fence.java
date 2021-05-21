@@ -5,6 +5,7 @@ import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+@SuppressWarnings("serial")
 public class Fence extends Spike{
 
 	public Fence(PImage img, int x, int y, int width, int height) {
@@ -25,6 +26,10 @@ public class Fence extends Spike{
 	{
 		//dont attack
 	}
+	public void attack(Player p, double x) // Chris:I think this is unused?
+	{
+		//dont attack
+	}
 
 	/**
 	 * This method will be used to toggle whether the spike will be draw or not and
@@ -34,7 +39,7 @@ public class Fence extends Spike{
 	 */
 	private void setVisibility(boolean state) {
 //		isVisible = state;
-		isVisible =false;
+		isVisible = false;
 	}
 
 	/**
