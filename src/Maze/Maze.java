@@ -14,7 +14,9 @@ import entities.enemies.*;
 import entities.abilities.*;
 
 /**
- * Maze holds all the Walls, Abilities, and Enemies on the screen and can be loaded from a .txt file
+ * Maze holds all the Walls, Abilities, and Enemies on the screen and can be
+ * loaded from a .txt file
+ * 
  * @author Chris
  *
  */
@@ -23,9 +25,9 @@ public class Maze {
 	// characters that represents objects in grid
 	@SuppressWarnings("unused")
 	private final char START_LOCATION = 'C', WALL = '#', WALKABLE = '.', HEAL_CROSS = 'h', STEALTH = 's',
-			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I';
-	
-	private int mazeWidth, mazeHeight;
+			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I', STAR = 'i', FENCE = 'F',
+			MONSTER = 'M', HOMING_MONSTER = 'H';
+
 	public int playerStartX, playerStartY;
 	/**
 	 * grid is a 2D char array initialized from Maze's constructor, indexes are at
@@ -41,7 +43,10 @@ public class Maze {
 	private ArrayList<Exit> exits;
 
 	private String fileName;
-	
+
+	/**
+	 * Creates a maze with default arguments
+	 */
 	public Maze() {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
@@ -56,89 +61,67 @@ public class Maze {
 		cellHeight = 40;
 	}
 
+	/**
+	 * Creates a maze with user specified arguments
+	 * 
+	 * @param marker     The PApplet to which the maze will be drawn
+	 * @param filename   The file from which to get the maze
+	 * @param gridWidth  width of the grid / number of columns
+	 * @param gridHeight height of the grid / number of rows
+	 */
 	public Maze(PApplet marker, String filename, int gridWidth, int gridHeight) {
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
-		
+
 		this.fileName = filename;
 		grid = new char[gridHeight][gridWidth];
-		mazeWidth = gridHeight;
-		mazeHeight = gridHeight;
-		//This doesn't properly scale the distances of the maze
-		/*
-		if (gridWidth < 30) {
-			cellWidth = 40;
-			cellHeight = 40;
-		}
-		else {
-			cellWidth = 25;
-			cellHeight = 25;
-		}
-	
-
-		if (gridWidth < 15) {
-			cellWidth = 60;
-			cellHeight = 60;
-		}
-		else if (gridWidth < 30) {
-			cellWidth = 40;
-			cellHeight = 40;
-		}
-		else 
-		if (gridWidth <= 36) {
-			cellWidth = 25;
-			cellHeight = 25;
-		}
-		else {
-			cellWidth = 15;
-			cellHeight = 15;
-		}
-		*/
 		cellWidth = 40;
 		cellHeight = 40;
+
 		if (gridWidth >= 36) {
 			cellWidth = 25;
 			cellHeight = 25;
 		}
-//		System.out.println("gw" + gridWidth);
-		
+
 		this.readData(filename, grid);
 		addObjectsFromGrid(marker);
 	}
-	
+
 	/**
 	 * Construct a maze from another Maze. Skips reading the text file
+	 * 
 	 * @param old
 	 * @param marker
 	 */
 	public Maze(Maze old, PApplet marker) {
 		cellWidth = old.cellWidth;
 		cellHeight = old.cellHeight;
-//		System.out.println("gw" + old.grid.length);
-
 
 		this.fileName = old.getFileName();
 		grid = old.grid;
-		
+
 		walls = new ArrayList<Shape>();
 		enemies = new ArrayList<Enemy>();
 		abilities = new ArrayList<Ability>();
 		exits = new ArrayList<Exit>();
-		addObjectsFromGrid(marker); //Add objects to the ArrayLists from the char array
-//		
+		addObjectsFromGrid(marker); // Add objects to the ArrayLists from the char array
 	}
 
 	/**
+	 * Returns the name of the .txt file used to initialize this Maze's ArrayLists
 	 * 
-	 * @return the name of the .txt file used to initialize this Maze's ArrayLists of
+	 * @return the name of the .txt file used to initialize this Maze's ArrayLists
 	 */
 	public String getFileName() {
 		return fileName;
 	}
-	
+
 	/**
+	 * Returns the reference to the ArrayList of Shapes representing the walls in a
+	 * particular maze
+	 * 
 	 * @return the reference to the ArrayList of Shapes representing the walls in a
 	 *         particular maze
 	 */
@@ -146,14 +129,35 @@ public class Maze {
 		return walls;
 	}
 
+	/**
+	 * Returns the reference to the ArrayList of Shapes representing the enemies in
+	 * a particular maze
+	 * 
+	 * @return the reference to the ArrayList of Shapes representing the enemies in
+	 *         a particular maze
+	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
 
+	/**
+	 * Returns the reference to the ArrayList of Shapes representing the abilites in
+	 * a particular maze
+	 * 
+	 * @return the reference to the ArrayList of Shapes representing the abilites in
+	 *         a particular maze
+	 */
 	public ArrayList<Ability> getAbilities() {
 		return abilities;
 	}
 
+	/**
+	 * Returns the reference to the ArrayList of Shapes representing the exits in a
+	 * particular maze
+	 * 
+	 * @return the reference to the ArrayList of Shapes representing the exits in a
+	 *         particular maze
+	 */
 	public ArrayList<Exit> getExits() {
 		return exits;
 	}
@@ -167,26 +171,46 @@ public class Maze {
 	}
 
 	/**
-	 * adds a Creature to the maze. allows Enemies too because of polymorphism
+	 * adds an Entity to the maze(includes enemies, ability, exits, etc.)
+	 * 
+	 * @param the entity to add
 	 */
-	public void addCreature(Entity creature) {
-		enemies.add((Enemy) creature);
+	public void addEntity(Entity entity) {
+		enemies.add((Enemy) entity);
 	}
 
+	/**
+	 * adds an enemy to the maze
+	 * 
+	 * @param the enemy to add
+	 */
 	public void addEnemy(Enemy e) {
 		enemies.add(e);
 	}
 
+	/**
+	 * adds an ability to the maze
+	 * 
+	 * @param the ability to add
+	 */
 	public void addAbility(Ability ability) {
 		abilities.add(ability);
 	}
 
+	/**
+	 * adds an exit to the maze
+	 * 
+	 * @param the exit to add
+	 */
 	public void addExit(Exit e) {
 		exits.add(e);
 	}
 
-	/**Loads objects stored in Maze's enemies, abilities, walls, and exits ArrayLists
-	 * Traverses through the .txt file saved for this Maze and matches characters on the .txt file to corresponding Entities
+	/**
+	 * Loads objects stored in Maze's enemies, abilities, walls, and exits
+	 * ArrayLists Traverses through the .txt file saved for this Maze and matches
+	 * characters on the .txt file to corresponding Entities
+	 * 
 	 * @author Christopher Lew, with help from Lakshya Shrivastava
 	 * @param marker the PApplet object used for drawing
 	 */
@@ -194,69 +218,47 @@ public class Maze {
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
 				char c = grid[row][col];
-//				System.out.println("cellWidth = "+cellWidth);
 				int x = col * cellWidth;
 				int y = row * cellHeight;
 
-				if (c == HEAL_CROSS) {//h
-					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight));
-				}
-
-				if (c == INVINCIBILITY_PRANK) {//I
-//					InvincibilityPrank  s = new InvincibilityPrank(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
-					InvincibilityPrank  s = new InvincibilityPrank(null, x, y, cellWidth, cellHeight);
-					this.addAbility(s);
-				}
-				if (c == 'i') {
-					Star star = new Star(marker.loadImage("data//star.png"), x, y, cellWidth, cellHeight);
-					this.addAbility(star);
-				}
-
-				if (c == TIMING_TRAP) {//T
-					TimingTrap temp = new TimingTrap(marker.loadImage("data//spike.png"), x, y, cellWidth, cellHeight);
-					this.addEnemy(temp);
-
-				}
-				if (c == EXIT) {//X
-					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
-					this.addExit(e);
-				}
-
-				if (c == SPIKE) {//S
-					Spike e = new Spike(marker.loadImage("data//spike2.png"), x, y, cellWidth, cellHeight);
-					this.addEnemy(e);
-				}
-
 				if (c == WALL) { // #
-					// Rectangle(int x, int y, int width, int height)
 					Rectangle r = new Rectangle(col * cellWidth, row * cellHeight, cellWidth, cellHeight);
 					walls.add(r);
-				}
-				if (c == START_LOCATION) {//C
+				} else if (c == WALKABLE) {
+					// add nothing
+				} else if (c == HEAL_CROSS) {// h
+					this.addAbility(new Heal(null, x, y, cellWidth, cellHeight));
+				} else if (c == INVINCIBILITY_PRANK) {// I
+					InvincibilityPrank s = new InvincibilityPrank(null, x, y, cellWidth, cellHeight);
+					this.addAbility(s);
+				} else if (c == STAR) {
+					Star star = new Star(marker.loadImage("data//star.png"), x, y, cellWidth, cellHeight);
+					this.addAbility(star);
+				} else if (c == TIMING_TRAP) {// T
+					TimingTrap temp = new TimingTrap(marker.loadImage("data//spike.png"), x, y, cellWidth, cellHeight);
+					this.addEnemy(temp);
+				} else if (c == EXIT) {// X
+					Exit e = new Exit(marker.loadImage("data//Exit.png"), x, y, cellWidth, cellHeight);
+					this.addExit(e);
+				} else if (c == SPIKE) {// S
+					Spike e = new Spike(marker.loadImage("data//spike2.png"), x, y, cellWidth, cellHeight);
+					this.addEnemy(e);
+				} else if (c == START_LOCATION) {// C
 					playerStartX = col * cellWidth;
 					playerStartY = row * cellHeight;
-				}
-				if (c == 'M') {
-//					Monster M = new Monster(marker.loadImage("data//Monster.png"), x, y, cellWidth, cellHeight);
-					Monster monster; 
+				} else if (c == MONSTER) {
+					Monster monster;
 					monster = new Monster(marker.loadImage("data//monster.png"), x, y, cellWidth, cellHeight);
-
 					addEnemy(monster);
-				}
-				if (c == 'H') {
-					Monster M = new HomingMonster(marker.loadImage("data//HomingMonster.png"), x, y, cellWidth, cellHeight);
+				} else if (c == HOMING_MONSTER) {
+					Monster M = new HomingMonster(marker.loadImage("data//HomingMonster.png"), x, y, cellWidth,
+							cellHeight);
 					addEnemy(M);
-				}
-				
-				if (c == WALKABLE) {
-					// add nothing
-				}
-				
-				if(c== 's') {
-					Stealth sneak = new Stealth(marker.loadImage("data//invisibility.png"), x, y, cellWidth, cellHeight);
+				} else if (c == STEALTH) {
+					Stealth sneak = new Stealth(marker.loadImage("data//invisibility.png"), x, y, cellWidth,
+							cellHeight);
 					this.addAbility(sneak);
-				}
-				if (c== 'F') {
+				} else if (c == FENCE) {
 					Fence f = new Fence(null, x, y, cellWidth, cellHeight);
 					this.addEnemy(f);
 				}
@@ -327,10 +329,20 @@ public class Maze {
 		System.out.println(s0);
 	}
 
+	/**
+	 * Returns the two dimensional array representing this maze
+	 * 
+	 * @return the two dimensional array representing this maze
+	 */
 	public char[][] getGrid() {
 		return grid;
 	}
 
+	/**
+	 * returns String representation of this maze
+	 * 
+	 * @return String representation of this maze
+	 */
 	public String toString() {
 		String s0 = "";
 
@@ -345,14 +357,25 @@ public class Maze {
 		}
 		return s0;
 	}
+
+	/**
+	 * Sets the dimentions of each cell in the maze
+	 * 
+	 * @param width  width of each cell
+	 * @param height height of each cel
+	 */
 	public void setNewCellWidthHeight(int width, int height) {
 		cellWidth = width;
 		cellHeight = height;
 	}
-	
-	public int getCellLength() {
+
+	/**
+	 * Returns width of the cell
+	 * 
+	 * @return width of the cell
+	 */
+	public int getCellWidth() {
 		return cellWidth;
 	}
-	
-	
+
 }

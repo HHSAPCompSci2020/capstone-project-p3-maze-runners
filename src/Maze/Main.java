@@ -2,7 +2,9 @@ package Maze;
 
 import javax.swing.*;
 import java.awt.*;
+
 /**
+ * This is where the program starts executing
  * 
  * @author Shelby
  *
@@ -14,8 +16,12 @@ public class Main extends JFrame {
 
 	private OptionPanel panel1;
 	private DrawingSurface panel2;
-	
 
+	/**
+	 * Constructs a main object with the user provided title
+	 * 
+	 * @param title name of the application
+	 */
 	public Main(String title) {
 		super(title);
 		setBounds(100, 100, 800, 600);
@@ -38,11 +44,17 @@ public class Main extends JFrame {
 
 	}
 
+	/**
+	 * Main method of the Application
+	 */
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		Main w = new Main("Maze Of Legends");
 	}
 
+	/**
+	 * Changes the visible panel from the main menu to
+	 */
 	public void changePanel() {
 		((CardLayout) cardPanel.getLayout()).next(cardPanel);
 		panel2.requestFocus();
