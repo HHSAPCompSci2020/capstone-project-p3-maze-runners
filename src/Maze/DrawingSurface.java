@@ -145,7 +145,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
 	}
-	private void drawBanner() {
+	private void drawHUD() {
 //		Text that Displays the players health
 			int bannerHeight = 50;
 			
@@ -155,7 +155,8 @@ public class DrawingSurface extends PApplet {
 			this.stroke(0);
 			this.fill(0, 0, 0, 200);
 			String healthStr = "";
-			String livesStr = "Lives: " + lives;
+			String livesStr = "Lives: " + lives + " ";
+			String levelStr = "Level " + (mazeSelected+1)+ " ";
 			
 			healthStr += "Health: " + player.getHealth();
 			String abilityStr = "";
@@ -181,10 +182,17 @@ public class DrawingSurface extends PApplet {
 			if (stealthDuration >0) {
 				abilityStr += (int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
 			}
+			
+			String combined = levelStr + livesStr + healthStr;
+
 			this.textSize(20);
-			this.text(livesStr, 0 + 20, DRAWING_HEIGHT - 20);
-			this.text(healthStr, 120, DRAWING_HEIGHT - 20);
-			this.text(abilityStr, 300, DRAWING_HEIGHT - 20);
+//			this.text(levelStr, 0 + 20, DRAWING_HEIGHT - 20);
+//			this.text(livesStr, 0 + 100, DRAWING_HEIGHT - 20);
+//			this.text(healthStr, 180, DRAWING_HEIGHT - 20);
+			
+			this.text(combined, 20, DRAWING_HEIGHT - 20);
+			this.text(abilityStr, 350, DRAWING_HEIGHT - 20);
+			
 			this.fill(0);
 	}
 	
@@ -286,7 +294,7 @@ public class DrawingSurface extends PApplet {
 		player.draw(this);
 
 		//Print the health, lives, ability, debug information
-		drawBanner();
+		drawHUD();
 		
 		
 		//author Joseph Huang
