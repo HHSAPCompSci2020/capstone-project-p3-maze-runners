@@ -67,14 +67,14 @@ public class Maze {
 		mazeWidth = gridHeight;
 		mazeHeight = gridHeight;
 		
-//		if (gridWidth < 30) {
+		if (gridWidth < 30) {
 			cellWidth = 40;
 			cellHeight = 40;
-//		}
-//		else {
-//			cellWidth = 20;
-//			cellHeight = 20;
-//		}
+		}
+		else {
+			cellWidth = 25;
+			cellHeight = 25;
+		}
 		/*
 		if (gridWidth < 15) {
 			cellWidth = 60;
