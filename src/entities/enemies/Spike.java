@@ -11,7 +11,7 @@ import processing.core.PImage;
  */
 @SuppressWarnings("serial")
 public class Spike extends Enemy {
-	private boolean isVisible;
+	protected boolean isVisible;
 
 	/**
 	 * Constructs this Spike at position x,y with the given image and default

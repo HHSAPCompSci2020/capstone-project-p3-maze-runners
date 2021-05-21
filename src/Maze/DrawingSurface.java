@@ -33,8 +33,8 @@ public class DrawingSurface extends PApplet {
 	/**
 	 * Draw lines every 100 pixels as a guide to know the coordinates of objects
 	 */
-	private final boolean drawGridLines = true;
-	private static boolean gamePaused = false;
+	private final boolean drawGridLines = false;
+//	private static boolean gamePaused = false;
 	
 	private Rectangle screenRect;
 
@@ -46,7 +46,10 @@ public class DrawingSurface extends PApplet {
 
 
 	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9, maze10;
+	private Maze test;
+	private boolean doTestMaze = false;
 	private int toggleDebugCooldown;
+	
 
 	/**
 	 * mazeSelected is the index of allMazes that will be loaded on screen
@@ -71,7 +74,7 @@ public class DrawingSurface extends PApplet {
 	 * how many invincibility frames the player has. Player cannot take a damage for
 	 */
 	public static int playerDmgCooldown;
-	public static final int DMG_MAX_COOLDOWN = 60;
+	public static final int DMG_MAX_COOLDOWN = 120;
 	/**
 	 * how many abilities are to be spawned randomly in the maze
 	 */
@@ -102,6 +105,9 @@ public class DrawingSurface extends PApplet {
 		
 		//Go to loadMazes() to add new Mazes, use the exact same name style
 		loadMazes();
+		
+		if (doTestMaze)
+			allMazes.add(test);
 		allMazes.add(maze0);
 		allMazes.add(maze1);
 
@@ -127,6 +133,9 @@ public class DrawingSurface extends PApplet {
 	 * @author Christopher Lew
 	 */
 	private void loadMazes() {
+		if (doTestMaze) {
+			test = new Maze(this, "data//test.txt", 10, 7);
+		}
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
 		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
 		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
@@ -192,13 +201,15 @@ public class DrawingSurface extends PApplet {
 				abilityStr += (int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
 			}
 			
-			String combined = levelStr + "    "+ livesStr + healthStr;
+			String combined = levelStr + "    "+ livesStr +"  "+ healthStr;
 
 			this.textSize(20);
 			
 			this.text(levelStr, 10, DRAWING_HEIGHT - 20);
-			this.text(livesStr, 0 + 100, DRAWING_HEIGHT - 20);
-			this.text(healthStr, 180, DRAWING_HEIGHT - 20);
+			
+			this.textSize(16);
+			this.text(livesStr, 0 + 100, DRAWING_HEIGHT - 15);
+			this.text(healthStr, 100, DRAWING_HEIGHT - 35);
 			
 //			this.text(combined, 10, DRAWING_HEIGHT - 20);
 			this.text(abilityStr, 350, DRAWING_HEIGHT - 20);
@@ -561,7 +572,9 @@ public class DrawingSurface extends PApplet {
 //		loadMazes();	
 		reloadMaze(mazeSelected);
 		starDuration = 0;
-		player = new Player(loadImage("data//luigi.png"), x, y, 25, 25, loadImage("data//luigiLeft.png"));
+		float f = 25f/40;
+		Maze thisMaze = allMazes.get(mazeSelected);
+		player = new Player(loadImage("data//luigi.png"), x, y, (int)(thisMaze.getCellLength()*f), (int)(thisMaze.getCellLength()*f), loadImage("data//luigiLeft.png"));
 	}
 
 	private void spawnWalls(ArrayList<Shape> obstacles, Maze thisMaze) {
@@ -619,7 +632,7 @@ public class DrawingSurface extends PApplet {
 							if (e.isMovable())
 								e.receiveKnockback(e2.x, e2.y, e2.width, e2.height, 0.2);
 							if (e2.isMovable())
-								e2.receiveKnockback(e.x, e.y, e.width, e.height, 0.2);
+								e2.receiveKnockback(e.x, e.y, e.width, e.height, 0.2 );
 
 						}
 					}
@@ -733,5 +746,12 @@ public class DrawingSurface extends PApplet {
 	public static Player getPlayer() {
 		return player;
 	}
+	
+//	public double getCellRatio() {
+//		double d = 1.0;
+//		d = allMazes.get(mazeSelected).getCellLength() / 40.0;
+//		return d;
+//		
+//	}
 	
 }

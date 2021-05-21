@@ -13,7 +13,7 @@ import processing.core.PImage;
  */
 @SuppressWarnings("serial")
 public class TimingTrap extends Spike {
-	private boolean isVisible;
+//	private boolean isVisible;
 //	private Player pl;
 
 	/**

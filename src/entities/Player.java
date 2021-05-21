@@ -112,12 +112,36 @@ public class Player extends Entity {
 		if (!invincible) {
 			if (DrawingSurface.playerDmgCooldown == 0) {
 				health -= damage;
-				DrawingSurface.playerDmgCooldown = 60;
+				DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
 				if (health <= 0) {
 					health = 0;
 					DrawingSurface.lives -= 1;
 				}
 				receiveKnockback(otherX, otherY, otherWidth, otherHeight, 1.0);
+
+			}
+		}
+	}
+	/**
+	 * reduces the health of the player
+	 * 
+	 * @param damage      How much damage to take (int)
+	 * @param otherX      x coordinate of the other Creature
+	 * @param otherY      y coordinate of the other Creature
+	 * @param otherWidth  width of the other Creature
+	 * @param otherHeight height of the other Creature
+	 * @param kbMultiplier the multiplier for the knockback received by the Player
+	 */
+	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
+		if (!invincible) {
+			if (DrawingSurface.playerDmgCooldown == 0) {
+				health -= damage;
+				DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
+				if (health <= 0) {
+					health = 0;
+					DrawingSurface.lives -= 1;
+				}
+				receiveKnockback(otherX, otherY, otherWidth, otherHeight, kbMultiplier);
 
 			}
 		}
@@ -132,7 +156,7 @@ public class Player extends Entity {
 	public void reduceHealthBy(int damage, int otherX, int otherY) {
 		if (!invincible) {
 			health -= damage;
-			DrawingSurface.playerDmgCooldown = 60;
+			DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
 			if (health <= 0) {
 				health = 0;
 				DrawingSurface.lives -= 1;
@@ -142,6 +166,7 @@ public class Player extends Entity {
 			}
 		}
 	}
+	
 
 	/**
 	 * @author Joseph
@@ -198,15 +223,24 @@ public class Player extends Entity {
 	public void draw(PApplet marker) {
 		marker.pushStyle();
 		if (DrawingSurface.playerDmgCooldown > 0) {
-			marker.fill(248, 44, 0);
-			marker.text("Ow!", (float) (x - width / 4), (float) (y - width / 8));
+//			marker.fill(248, 44, 0);
+//			marker.text("Ow!", (float) (x - width / 4), (float) (y - width / 8));
 
 		} else {
 			marker.fill(0);
 			speed = WALK_SPEED;
 		}
-		if (DrawingSurface.playerDmgCooldown > 30) {
+		if (DrawingSurface.playerDmgCooldown > 0) {
 			speed = DAMAGED_SPEED;
+			float w = (float)(width * DrawingSurface.playerDmgCooldown/DrawingSurface.DMG_MAX_COOLDOWN);
+			marker.noStroke();
+			marker.fill(255,80,80);
+			marker.rect((float)(x), (float) (y + 1.1f*height), w, (float)height/5f);
+			marker.stroke(0);
+			marker.noFill();
+			marker.rect((float)(x), (float) (y + 1.1f*height), (float)width, (float)height/5f);
+			
+//			System.out.println("here s = "+speed);
 		} else {
 			speed = WALK_SPEED;
 		}

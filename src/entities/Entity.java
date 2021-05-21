@@ -308,22 +308,86 @@ public abstract class Entity extends MovingImage {
 	 * @param otherHeight  height of other Creature
 	 * @param kbMultiplier how far to be knocked back (larger value = farther push)
 	 */
-	public void receiveKnockback(double otherX, double otherY, double otherWidth, double otherHeight,
-			double kbMultiplier) {
-		// get Knocked back
-		if (otherX <= this.x && this.x <= otherX + otherWidth) {
-			if (y >= otherY) {
-				moveBy(0, kbMultiplier * knockback);
-			} else {
-				moveBy(0, -kbMultiplier * knockback);
-			}
-		}
+	public void receiveKnockback(double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
+		boolean runNewVersion = true;
 
-		if (otherY <= this.y && this.y <= otherY + otherHeight) {
-			if (x >= otherX) {
-				moveBy(kbMultiplier * knockback, 0);
-			} else {
-				moveBy(-kbMultiplier * knockback, 0);
+		if(runNewVersion) {
+			double oCenterX = otherX + otherWidth/2;
+			double oCenterY = otherY + otherHeight/2;
+			double dx = oCenterX - this.getCenterX();
+			double dy = oCenterY - this.getCenterY();
+			double distance = Math.sqrt(  dx*dx + dy*dy);
+			double angle; // angle from positive x axis in radians, greater values go clockwise
+			double kbX, kbY, kbMagnitude;
+			
+//			if (dx == 0) {
+//				if (dy > 0) 
+//					angle = Math.PI;
+//				else 
+//					angle = 3 * Math.PI/2;
+//			}
+			angle = Math.atan(dy/dx);
+			angle = Math.atan2(dy, dx);
+
+//			Point other = new Point();
+//			other.x = (int)oCenterX;
+//			other.y = (int)oCenterY;
+//			other.
+			
+			
+			
+			//kbMagnitude is between 0.5 and 2
+//			System.out.println("dist: "+distance);
+//			kbMagnitude = Math.min(10, Math.max(0.1, Math.pow( (80 - distance)/100.0, 0.5)));
+			if (distance > 60) {
+				kbMagnitude = 1.0;
+			}
+			else if (distance > 40) {
+				kbMagnitude = 1.05;
+			}
+			else if (distance > 30) {
+				kbMagnitude = 1.4;
+			}
+			else if (distance > 20){
+				kbMagnitude = 1.8;
+			}
+			else {
+				kbMagnitude = 2.5;
+			}
+			
+			kbX = -kbMagnitude * (dx/distance);
+			kbY = -kbMagnitude * (dy/distance);
+			
+//			if (dx <0) 
+//				kbX = Math.abs(kbX);
+//			else
+//				kbX = -Math.abs(kbX);
+//			if (dy < 0)
+//				kbY = Math.abs(kbY);
+//			else
+//				kbY = -Math.abs(kbY);
+			
+			moveBy( kbX*knockback, kbY * knockback );
+			angle = Math.toDegrees(angle);
+//			System.out.println("angle = " + angle+ " kbX = "+kbX + ", kbY = "+kbY);
+//			System.out.println("dx = "+dx+ " dy = "+dy + "\n");
+		}
+		else {
+			// get Knocked back
+			if (otherX <= this.x && this.x <= otherX + otherWidth) {
+				if (y >= otherY) {
+					moveBy(0, kbMultiplier * knockback);
+				} else {
+					moveBy(0, -kbMultiplier * knockback);
+				}
+			}
+
+			if (otherY <= this.y && this.y <= otherY + otherHeight) {
+				if (x >= otherX) {
+					moveBy(kbMultiplier * knockback, 0);
+				} else {
+					moveBy(-kbMultiplier * knockback, 0);
+				}
 			}
 		}
 	}

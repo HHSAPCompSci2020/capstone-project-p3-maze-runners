@@ -77,6 +77,14 @@ public abstract class Enemy extends Entity {
 	public void attack(Player p) {
 		p.reduceHealthBy(1, x, y, width, height);
 	}
+	/**
+	 * Method is used for attacking a player
+	 * 
+	 * @param p the player to attack
+	 */
+	public void attack(Player p, double kbMultiplier) {
+		p.reduceHealthBy(1, x, y, width, height, kbMultiplier);
+	}
 
 	/**
 	 * subclasses must implement this method
