@@ -1,24 +1,35 @@
 package entities.abilities;
+
 import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
+
 /**
- * makes the player not visible 
+ * makes the player invisible so enemies
+ * 
  * @author Joseph Huang
  *
  */
-public class Stealth extends Ability{
+@SuppressWarnings("serial")
+public class Stealth extends Ability {
 
-	private static char sSymbol = 's';
 	private long time;
 
+	/**
+	 * Constructs this Ability at position x,y with the given image and user
+	 * provided dimensions
+	 * 
+	 * @param img    the PImage that is drawn for this Ability
+	 * @param x      the top left x coordinate
+	 * @param y      the top left x coordinate
+	 * @param width  the width of this Ability
+	 * @param height the height of this Ability
+	 */
 	public Stealth(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.uses = 1;
-		//		imageName = "heal.png";
 	}
-
 
 	/**
 	 * increments usage
@@ -32,11 +43,12 @@ public class Stealth extends Ability{
 
 	}
 
-
-	
+	/**
+	 * 
+	 */
 	public void invincible() {
-		time=DrawingSurface.getIterations()+120;
-		while(DrawingSurface.getIterations()<=time) {
+		time = DrawingSurface.getIterations() + 120;
+		while (DrawingSurface.getIterations() <= time) {
 
 		}
 	}
@@ -45,13 +57,12 @@ public class Stealth extends Ability{
 		super.draw(marker);
 	}
 
-	public static char getSymbol() {
-		return sSymbol;
-	}
-
+	/**
+	 * Returns a String representation of this Ability
+	 * 
+	 * @return String representation of this Ability
+	 */
 	public String toString() {
 		return "Temporary Stealth";
 	}
-	
-	
 }

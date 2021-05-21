@@ -36,7 +36,6 @@ public class Player extends Entity {
 	 * Represents whether the Player is visible to enemies in the mazes
 	 */
 	public static boolean visibleByEnemies = true;
-//<<<<<<< Updated upstream
 	private PImage flippedImage;
 
 	/**
@@ -49,11 +48,9 @@ public class Player extends Entity {
 	 * @param width  the width of this Creature
 	 * @param height the height of this Creature
 	 */
-//=======
 	public boolean visible=true;
 	
 	
-//>>>>>>> Stashed changes
 	public Player(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
 		super.maxHealth = 3;
@@ -111,7 +108,7 @@ public class Player extends Entity {
 	 * @param otherHeight height of the other Creature
 	 */
 	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight) {
-		if (!this.visibleByEnemies)
+		if (!Player.visibleByEnemies)
 			return;
 		if (!invincible) {
 			if (DrawingSurface.playerDmgCooldown == 0) {
@@ -137,7 +134,7 @@ public class Player extends Entity {
 	 * @param kbMultiplier the multiplier for the knockback received by the Player
 	 */
 	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
-		if (!this.visibleByEnemies)
+		if (!Player.visibleByEnemies)
 			return;
 		if (!invincible) {
 			if (DrawingSurface.playerDmgCooldown == 0) {
@@ -219,7 +216,6 @@ public class Player extends Entity {
 	}
 
 	public void attack(Player p) {
-		// TODO Auto-generated method stub
 		System.out.println("Player attacked player");
 		p.reduceHealthBy(1, x, y, width, height);
 	}
@@ -253,10 +249,10 @@ public class Player extends Entity {
 			
 		}
 		if (DrawingSurface.playerDmgCooldown > 1) {
-			this.visibleByEnemies = false;
+			Player.visibleByEnemies = false;
 		}
 		else {
-			this.visibleByEnemies = true;
+			Player.visibleByEnemies = true;
 		}
 
 		if (!facingRight) {

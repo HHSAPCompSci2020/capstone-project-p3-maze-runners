@@ -56,7 +56,7 @@ public abstract class Entity extends MovingImage {
 	 * Constructs this Entity at position x,y with the given image and default
 	 * dimensions
 	 * 
-	 * @param img the PImage that is drawn for this Creature
+	 * @param img the PImage that is drawn for this Entity
 	 * @param x   the top left x coordinate
 	 * @param y   the top left x coordinate
 	 */
@@ -79,11 +79,11 @@ public abstract class Entity extends MovingImage {
 	 * Constructs this Entity at position x,y with the given image and user provided
 	 * dimensions
 	 * 
-	 * @param img    the PImage that is drawn for this Creature
+	 * @param img    the PImage that is drawn for this Entity
 	 * @param x      the top left x coordinate
 	 * @param y      the top left x coordinate
-	 * @param width  the width of this Creature
-	 * @param height the height of this Creature
+	 * @param width  the width of this Entity
+	 * @param height the height of this Entity
 	 */
 	public Entity(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
