@@ -10,8 +10,6 @@
 \
 
 
-
-
 C->StartingLocation
 #->Walls
 T=TimingTrap
