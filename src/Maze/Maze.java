@@ -33,7 +33,7 @@ public class Maze {
 	 */
 	protected char[][] grid;
 	private final int DEFAULT_MAZE_WIDTH = 20, DEFAULT_MAZE_HEIGHT = 20;
-	private int cellWidth = 40, cellHeight = 40;
+	private int cellWidth, cellHeight;
 
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Ability> abilities;
@@ -52,6 +52,8 @@ public class Maze {
 		grid = new char[DEFAULT_MAZE_HEIGHT][DEFAULT_MAZE_WIDTH];
 		playerStartX = 25;
 		playerStartY = 25;
+		cellWidth = 40;
+		cellHeight = 40;
 	}
 
 	public Maze(PApplet marker, String filename, int gridWidth, int gridHeight) {
@@ -65,6 +67,24 @@ public class Maze {
 		mazeWidth = gridHeight;
 		mazeHeight = gridHeight;
 		
+		if (gridWidth < 15) {
+			cellWidth = 60;
+			cellHeight = 60;
+		}
+		else if (gridWidth < 30) {
+			cellWidth = 40;
+			cellHeight = 40;
+		}
+		else if (gridWidth <= 36) {
+			cellWidth = 25;
+			cellHeight = 25;
+		}
+		else {
+			cellWidth = 15;
+			cellHeight = 15;
+		}
+		System.out.println("gw" + gridWidth);
+		
 		this.readData(filename, grid);
 		addObjectsFromGrid(marker);
 	}
@@ -75,6 +95,11 @@ public class Maze {
 	 * @param marker
 	 */
 	public Maze(Maze old, PApplet marker) {
+		cellWidth = old.cellWidth;
+		cellHeight = old.cellHeight;
+		System.out.println("gw" + old.grid.length);
+
+
 		this.fileName = old.getFileName();
 		grid = old.grid;
 		
@@ -150,6 +175,7 @@ public class Maze {
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
 				char c = grid[row][col];
+				System.out.println("cellWidth = "+cellWidth);
 				int x = col * cellWidth;
 				int y = row * cellHeight;
 

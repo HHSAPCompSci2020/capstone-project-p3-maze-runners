@@ -40,7 +40,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Maze> allMazes;
 
 
-	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9;
+	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9, maze10;
 	private int toggleDebugCooldown;
 
 	/**
@@ -107,6 +107,7 @@ public class DrawingSurface extends PApplet {
 		allMazes.add(maze7);
 		allMazes.add(maze8);
 		allMazes.add(maze9);
+		allMazes.add(maze10);
 //		maze9.setNewCellWidthHeight(35, 35);
 //		DEBUG PRINT TO BE REMOVED
 		{
@@ -132,6 +133,7 @@ public class DrawingSurface extends PApplet {
 		
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
 		maze9 = new Maze(this, "data//maze9.txt", 22, 16);
+		maze10 = new Maze(this, "data//maze10.txt", 36, 22);
 	}
 	
 	/**
@@ -144,6 +146,7 @@ public class DrawingSurface extends PApplet {
 		Maze temp = new Maze(allMazes.get(mazeSelected), this);
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
+		System.out.println("Maze "+mazeSelected);
 	}
 	private void drawHUD() {
 //		Text that Displays the players health
