@@ -109,7 +109,6 @@ public class DrawingSurface extends PApplet {
 			allMazes.add(test);
 		allMazes.add(maze0);
 		allMazes.add(maze1);
-
 		allMazes.add(maze2);
 		allMazes.add(maze3);
 		allMazes.add(maze4);
