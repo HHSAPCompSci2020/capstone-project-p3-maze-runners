@@ -59,8 +59,10 @@ public class Heal extends Ability{
 	 * 
 	 */
 	public void attack(Player p) {
-		if(super.getPickedUp())
-		p.reduceHealthBy(-1);
+		if(super.getPickedUp()) {
+			
+		}
+//		p.reduceHealthBy(-1);
 		//p.healBy(1); //i think this should work the same
 	}
 	

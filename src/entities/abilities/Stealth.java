@@ -15,7 +15,7 @@ public class Stealth extends Ability{
 
 	public Stealth(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		super.uses=2;
+		super.uses = 1;
 		//		imageName = "heal.png";
 	}
 
@@ -28,6 +28,7 @@ public class Stealth extends Ability{
 
 		int duration = 3;
 		DrawingSurface.stealthDuration = duration * DrawingSurface.FPS;
+		Player.visibleByEnemies = false;
 
 	}
 
@@ -49,7 +50,7 @@ public class Stealth extends Ability{
 	}
 
 	public String toString() {
-		return "Stealthed";
+		return "Temporary Stealth";
 	}
 	
 	

@@ -354,7 +354,10 @@ public abstract class Entity extends MovingImage {
 			else {
 				kbMagnitude = 2.5;
 			}
-			
+			if (DrawingSurface.mazeSelected == 10) {
+				kbMagnitude *= 25.0/40;
+			}
+			kbMagnitude *= kbMultiplier;
 			kbX = -kbMagnitude * (dx/distance);
 			kbY = -kbMagnitude * (dy/distance);
 			

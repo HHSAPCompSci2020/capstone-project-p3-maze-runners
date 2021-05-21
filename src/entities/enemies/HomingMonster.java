@@ -4,6 +4,7 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 import Maze.DrawingSurface;
+import entities.Player;
 import processing.core.PImage;
 
 /**
@@ -37,20 +38,23 @@ public class HomingMonster extends Monster {
 	public void act(ArrayList<Shape> obstacles) {
 		super.act(obstacles);
 		// Make Monster slowly go towards player
-		if (DrawingSurface.getIterations() % 10 == 0) {
-			double dx = 0, dy = 0;
-			if (DrawingSurface.getPlayer().getCenterX() < this.getCenterX()) {
-				dx = -speed;
-			} else {
-				dx = speed;
-			}
-			if (DrawingSurface.getPlayer().getCenterY() < this.getCenterY()) {
-				dy = -speed;
-			} else {
-				dy = speed;
-			}
-			moveBy(dx, dy);
+		if (Player.visibleByEnemies ) {
 
+			if (DrawingSurface.getIterations() % 10 == 0) {
+				double dx = 0, dy = 0;
+				if (DrawingSurface.getPlayer().getCenterX() < this.getCenterX()) {
+					dx = -speed;
+				} else {
+					dx = speed;
+				}
+				if (DrawingSurface.getPlayer().getCenterY() < this.getCenterY()) {
+					dy = -speed;
+				} else {
+					dy = speed;
+				}
+				moveBy(dx, dy);
+
+			}
 		}
 	}
 

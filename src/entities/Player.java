@@ -19,15 +19,15 @@ public class Player extends Entity {
 	/**
 	 * Walking speed of the Player
 	 */
-	public static final double WALK_SPEED = 2;
+	public static double WALK_SPEED = 2;
 	/**
 	 * Running speed of the Player
 	 */
-	public static final double RUN_SPEED = 4;
+//	public static final double RUN_SPEED = 4;
 	/**
 	 * Speed of the Player after taking Damage
 	 */
-	public static final double DAMAGED_SPEED = 0.6;
+	public static final double DAMAGED_SPEED = 0.8;
 	/**
 	 * Represents whether the Player is invincible(true) or not(false)
 	 */
@@ -80,24 +80,26 @@ public class Player extends Entity {
 		flippedImage = flipped;
 	}
 
-	/**
-	 * reduces the health of the player
-	 * 
-	 * @param damage the amount of damage to be taken.
-	 */
-	public void reduceHealthBy(int damage) {
-		if (!invincible) {
-			if (DrawingSurface.playerDmgCooldown == 0) {
-				health -= damage;
-				DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
-				if (health <= 0) {
-					health = 0;
-					DrawingSurface.lives -= 1;
-					// do DrawingSurface.spawnNewPlayer();
-				}
-			}
-		}
-	}
+//	/**
+//	 * reduces the health of the player
+//	 * 
+//	 * @param damage the amount of damage to be taken.
+//	 */
+//	public void reduceHealthBy(int damage) {
+//		if (!this.visibleByEnemies)
+//			return;
+//		if (!invincible) {
+//			if (DrawingSurface.playerDmgCooldown == 0) {
+//				health -= damage;
+//				DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
+//				if (health <= 0) {
+//					health = 0;
+//					DrawingSurface.lives -= 1;
+//					// do DrawingSurface.spawnNewPlayer();
+//				}
+//			}
+//		}
+//	}
 
 	/**
 	 * reduces the health of the player
@@ -109,6 +111,8 @@ public class Player extends Entity {
 	 * @param otherHeight height of the other Creature
 	 */
 	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight) {
+		if (!this.visibleByEnemies)
+			return;
 		if (!invincible) {
 			if (DrawingSurface.playerDmgCooldown == 0) {
 				health -= damage;
@@ -133,6 +137,8 @@ public class Player extends Entity {
 	 * @param kbMultiplier the multiplier for the knockback received by the Player
 	 */
 	public void reduceHealthBy(int damage, double otherX, double otherY, double otherWidth, double otherHeight, double kbMultiplier) {
+		if (!this.visibleByEnemies)
+			return;
 		if (!invincible) {
 			if (DrawingSurface.playerDmgCooldown == 0) {
 				health -= damage;
@@ -147,25 +153,27 @@ public class Player extends Entity {
 		}
 	}
 
-	/**
-	 * 
-	 * @param damage the amount of damage to be taken.
-	 * @param otherX x coordinate of the entity causing health lost
-	 * @param otherY y coordinate of the entity causing health lost
-	 */
-	public void reduceHealthBy(int damage, int otherX, int otherY) {
-		if (!invincible) {
-			health -= damage;
-			DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
-			if (health <= 0) {
-				health = 0;
-				DrawingSurface.lives -= 1;
-			}
-			if (DrawingSurface.playerDmgCooldown == 0) {
-//				work normally
-			}
-		}
-	}
+//	/**
+//	 * 
+//	 * @param damage the amount of damage to be taken.
+//	 * @param otherX x coordinate of the entity causing health lost
+//	 * @param otherY y coordinate of the entity causing health lost
+//	 */
+//	public void reduceHealthBy(int damage, int otherX, int otherY) {
+//		if (!this.visibleByEnemies)
+//			return;
+//		if (!invincible) {
+//			health -= damage;
+//			DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
+//			if (health <= 0) {
+//				health = 0;
+//				DrawingSurface.lives -= 1;
+//			}
+//			if (DrawingSurface.playerDmgCooldown == 0) {
+////				work normally
+//			}
+//		}
+//	}
 	
 
 	/**
@@ -213,7 +221,7 @@ public class Player extends Entity {
 	public void attack(Player p) {
 		// TODO Auto-generated method stub
 		System.out.println("Player attacked player");
-		p.reduceHealthBy(1);
+		p.reduceHealthBy(1, x, y, width, height);
 	}
 
 	public int getHealth() {
@@ -239,10 +247,16 @@ public class Player extends Entity {
 			marker.stroke(0);
 			marker.noFill();
 			marker.rect((float)(x), (float) (y + 1.1f*height), (float)width, (float)height/5f);
-			
 //			System.out.println("here s = "+speed);
 		} else {
 			speed = WALK_SPEED;
+			
+		}
+		if (DrawingSurface.playerDmgCooldown > 1) {
+			this.visibleByEnemies = false;
+		}
+		else {
+			this.visibleByEnemies = true;
 		}
 
 		if (!facingRight) {

@@ -28,7 +28,7 @@ public class DrawingSurface extends PApplet {
 	public static final int FPS = 60;
 	
 	private static long iterations = 0;
-	public static int lives = 3;
+	public static int lives = 5;
 	private static boolean debugEnabled = false;
 	/**
 	 * Draw lines every 100 pixels as a guide to know the coordinates of objects
@@ -55,7 +55,7 @@ public class DrawingSurface extends PApplet {
 	 * mazeSelected is the index of allMazes that will be loaded on screen
 	 * 
 	 */
-	public int mazeSelected = 0;
+	public static int mazeSelected = 0;
 
 	/**
 	 * mazeChangeCooldown is the number of draw() method calls that pass between
@@ -123,7 +123,7 @@ public class DrawingSurface extends PApplet {
 //		DEBUG PRINT TO BE REMOVED
 		{
 			Maze thisMaze = allMazes.get(mazeSelected);
-			System.out.println("Maze: " + (mazeSelected));
+//			System.out.println("Maze: " + (mazeSelected));
 			thisMaze.printCharArray(thisMaze.getGrid());
 		}
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
@@ -147,7 +147,7 @@ public class DrawingSurface extends PApplet {
 		
 		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
 		maze9 = new Maze(this, "data//maze9.txt", 22, 16);
-		maze10 = new Maze(this, "data//maze10.txt", 36, 22);
+		maze10 = new Maze(this, "data//maze10.txt", 36, 26);
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public class DrawingSurface extends PApplet {
 		Maze temp = new Maze(allMazes.get(mazeSelected), this);
 		allMazes.remove(mazeIndex);
 		allMazes.add(mazeIndex, temp);
-		System.out.println("Maze "+mazeSelected);
+//		System.out.println("Maze "+mazeSelected);
 	}
 	private void drawHUD() {
 		pushStyle();
@@ -178,7 +178,7 @@ public class DrawingSurface extends PApplet {
 			
 //			healthStr += "Health: " + player.getHealth();
 			healthStr += "Health: ";
-			String abilityStr = "";
+			String abilityStr = "", abilityStr2 = "";
 			if (currentAbility!= null) {
 				this.textSize(16);
 				String s = "";
@@ -191,12 +191,15 @@ public class DrawingSurface extends PApplet {
 				}
 
 
-				abilityStr += "Ability (press spacebar): \n"+  s + currentAbility.toString() + " | ";
+				abilityStr += "Ability (press spacebar): \n";
+				abilityStr2 += currentAbility.toString() + " | ";
 			}
 			if (player.invincible == true) {
 //				healthStr += "star";
 //				System.out.println("wow");
 				abilityStr += " | " + (int)(starDuration/60) + "."+ (int)(starDuration/6 %10 ) + " s of invincibility";
+				
+				
 			}
 			if (stealthDuration >0) {
 				abilityStr += (int)(stealthDuration/60) + "."+ (int)(stealthDuration/6 %10 ) + "s of stealth";
@@ -209,11 +212,11 @@ public class DrawingSurface extends PApplet {
 			this.text(levelStr, 10, DRAWING_HEIGHT - 20);
 			this.text(livesStr, 0 + 355, DRAWING_HEIGHT - 20);
 
-			this.textSize(24);
+			this.textSize(22);
 			this.text(healthStr, 110, DRAWING_HEIGHT - 20);
-			this.textSize(20);
-			this.text(abilityStr, 480, DRAWING_HEIGHT - 30);
-
+			this.textSize(18);
+			this.text(abilityStr, 480, DRAWING_HEIGHT - 35);
+			this.text(abilityStr2, 480, DRAWING_HEIGHT - 15);
 			//draw heart
 			float xStart, yStart;
 			for (int i = 1; i <=  player.getHealth(); i++) {
@@ -334,7 +337,21 @@ public class DrawingSurface extends PApplet {
 
 		float ratioX = (float) width / DRAWING_WIDTH;
 		float ratioY = (float) height / DRAWING_HEIGHT;
-
+		
+		//doesn't scale correctly
+//		float ratioX2, ratioY2;
+//		if (mazeSelected == 10) {
+//			ratioX2 = 25f/40;
+//			ratioY2 = 25f/40;
+////			ratioX2 = 0.01f;
+////			ratioY2 = 0.01f;
+//			if (iterations %10 == 0) {
+//				System.out.println("should be scaling even more");
+//			}
+//			scale(ratioX2, ratioY2);
+//		}
+		
+		
 		scale(ratioX, ratioY);
 
 		fill(100);
@@ -402,7 +419,9 @@ public class DrawingSurface extends PApplet {
 			
 
 			String debugStr = "[Debug On]\n" + "Debug controls:\n" +  "m Go to next maze\n" 
-			+ "k Increase Health\n" + "l Increase Lives";
+			+ "k Increase Health\n" + "l Increase Lives \n"
+					+ "Hold Shift to run fast";
+
 			fill(32);
 			textSize(16);
 			this.text(debugStr, DRAWING_WIDTH - 190, 20);
@@ -468,14 +487,17 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
 		
-//		if (isPressed(KeyEvent.VK_SHIFT) ||  isPressed(KeyEvent.SHIFT_DOWN_MASK) ) {
-//			System.out.println("run");
-//
-//			player.setSpeed(player.RUN_SPEED);
-//		}
-//		else {
-//			player.setSpeed(player.WALK_SPEED);
-//		}
+		
+		if (debugEnabled) {
+			if (isPressed(KeyEvent.VK_SHIFT) ||  isPressed(KeyEvent.SHIFT_DOWN_MASK) ) {
+				//			System.out.println("run");
+
+				player.WALK_SPEED = 6;
+			}
+			else {
+				player.WALK_SPEED = 2;
+			}
+		}
 		
 		
 //		if (isPressed(KeyEvent.VK_F)) {
@@ -757,7 +779,7 @@ public class DrawingSurface extends PApplet {
 	public double getCellRatio() {
 		double d = 1.0;
 		d = allMazes.get(mazeSelected).getCellLength() / 40.0;
-		System.out.println("length"+allMazes.get(mazeSelected).getCellLength());
+//		System.out.println("length"+allMazes.get(mazeSelected).getCellLength());
 		return d;
 		
 	}

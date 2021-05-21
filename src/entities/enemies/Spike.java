@@ -54,6 +54,9 @@ public class Spike extends Enemy {
 		if (isVisible) {
 			p.reduceHealthBy(1, x, y, width, height);
 		}
+		if (p.invincible) {
+			p.receiveKnockback( x, y, width, height, 1.0);
+		}
 	}
 
 	/**

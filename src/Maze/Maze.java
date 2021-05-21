@@ -66,7 +66,8 @@ public class Maze {
 		grid = new char[gridHeight][gridWidth];
 		mazeWidth = gridHeight;
 		mazeHeight = gridHeight;
-		
+		//This doesn't properly scale the distances of the maze
+		/*
 		if (gridWidth < 30) {
 			cellWidth = 40;
 			cellHeight = 40;
@@ -85,7 +86,8 @@ public class Maze {
 			cellWidth = 40;
 			cellHeight = 40;
 		}
-		else if (gridWidth <= 36) {
+		else 
+		if (gridWidth <= 36) {
 			cellWidth = 25;
 			cellHeight = 25;
 		}
@@ -93,7 +95,13 @@ public class Maze {
 			cellWidth = 15;
 			cellHeight = 15;
 		}
-		
+		*/
+		cellWidth = 40;
+		cellHeight = 40;
+		if (gridWidth >= 36) {
+			cellWidth = 25;
+			cellHeight = 25;
+		}
 //		System.out.println("gw" + gridWidth);
 		
 		this.readData(filename, grid);
