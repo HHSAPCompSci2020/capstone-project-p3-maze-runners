@@ -24,7 +24,11 @@ import entities.enemies.Spike;
  *
  */
 public class DrawingSurface extends PApplet {
-	
+	//debugging fields
+	private static final boolean DO_TEST_MAZE = false;
+	private static final boolean CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY = true;
+	private static final boolean drawGridLines = false;
+
 	
 	/**
 	 * Default Width of the drawing
@@ -74,7 +78,6 @@ public class DrawingSurface extends PApplet {
 	private static final long serialVersionUID = -3647651722594954917L;
 	private static long iterations = 0;
 	private static boolean debugEnabled = false;
-	private final boolean drawGridLines = false;
 	private Rectangle screenRect;
 	
 	
@@ -86,9 +89,10 @@ public class DrawingSurface extends PApplet {
 
 	private Maze maze0, maze1, newmaze4, maze3, newmaze2, maze5, maze6, maze7, maze8, maze9, maze10;
 	private Maze test;
-	private boolean doTestMaze = false;
 	private int toggleDebugCooldown;
 	private boolean usedCheats = false;
+	
+	
 
 	/*
 	 * mazeChangeCooldown is the number of draw() method calls that pass between
@@ -129,7 +133,7 @@ public class DrawingSurface extends PApplet {
 		// Go to loadMazes() to add new Mazes, use the exact same name style
 		loadMazes();
 
-		if (doTestMaze)
+		if (DO_TEST_MAZE)
 			allMazes.add(test);
 		allMazes.add(maze0);
 		allMazes.add(maze1);
@@ -157,7 +161,7 @@ public class DrawingSurface extends PApplet {
 	 * @author Christopher Lew
 	 */
 	private void loadMazes() {
-		if (doTestMaze) {
+		if (DO_TEST_MAZE) {
 			test = new Maze(this, "data//test.txt", 10, 7);
 		}
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
@@ -561,38 +565,37 @@ public class DrawingSurface extends PApplet {
 
 		// Player movement modification
 
-		if (isPressed(KeyEvent.VK_LEFT)) {
-			player.moveBy(-1, 0);
+		
+
+		if (CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY) {
+			if (isPressed(KeyEvent.VK_LEFT)) 
+				player.moveBy(-1, 0);
+			if (isPressed(KeyEvent.VK_A))
+				player.moveBy(-1, 0);
+			if (isPressed(KeyEvent.VK_RIGHT))
+				player.moveBy(1, 0);
+			if (isPressed(KeyEvent.VK_D))
+				player.moveBy(1, 0);
+			if (isPressed(KeyEvent.VK_UP))
+				player.moveBy(0, -1);
+			if (isPressed(KeyEvent.VK_W))
+				player.moveBy(0, -1);
+			if (isPressed(KeyEvent.VK_DOWN))
+				player.moveBy(0, 1);
+			if (isPressed(KeyEvent.VK_S))
+				player.moveBy(0, 1);
 		}
-		// mario.walk(-1);
-		if (isPressed(KeyEvent.VK_RIGHT))
-			player.moveBy(1, 0);
-		// mario.walk(1);
-		if (isPressed(KeyEvent.VK_UP))
-			player.moveBy(0, -1);
-		// mario.jump();
-		if (isPressed(KeyEvent.VK_DOWN))
-			player.moveBy(0, 1);
-
-		// Chris: you can also use WASD to move
-		if (isPressed(KeyEvent.VK_A))
-			player.moveBy(-1, 0);
-		// mario.walk(-1);
-		if (isPressed(KeyEvent.VK_D))
-			player.moveBy(1, 0);
-		// mario.walk(1);
-		if (isPressed(KeyEvent.VK_W))
-			player.moveBy(0, -1);
-		// mario.jump();
-		if (isPressed(KeyEvent.VK_S))
-			player.moveBy(0, 1);
-
-
-//		if (isPressed(KeyEvent.VK_F)) {
-//			starDuration = 3000;
-//			System.out.println("star");
-//		}
-
+		else {
+			if (isPressed(KeyEvent.VK_LEFT) || isPressed(KeyEvent.VK_A)) 
+				player.moveBy(-1, 0);
+			if (isPressed(KeyEvent.VK_RIGHT) || isPressed(KeyEvent.VK_D))
+				player.moveBy(1, 0);
+			if (isPressed(KeyEvent.VK_UP) || isPressed(KeyEvent.VK_W))
+				player.moveBy(0, -1);
+			if (isPressed(KeyEvent.VK_DOWN) || isPressed(KeyEvent.VK_S))
+				player.moveBy(0, 1);
+		}
+		
 		if (player.getXVelocity() < 0) {
 			player.facingRight = false;
 		} else if (player.getXVelocity() > 0) {
