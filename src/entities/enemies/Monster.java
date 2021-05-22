@@ -3,6 +3,7 @@ package entities.enemies;
 import java.awt.Shape;
 import java.util.ArrayList;
 
+import Maze.DrawingSurface;
 import entities.Player;
 import processing.core.PImage;
 
@@ -40,7 +41,9 @@ public class Monster extends Enemy {
 		double rand1 = Math.random();
 		double rand2 = Math.random();
 
-		if (rand2 * 100 < 10) {
+//		if (rand2 * 100 < 10) {
+		if (DrawingSurface.getIterations() % 5 == 0) {
+
 			int dx = 0, dy = 0;
 			if (rand1 < 0.25) {
 				dx = (int) speed;

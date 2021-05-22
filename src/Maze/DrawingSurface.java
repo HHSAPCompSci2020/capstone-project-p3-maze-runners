@@ -81,7 +81,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Integer> keys;
 	private ArrayList<Maze> allMazes;
 
-	private Maze maze0, maze1, maze2, maze3, maze4, maze5, maze6, maze7, maze8, maze9, maze10;
+	private Maze maze0, maze1, newmaze4, maze3, newmaze2, maze5, maze6, maze7, maze8, maze9, maze10;
 	private Maze test;
 	private boolean doTestMaze = false;
 	private int toggleDebugCooldown;
@@ -124,9 +124,11 @@ public class DrawingSurface extends PApplet {
 			allMazes.add(test);
 		allMazes.add(maze0);
 		allMazes.add(maze1);
-		allMazes.add(maze2);
+		allMazes.add(newmaze2);
+
 		allMazes.add(maze3);
-		allMazes.add(maze4);
+		allMazes.add(newmaze4);
+
 		allMazes.add(maze5);
 		allMazes.add(maze6);
 		allMazes.add(maze7);
@@ -151,9 +153,9 @@ public class DrawingSurface extends PApplet {
 		}
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
 		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
-		maze2 = new Maze(this, "data//maze2.txt", 15, 15);
-		maze3 = new Maze(this, "data//maze3.txt", 15, 15);
-		maze4 = new Maze(this, "data//maze4.txt", 18, 25);
+		newmaze4 = new Maze(this, "data//newmaze4.txt", 15, 15);
+		maze3 = new Maze(this, "data//maze3.txt", 15, 16);
+		newmaze2 = new Maze(this, "data//newmaze2.txt", 18, 25);
 
 		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
