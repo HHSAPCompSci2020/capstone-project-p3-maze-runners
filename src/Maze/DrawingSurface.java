@@ -217,19 +217,21 @@ public class DrawingSurface extends PApplet {
 				s = currentAbility.getUses() + "x ";
 			}
 
-			abilityStr += "Ability (press spacebar): \n";
+			abilityStr += "Ability (spacebar): \n";
 			abilityStr2 += currentAbility.toString() + " | ";
 		}
+		String durationStr = "";
 		if (player.invincible == true) {
 //				healthStr += "star";
 //				System.out.println("wow");
-			abilityStr += " | " + (int) (starDuration / 60) + "." + (int) (starDuration / 6 % 10)
-					+ " s of invincibility";
+			durationStr += "Invincibility: " 
+					+ (int) (starDuration / 60) + "." + (int) (starDuration / 6 % 10) + " s";
 
 		}
 		if (stealthDuration > 0) {
-			abilityStr += (int) (stealthDuration / 60) + "." + (int) (stealthDuration / 6 % 10) + "s of stealth";
+			durationStr += "Stealth: "+ (int) (stealthDuration / 60) + "." + (int) (stealthDuration / 6 % 10) + "s";
 		}
+		int duration = Math.max(starDuration,  stealthDuration);
 
 		this.fill(0, 0, 0);
 		this.textSize(24);
@@ -242,6 +244,10 @@ public class DrawingSurface extends PApplet {
 		this.textSize(18);
 		this.text(abilityStr, 480, DRAWING_HEIGHT - 32);
 		this.text(abilityStr2, 480, DRAWING_HEIGHT - 15);
+		if (durationStr.length() != 0) {
+			this.textSize(22);
+			this.text(durationStr, 480, DRAWING_HEIGHT - 20);
+		}
 		// draw heart
 		float xStart, yStart;
 		for (int i = 1; i <= player.getHealth(); i++) {

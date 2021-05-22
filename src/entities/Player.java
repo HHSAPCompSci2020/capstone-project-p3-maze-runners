@@ -259,27 +259,38 @@ public class Player extends Entity {
 			speed = WALK_SPEED;
 			
 		}
+		if (invincible) {
+			marker.strokeWeight(3);
+			marker.stroke(255, 255, 0);
+			marker.noFill();
+			marker.ellipse((float) this.getCenterX(), (float) this.getCenterY(), (float) (1.4f * width),
+					(float) (1.4f * height));
+		}
 		if (DrawingSurface.starDuration > 0) {
+			DrawingSurface.playerDmgCooldown = 0;
 			float w = (float)(width * DrawingSurface.starDuration/ DrawingSurface.maxStarDuration);
 			marker.noStroke();
 			marker.fill(255,255,255);
-			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
-			marker.fill(200,200,120);
-			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
+			marker.rect((float)(x-1), (float) (y - height/3f), (float)width, (float)height/4f);
+			marker.fill(223,187,0);
+			marker.rect((float)(x-1), (float) (y - height/3f), w, (float)height/4f);
 			marker.stroke(0);
 			marker.noFill();
-			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+			marker.strokeWeight(1);
+			marker.rect((float)(x-1), (float) (y - height/3f), (float)width, (float)height/4f);
 		}
 		if (DrawingSurface.stealthDuration > 0) {
+			DrawingSurface.playerDmgCooldown = 0;
 			float w = (float)(width * DrawingSurface.stealthDuration/ DrawingSurface.maxStealthDuration);
 			marker.noStroke();
 			marker.fill(255,255,255);
-			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
-			marker.fill(145,216,131);
-			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
+			marker.rect((float)(x-1), (float) (y - height/3f), (float)width , (float)height/4f);
+			marker.fill(71,200,78);
+			marker.rect((float)(x-1), (float) (y - height/3f), w, (float)height/4f);
 			marker.stroke(0);
 			marker.noFill();
-			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+			marker.strokeWeight(1);
+			marker.rect((float)(x-1), (float) (y - height/3f), (float)width, (float)height/4f);
 		}
 		if (DrawingSurface.playerDmgCooldown > 1) {
 			Player.visibleByEnemies = false;
@@ -294,13 +305,7 @@ public class Player extends Entity {
 			marker.image(image, (int) x, (int) y, (int) width, (int) height);
 		}
 
-		if (invincible) {
-			marker.strokeWeight(3);
-			marker.stroke(255, 255, 0);
-			marker.noFill();
-			marker.ellipse((float) this.getCenterX(), (float) this.getCenterY(), (float) (1.4f * width),
-					(float) (1.4f * height));
-		}
+		
 		marker.popStyle();
 
 //		super.draw(marker);

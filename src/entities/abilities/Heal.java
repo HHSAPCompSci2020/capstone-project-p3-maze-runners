@@ -95,12 +95,14 @@ public class Heal extends Ability {
 	 */
 	public void draw(PApplet marker) {
 		marker.pushStyle();
-		marker.fill(95, 252, 0);
+		marker.fill(0, 197, 50);
 		marker.noStroke();
 //		marker.stroke(75, 232, 0);
 //		marker.stroke(2);
-		marker.rect((float) x, (float) (y + height / 3), (float) width, (float) height / 3);
-		marker.rect((float) (x + width / 3), (float) (y), (float) width / 3, (float) height);
+		//horizontal rect
+		marker.rect((float) (x + width/10), (float) (y + height * 2f/5), (float) (width * 4f/5), (float) height / 5);
+		//vertical rect
+		marker.rect((float) (x + width *2f/5 ), (float) (y+ width/10), (float) (width/5f), (float)(height * 4f/5));
 		marker.popStyle();
 
 	}
