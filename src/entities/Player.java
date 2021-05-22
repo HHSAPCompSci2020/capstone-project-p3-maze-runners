@@ -260,18 +260,22 @@ public class Player extends Entity {
 			
 		}
 		if (DrawingSurface.starDuration > 0) {
-			float w = (float)(width * DrawingSurface.starDuration/ (5*60));
+			float w = (float)(width * DrawingSurface.starDuration/ DrawingSurface.maxStarDuration);
 			marker.noStroke();
-			marker.fill(240,244,147);
+			marker.fill(255,255,255);
+			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+			marker.fill(200,200,120);
 			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
 			marker.stroke(0);
 			marker.noFill();
 			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
 		}
 		if (DrawingSurface.stealthDuration > 0) {
-			float w = (float)(width * DrawingSurface.stealthDuration/ (5*60));
+			float w = (float)(width * DrawingSurface.stealthDuration/ DrawingSurface.maxStealthDuration);
 			marker.noStroke();
-			marker.fill(240,244,147);
+			marker.fill(255,255,255);
+			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+			marker.fill(145,216,131);
 			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
 			marker.stroke(0);
 			marker.noFill();

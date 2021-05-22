@@ -64,17 +64,20 @@ public class DrawingSurface extends PApplet {
 	 * 	Duration of the star powerup
 	 */
 	public static int starDuration;
+	public static int maxStarDuration;
 	/**
 	 * 	Duration of the stealth powerup
 	 */
 	public static int stealthDuration;
+	public static int maxStealthDuration;
 
 	private static final long serialVersionUID = -3647651722594954917L;
 	private static long iterations = 0;
 	private static boolean debugEnabled = false;
 	private final boolean drawGridLines = false;
 	private Rectangle screenRect;
-
+	
+	
 	private static Player player;
 
 	private ArrayList<Shape> obstacles;
@@ -100,6 +103,11 @@ public class DrawingSurface extends PApplet {
 	private Ability currentAbility = null;
 	private boolean gameComplete = false;
 
+	private long completeTime = -1;
+	private String completeTimeStr;
+	public static long startingIterations = -1;
+	
+	
 	/*
 	 * ------------------------Constructor------------------------
 	 */
@@ -276,7 +284,58 @@ public class DrawingSurface extends PApplet {
 				this.line(0, i, DRAWING_WIDTH, i);
 			}
 		}
+		
+		//Draw the time
+		
+//		int wholeSeconds = (int) (iterations / 60) % 60;
+//		int tenthSeconds = (int) (iterations / 6 % 10);
+//		int minutes = (int) (iterations / 60 / 60);
+//		String secondsStr, minutesStr;
+//		if (wholeSeconds < 10) 
+//			secondsStr = "0" + wholeSeconds;
+//		else
+//			secondsStr = "" + wholeSeconds;
+//		if (minutes < 10) 
+//			minutesStr = "0" + minutes;
+//		else 
+//			minutesStr = "" + minutes;
+
+//		String totalTimeStr =  minutesStr +":"+ secondsStr + "." + tenthSeconds + "";
+//		this.rect(DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5, c, d);
+		String totalTimeStr = framesToHHMMSS(iterations - startingIterations);
+		this.fill(255,255,255, 192);
+		this.noStroke();
+		this.rect(DRAWING_WIDTH - 100, 600, 100, 24);
+		this.textAlign(this.RIGHT);
+		this.textSize(20);
+		this.fill(0);
+		this.text(totalTimeStr, DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5);
+		
 		popStyle();
+	}
+	private String framesToHHMMSS(long totalFrames) {
+		int wholeSeconds = (int) (totalFrames / 60) % 60;
+		int tenthSeconds = (int) (totalFrames / 6 % 10);
+		int minutes = (int) (totalFrames / 60 / 60 % 60);
+		int hours =(int) (totalFrames / 60 / 60 / 60);
+		String secondsStr, minutesStr, hoursStr;
+		if (wholeSeconds < 10) 
+			secondsStr = "0" + wholeSeconds;
+		else
+			secondsStr = "" + wholeSeconds;
+		if (minutes < 10) 
+			minutesStr = "0" + minutes;
+		else 
+			minutesStr = "" + minutes;
+		if (hours > 0)
+			hoursStr = "" + hours + ":";
+		else
+			hoursStr = "";
+			
+		
+//		this.rect(DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5, c, d);
+		String totalTimeStr =  hoursStr + minutesStr +":"+ secondsStr + "." + tenthSeconds + "";
+		return totalTimeStr;
 	}
 
 	/*
@@ -405,7 +464,11 @@ public class DrawingSurface extends PApplet {
 
 //   End of game scren
 		if (gameComplete) {
-
+			if (completeTime == -1) {
+				completeTime = iterations / 60;
+				completeTimeStr = framesToHHMMSS(iterations - startingIterations);
+			}
+			
 			pushStyle();
 			textAlign(CENTER);
 			fill(255);
@@ -415,6 +478,10 @@ public class DrawingSurface extends PApplet {
 			String s = "Thanks For Playing!\n" + "Developed By:\n" + "Christopher Lew\n" + "Joseph Huang\n"
 					+ "Lakshya Shrivastava\n";
 			this.text(s, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
+			String timeStr = "Your time: " + completeTimeStr ;
+			this.text(timeStr, DRAWING_WIDTH / 2, 4 * DRAWING_HEIGHT / 5);
+
+			
 			popStyle();
 		}
 
@@ -600,6 +667,7 @@ public class DrawingSurface extends PApplet {
 //		loadMazes();	
 		reloadMaze(mazeSelected);
 		starDuration = 0;
+		stealthDuration = 0;
 		float f = 25f / 40;
 		Maze thisMaze = allMazes.get(mazeSelected);
 		player = new Player(loadImage("data//luigi.png"), x, y, (int) (thisMaze.getCellWidth() * f),
@@ -728,6 +796,7 @@ public class DrawingSurface extends PApplet {
 				gameComplete = false;
 			} else {
 				gameComplete = true;
+				
 
 			}
 

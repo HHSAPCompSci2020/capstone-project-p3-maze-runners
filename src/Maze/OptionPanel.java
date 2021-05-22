@@ -84,6 +84,9 @@ public class OptionPanel extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		w.changePanel();
+		if (DrawingSurface.startingIterations == -1) {
+			DrawingSurface.startingIterations = DrawingSurface.getIterations();
+		}
 	}
 
 	/**

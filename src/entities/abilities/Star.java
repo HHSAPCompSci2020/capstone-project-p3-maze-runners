@@ -36,7 +36,8 @@ public class Star extends Ability {
 	public void use(Player p) {
 		super.use();
 		int duration = 5;
-		DrawingSurface.starDuration = duration * DrawingSurface.FPS;
+		DrawingSurface.maxStarDuration = duration * DrawingSurface.FPS;
+		DrawingSurface.starDuration = DrawingSurface.maxStarDuration;
 	}
 
 	/**
