@@ -259,6 +259,24 @@ public class Player extends Entity {
 			speed = WALK_SPEED;
 			
 		}
+		if (DrawingSurface.starDuration > 0) {
+			float w = (float)(width * DrawingSurface.starDuration/ (5*60));
+			marker.noStroke();
+			marker.fill(240,244,147);
+			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
+			marker.stroke(0);
+			marker.noFill();
+			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+		}
+		if (DrawingSurface.stealthDuration > 0) {
+			float w = (float)(width * DrawingSurface.stealthDuration/ (5*60));
+			marker.noStroke();
+			marker.fill(240,244,147);
+			marker.rect((float)(x), (float) (y - height/5f), w, (float)height/5f);
+			marker.stroke(0);
+			marker.noFill();
+			marker.rect((float)(x), (float) (y - height/5f), (float)width, (float)height/5f);
+		}
 		if (DrawingSurface.playerDmgCooldown > 1) {
 			Player.visibleByEnemies = false;
 		}

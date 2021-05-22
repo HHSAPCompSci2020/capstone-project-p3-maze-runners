@@ -232,7 +232,7 @@ public class DrawingSurface extends PApplet {
 		this.textSize(22);
 		this.text(healthStr, 110, DRAWING_HEIGHT - 20);
 		this.textSize(18);
-		this.text(abilityStr, 480, DRAWING_HEIGHT - 35);
+		this.text(abilityStr, 480, DRAWING_HEIGHT - 32);
 		this.text(abilityStr2, 480, DRAWING_HEIGHT - 15);
 		// draw heart
 		float xStart, yStart;

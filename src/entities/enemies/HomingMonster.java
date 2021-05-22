@@ -38,7 +38,7 @@ public class HomingMonster extends Monster {
 	public void act(ArrayList<Shape> obstacles) {
 		super.act(obstacles);
 		// Make Monster slowly go towards player
-		if (Player.visibleByEnemies ) {
+		if (Player.visibleByEnemies || DrawingSurface.stealthDuration >0) {
 
 			if (DrawingSurface.getIterations() % 10 == 0) {
 				double dx = 0, dy = 0;
@@ -51,6 +51,23 @@ public class HomingMonster extends Monster {
 					dy = -speed;
 				} else {
 					dy = speed;
+				}
+				moveBy(dx, dy);
+
+			}
+		}
+		else if (!Player.visibleByEnemies){
+			if (DrawingSurface.getIterations() % 10 == 0) {
+				double dx = 0, dy = 0;
+				if (DrawingSurface.getPlayer().getCenterX() < this.getCenterX()) {
+					dx = 0.5*speed;
+				} else {
+					dx = -0.5*speed;
+				}
+				if (DrawingSurface.getPlayer().getCenterY() < this.getCenterY()) {
+					dy = 0.5*speed;
+				} else {
+					dy = -0.5*speed;
 				}
 				moveBy(dx, dy);
 

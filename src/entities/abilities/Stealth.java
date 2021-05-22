@@ -37,7 +37,7 @@ public class Stealth extends Ability {
 	public void use() {
 		super.use();
 
-		int duration = 3;
+		int duration = 5;
 		DrawingSurface.stealthDuration = duration * DrawingSurface.FPS;
 		Player.visibleByEnemies = false;
 

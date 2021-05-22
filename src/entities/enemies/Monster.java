@@ -43,7 +43,23 @@ public class Monster extends Enemy {
 
 //		if (rand2 * 100 < 10) {
 		if (DrawingSurface.getIterations() % 5 == 0) {
+			if (!Player.visibleByEnemies && DrawingSurface.stealthDuration ==0){
+				if (DrawingSurface.getIterations() % 10 == 0) {
+					double dx = 0, dy = 0;
+					if (DrawingSurface.getPlayer().getCenterX() < this.getCenterX()) {
+						dx = 0.25*speed;
+					} else {
+						dx = -0.25*speed;
+					}
+					if (DrawingSurface.getPlayer().getCenterY() < this.getCenterY()) {
+						dy = 0.25*speed;
+					} else {
+						dy = -0.25*speed;
+					}
+					moveBy(dx, dy);
 
+				}
+			}
 			int dx = 0, dy = 0;
 			if (rand1 < 0.25) {
 				dx = (int) speed;
@@ -57,6 +73,8 @@ public class Monster extends Enemy {
 
 			moveBy(dx, dy);
 		}
+		
+		
 	}
 
 	/**
