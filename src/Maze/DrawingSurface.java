@@ -88,6 +88,7 @@ public class DrawingSurface extends PApplet {
 	private Maze test;
 	private boolean doTestMaze = false;
 	private int toggleDebugCooldown;
+	private boolean usedCheats = false;
 
 	/*
 	 * mazeChangeCooldown is the number of draw() method calls that pass between
@@ -484,7 +485,12 @@ public class DrawingSurface extends PApplet {
 			String s = "Thanks For Playing!\n" + "Developed By:\n" + "Christopher Lew\n" + "Joseph Huang\n"
 					+ "Lakshya Shrivastava\n";
 			this.text(s, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 3);
-			String timeStr = "Your time: " + completeTimeStr ;
+			String cheatStr = "";
+			if (usedCheats) {
+				cheatStr = " (using debug cheats)";
+				fill(255,0,0);
+			}
+			String timeStr = "Your time" + cheatStr +":\n"  + completeTimeStr ;
 			this.text(timeStr, DRAWING_WIDTH / 2, 4 * DRAWING_HEIGHT / 5);
 
 			
@@ -521,8 +527,11 @@ public class DrawingSurface extends PApplet {
 		}
 
 		popMatrix();// this should be after any drawing to scale properly
+		
+		//Cheats you can use while in Debug mode
 		if (debugEnabled) {
 			if (isPressed(KeyEvent.VK_M)) { // TOGGLE MAZE
+				usedCheats = true;
 
 				@SuppressWarnings("unused")
 				String s = "" + toggleMaze();
@@ -531,20 +540,30 @@ public class DrawingSurface extends PApplet {
 			if (isPressed(KeyEvent.VK_K) && otherCooldown == 0) {
 				player.healBy(1);
 				otherCooldown = 20;
+				usedCheats = true;
+
 			}
 			if (isPressed(KeyEvent.VK_L) && lives < 100 && otherCooldown == 0) {
 				lives++;
-				otherCooldown = 30;
+				otherCooldown = 15;
+				usedCheats = true;
 
+			}
+			if (isPressed(KeyEvent.VK_SHIFT) || isPressed(KeyEvent.SHIFT_DOWN_MASK)) {
+				// System.out.println("run");
+
+				Player.WALK_SPEED = 6;
+				usedCheats = true;
+			} else {
+				Player.WALK_SPEED = 2;
 			}
 		}
 
 		// Player movement modification
-		if (isPressed(KeyEvent.VK_LEFT))
 
-			if (isPressed(KeyEvent.VK_LEFT)) {
-				player.moveBy(-1, 0);
-			}
+		if (isPressed(KeyEvent.VK_LEFT)) {
+			player.moveBy(-1, 0);
+		}
 		// mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
 			player.moveBy(1, 0);
@@ -568,15 +587,6 @@ public class DrawingSurface extends PApplet {
 		if (isPressed(KeyEvent.VK_S))
 			player.moveBy(0, 1);
 
-		if (debugEnabled) {
-			if (isPressed(KeyEvent.VK_SHIFT) || isPressed(KeyEvent.SHIFT_DOWN_MASK)) {
-				// System.out.println("run");
-
-				Player.WALK_SPEED = 6;
-			} else {
-				Player.WALK_SPEED = 2;
-			}
-		}
 
 //		if (isPressed(KeyEvent.VK_F)) {
 //			starDuration = 3000;
