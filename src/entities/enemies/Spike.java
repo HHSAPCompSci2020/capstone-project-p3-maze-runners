@@ -22,7 +22,6 @@ public class Spike extends Enemy {
 	 * @param x   the top left x coordinate
 	 * @param y   the top left x coordinate
 	 */
-
 	public Spike(PImage img, int x, int y) {
 		super(img, x, y);
 		isVisible = true;

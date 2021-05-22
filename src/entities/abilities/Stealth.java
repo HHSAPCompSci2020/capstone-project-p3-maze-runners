@@ -6,7 +6,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * makes the player invisible so enemies
+ * makes the player invisible to enemies
  * 
  * @author Joseph Huang
  *
