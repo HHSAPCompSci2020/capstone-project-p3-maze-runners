@@ -9,6 +9,7 @@ import Maze.*;
 
 /**
  *	Represents anything that is in the maze. Players, enemies, abilities
+ * @author Shelby, modified by Christopher Lew
  */
 @SuppressWarnings("serial")
 public abstract class Entity extends MovingImage {

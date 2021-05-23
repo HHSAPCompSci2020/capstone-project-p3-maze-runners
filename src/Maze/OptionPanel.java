@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
  * 
  * The first screen that shows up at launch of the app
  * 
- * @author John_Shelby
+ * @author John_Shelby, modified by Lakshya Shrivastava
  *
  */
 @SuppressWarnings("serial")

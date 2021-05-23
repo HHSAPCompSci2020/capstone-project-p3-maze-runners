@@ -7,7 +7,7 @@ import processing.core.PImage;
 /**
  * Gives you invincibility and makes it so you kill any Enemies you touch
  * 
- * @author Chris
+ * @author Christopher Lew
  */
 @SuppressWarnings("serial")
 public class Star extends Ability {

@@ -16,8 +16,7 @@ import entities.abilities.*;
 /**
  * Maze holds all the Walls, Abilities, and Enemies on the screen and can be
  * loaded from a .txt file
- * 
- * @author Chris
+ * @author Christopher Lew
  *
  */
 public class Maze {
@@ -63,7 +62,7 @@ public class Maze {
 
 	/**
 	 * Creates a maze with user specified arguments
-	 * 
+	 * @author Christopher Lew
 	 * @param marker     The PApplet to which the maze will be drawn
 	 * @param filename   The file from which to get the maze
 	 * @param gridWidth  width of the grid / number of columns
@@ -111,7 +110,7 @@ public class Maze {
 
 	/**
 	 * Returns the name of the .txt file used to initialize this Maze's ArrayLists
-	 * 
+	 * @author Christopher Lew
 	 * @return the name of the .txt file used to initialize this Maze's ArrayLists
 	 */
 	public String getFileName() {
@@ -121,7 +120,7 @@ public class Maze {
 	/**
 	 * Returns the reference to the ArrayList of Shapes representing the walls in a
 	 * particular maze
-	 * 
+	 * @author Christopher Lew
 	 * @return the reference to the ArrayList of Shapes representing the walls in a
 	 *         particular maze
 	 */
@@ -132,7 +131,7 @@ public class Maze {
 	/**
 	 * Returns the reference to the ArrayList of Shapes representing the enemies in
 	 * a particular maze
-	 * 
+	 * @author Christopher Lew
 	 * @return the reference to the ArrayList of Shapes representing the enemies in
 	 *         a particular maze
 	 */
@@ -211,7 +210,8 @@ public class Maze {
 	 * ArrayLists Traverses through the .txt file saved for this Maze and matches
 	 * characters on the .txt file to corresponding Entities
 	 * 
-	 * @author Christopher Lew, with help from Lakshya Shrivastava
+	 * @author Christopher Lew 
+	 * More objects added by Lakshya Shrivastava and Joseph Huang
 	 * @param marker the PApplet object used for drawing
 	 */
 	private void addObjectsFromGrid(PApplet marker) {
@@ -269,7 +269,7 @@ public class Maze {
 
 	/**
 	 * Copied from Recursion in 2D arrays lab: GridTemplate.java
-	 * 
+	 * @author Shelby
 	 * @pre char[][] gameData is initialized
 	 * @post gameData will be filled with all the characters in the text file
 	 * @param filename name of the file to read characters from
@@ -361,7 +361,7 @@ public class Maze {
 
 	/**
 	 * Sets the dimentions of each cell in the maze
-	 * 
+	 * @author Christopher Lew
 	 * @param width  width of each cell
 	 * @param height height of each cel
 	 */

@@ -20,7 +20,8 @@ import entities.enemies.Spike;
 /**
  * The PApplet that contains all the mazes and other UI components
  * 
- * @author Christopher Lew, Lakshya Shrivastava, Joseph Huang
+ * @author Shelby
+ * modified by Christopher Lew, Lakshya Shrivastava, Joseph Huang
  *
  */
 public class DrawingSurface extends PApplet {
@@ -870,7 +871,7 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Returns the ratio of cells
-	 * 
+	 * @author Christopher Lew
 	 * @return ratio of cells
 	 */
 	public double getCellRatio() {
