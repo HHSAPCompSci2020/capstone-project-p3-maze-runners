@@ -1,6 +1,6 @@
-package entities;
+package entities.enemies;
 
-import entities.enemies.Spike;
+import entities.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 

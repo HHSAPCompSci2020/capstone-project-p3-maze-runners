@@ -65,14 +65,20 @@ public class DrawingSurface extends PApplet {
 	 */
 	public int abilityNum;
 	/**
-	 * 	Duration of the star powerup
+	 * 	Current duration of the star invincibility ability
 	 */
 	public static int starDuration;
+	/**
+	 * Maximum duration of the star invincibility ability when first used
+	 */
 	public static int maxStarDuration;
 	/**
-	 * 	Duration of the stealth powerup
+	 * 	Current duration of the stealth ability
 	 */
 	public static int stealthDuration;
+	/**
+	 * Maximum duration of the stealth ability when first used
+	 */
 	public static int maxStealthDuration;
 
 	private static final long serialVersionUID = -3647651722594954917L;
@@ -117,6 +123,7 @@ public class DrawingSurface extends PApplet {
 	 * ------------------------Constructor------------------------
 	 */
 	/**
+	 * DrawingSurface's constructor initializes the Mazes and adds them to the ArrayList<Maze> allMazes
 	 * @author Christopher Lew
 	 */
 	public DrawingSurface() {
@@ -157,7 +164,7 @@ public class DrawingSurface extends PApplet {
 		spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 	}
 
-	/**
+	/**Loads all mazes from text files
 	 * @author Christopher Lew
 	 */
 	private void loadMazes() {
@@ -179,9 +186,8 @@ public class DrawingSurface extends PApplet {
 		maze10 = new Maze(this, "data//maze10.txt", 36, 26);
 	}
 
-	/**
-	 * @pre Maze txt file is in the exact format mazeN.txt, where N is the index of
-	 *      the maze in allMazes
+	/**Reloads all objects in the Maze at the index mazeIndex
+	 * @pre mazeIndex is between 0 and allMazes.size()-1
 	 * @param mazeIndex
 	 * @author Christopher Lew
 	 */
@@ -193,6 +199,9 @@ public class DrawingSurface extends PApplet {
 //		System.out.println("Maze "+mazeSelected);
 	}
 
+	/**
+	 * Draws the HUD at the bottom of the screen. Displays Health, Lives, Ability (if one is picked up), and the in game timer
+	 */
 	private void drawHUD() {
 		pushStyle();
 //		Text that Displays the players health
@@ -324,6 +333,12 @@ public class DrawingSurface extends PApplet {
 		
 		popStyle();
 	}
+	/**
+	 * Convert a number of frames to a String in the format HH:MM:SS.S
+	 * @author Christopher Lew
+	 * @param totalFrames number of frames. Assuming running at 60 frames per second
+	 * @return a String in the format HH:MM:SS.S. If hours = 0, does not display hours
+	 */
 	private String framesToHHMMSS(long totalFrames) {
 		int wholeSeconds = (int) (totalFrames / 60) % 60;
 		int tenthSeconds = (int) (totalFrames / 6 % 10);
@@ -676,7 +691,6 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Spawns a new player
-	 * 
 	 * @author Christopher Lew
 	 * @param x the x position of the top left of the new Player
 	 * @param y the y position of the top left of the new Player
@@ -694,8 +708,8 @@ public class DrawingSurface extends PApplet {
 	}
 
 	/**
-	 * Spawns the walls of the array
-	 * 
+	 * Spawns the walls of the obstacles ArrayList and adds them to the current Maze
+	 * @author Christopher Lew
 	 * @param obstacles list of o
 	 * @param thisMaze
 	 */

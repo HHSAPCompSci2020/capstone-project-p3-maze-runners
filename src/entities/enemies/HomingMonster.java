@@ -10,7 +10,7 @@ import processing.core.PImage;
 /**
  * A monster but it moves towards the player
  * 
- * @author Chris
+ * @author Christopher Lew
  *
  */
 @SuppressWarnings("serial")

@@ -7,13 +7,14 @@ import Maze.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-/**
- * This class represents the user controlled player on the screen
- * 
- * @author Christopher Lew
- *
- */
+
+
+
 @SuppressWarnings("serial")
+/**
+ * A Player that the User controls and can take damage from Enemies
+ * @author Christopher Lew
+ */
 public class Player extends Entity {
 //	private int lives;
 	/**
