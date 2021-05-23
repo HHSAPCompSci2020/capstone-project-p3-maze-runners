@@ -135,7 +135,7 @@ public class DrawingSurface extends PApplet {
 
 		String instructions = "Use arrow keys or WASD to move. \n"
 				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
-		System.out.println(instructions);
+//		System.out.println(instructions);
 		allMazes = new ArrayList<Maze>();
 
 		// Go to loadMazes() to add new Mazes, use the exact same name style
@@ -175,14 +175,14 @@ public class DrawingSurface extends PApplet {
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
 		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
 		newmaze4 = new Maze(this, "data//newmaze4.txt", 15, 15);
-		maze3 = new Maze(this, "data//maze3.txt", 15, 16);
+		maze3 = new Maze(this, "data//maze3.txt", 15, 17);
 		newmaze2 = new Maze(this, "data//newmaze2.txt", 18, 25);
 
-		maze5 = new Maze(this, "data//maze5.txt", 20, 15);
+		maze5 = new Maze(this, "data//maze5.txt", 21, 15);
 		maze6 = new Maze(this, "data//maze6.txt", 15, 15);
 		maze7 = new Maze(this, "data//maze7.txt", 16, 9);
 
-		maze8 = new Maze(this, "data//maze8.txt", 25, 18);
+		maze8 = new Maze(this, "data//maze8.txt", 21, 18);
 		maze9 = new Maze(this, "data//maze9.txt", 22, 16);
 		maze10 = new Maze(this, "data//maze10.txt", 36, 26);
 	}
@@ -233,7 +233,7 @@ public class DrawingSurface extends PApplet {
 			}
 
 			abilityStr += "Ability (spacebar): \n";
-			abilityStr2 += currentAbility.toString() + " | ";
+			abilityStr2 += currentAbility.toString() + " ";
 		}
 		String durationStr = "";
 		if (player.invincible == true) {
@@ -251,11 +251,11 @@ public class DrawingSurface extends PApplet {
 		this.fill(0, 0, 0);
 		this.textSize(24);
 
-		this.text(levelStr, 10, DRAWING_HEIGHT - 20);
+		this.text(levelStr, 7, DRAWING_HEIGHT - 20);
 		this.text(livesStr, 0 + 355, DRAWING_HEIGHT - 20);
 
 		this.textSize(22);
-		this.text(healthStr, 110, DRAWING_HEIGHT - 20);
+		this.text(healthStr, 118, DRAWING_HEIGHT - 20);
 		this.textSize(18);
 		this.text(abilityStr, 480, DRAWING_HEIGHT - 32);
 		this.text(abilityStr2, 480, DRAWING_HEIGHT - 15);
@@ -294,7 +294,7 @@ public class DrawingSurface extends PApplet {
 //			}
 		noFill();
 		stroke(0);
-		rect(5, DRAWING_HEIGHT - 40, 100, bannerHeight * 0.6f);
+		rect(3, DRAWING_HEIGHT - 43, 103, bannerHeight * 0.6f);
 //			this.text(combined, 10, DRAWING_HEIGHT - 20);
 		this.fill(0);
 
@@ -698,6 +698,7 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void spawnNewPlayer(int x, int y) {
 		respawnCooldown = 30;
+		currentAbility = null;
 //		loadMazes();	
 		reloadMaze(mazeSelected);
 		starDuration = 0;
