@@ -27,7 +27,15 @@ public class Maze {
 			TIMING_TRAP = 'T', EXIT = 'X', SPIKE = 'S', INVINCIBILITY_PRANK = 'I', STAR = 'i', FENCE = 'F',
 			MONSTER = 'M', HOMING_MONSTER = 'H';
 
-	public int playerStartX, playerStartY;
+	/**
+	 * X coordinate of the player's start location
+	 */
+	public int playerStartX;
+	
+	/**
+	 * Y coordinate of the player's start location
+	 */
+	public int playerStartY;
 	/**
 	 * grid is a 2D char array initialized from Maze's constructor, indexes are at
 	 * [row #][col #]

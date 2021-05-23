@@ -41,6 +41,9 @@ public class Player extends Entity {
 	private PImage flippedImage;
 
 	
+	/**
+	 *  Whether the player is visible or not
+	 */
 	public boolean visible=true;
 	
 	/**
@@ -78,27 +81,6 @@ public class Player extends Entity {
 		imageName = "luigi.png";
 		flippedImage = flipped;
 	}
-
-//	/**
-//	 * reduces the health of the player
-//	 * 
-//	 * @param damage the amount of damage to be taken.
-//	 */
-//	public void reduceHealthBy(int damage) {
-//		if (!this.visibleByEnemies)
-//			return;
-//		if (!invincible) {
-//			if (DrawingSurface.playerDmgCooldown == 0) {
-//				health -= damage;
-//				DrawingSurface.playerDmgCooldown = DrawingSurface.DMG_MAX_COOLDOWN;
-//				if (health <= 0) {
-//					health = 0;
-//					DrawingSurface.lives -= 1;
-//					// do DrawingSurface.spawnNewPlayer();
-//				}
-//			}
-//		}
-//	}
 
 	/**
 	 * reduces the health of the player
@@ -176,6 +158,7 @@ public class Player extends Entity {
 	
 
 	/**
+	 * Heals the player by the amount of health provided
 	 * @author Joseph
 	 * @param amount amount of health recovered
 	 */
@@ -211,10 +194,6 @@ public class Player extends Entity {
 		} else {
 			super.moveBy(x, y);
 		}
-	}
-
-	public char getSymbol() {
-		return 'C';
 	}
 
 	/**

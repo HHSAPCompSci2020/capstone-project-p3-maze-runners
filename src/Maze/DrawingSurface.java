@@ -16,7 +16,6 @@ import entities.abilities.Stealth;
 import entities.enemies.Enemy;
 import entities.enemies.Spike;
 
-
 /**
  * The PApplet that contains all the mazes and other UI components
  * 
@@ -25,12 +24,8 @@ import entities.enemies.Spike;
  *
  */
 public class DrawingSurface extends PApplet {
-	//debugging fields
-	private static final boolean DO_TEST_MAZE = false;
-	private static final boolean CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY = false;
-	private static final boolean drawGridLines = false;
-
 	
+
 	/**
 	 * Default Width of the drawing
 	 */
@@ -52,7 +47,7 @@ public class DrawingSurface extends PApplet {
 	 * 
 	 */
 	public static int mazeSelected = 0;
-	
+
 	/**
 	 * how many invincibility frames the player has. Player cannot take a damage for
 	 */
@@ -67,6 +62,7 @@ public class DrawingSurface extends PApplet {
 	public int abilityNum;
 	/**
 	 * 	Current duration of the star invincibility ability
+	 * Duration of the star powerup
 	 */
 	public static int starDuration;
 	/**
@@ -74,20 +70,24 @@ public class DrawingSurface extends PApplet {
 	 */
 	public static int maxStarDuration;
 	/**
-	 * 	Current duration of the stealth ability
+	 * Duration of the stealth powerup
 	 */
 	public static int stealthDuration;
 	/**
 	 * Maximum duration of the stealth ability when first used
 	 */
 	public static int maxStealthDuration;
+	/**
+	 * Iterations variable starts at this value
+	 */
+	public static long startingIterations = -1;
 
 	private static final long serialVersionUID = -3647651722594954917L;
+	private boolean CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY = false;
 	private static long iterations = 0;
 	private static boolean debugEnabled = false;
 	private Rectangle screenRect;
-	
-	
+
 	private static Player player;
 
 	private ArrayList<Shape> obstacles;
@@ -95,7 +95,6 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Maze> allMazes;
 
 	private Maze maze0, maze1, newmaze4, maze3, newmaze2, maze5, maze6, maze7, maze8, maze9, maze10;
-	private Maze test;
 	private int toggleDebugCooldown;
 	private boolean usedCheats = false;
 	
@@ -117,9 +116,8 @@ public class DrawingSurface extends PApplet {
 
 	private long completeTime = -1;
 	private String completeTimeStr;
-	public static long startingIterations = -1;
 	
-	
+
 	/*
 	 * ------------------------Constructor------------------------
 	 */
@@ -133,16 +131,11 @@ public class DrawingSurface extends PApplet {
 		screenRect = new Rectangle(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
 
-		String instructions = "Use arrow keys or WASD to move. \n"
-				+ "Press 'm' to toggle which Maze is on screen, which only works every half second";
-//		System.out.println(instructions);
 		allMazes = new ArrayList<Maze>();
 
 		// Go to loadMazes() to add new Mazes, use the exact same name style
 		loadMazes();
 
-		if (DO_TEST_MAZE)
-			allMazes.add(test);
 		allMazes.add(maze0);
 		allMazes.add(maze1);
 		allMazes.add(newmaze2);
@@ -169,9 +162,6 @@ public class DrawingSurface extends PApplet {
 	 * @author Christopher Lew
 	 */
 	private void loadMazes() {
-		if (DO_TEST_MAZE) {
-			test = new Maze(this, "data//test.txt", 10, 7);
-		}
 		maze0 = new Maze(this, "data//maze0.txt", 9, 9);
 		maze1 = new Maze(this, "data//maze1.txt", 12, 12);
 		newmaze4 = new Maze(this, "data//newmaze4.txt", 15, 15);
@@ -239,14 +229,12 @@ public class DrawingSurface extends PApplet {
 		if (player.invincible == true) {
 //				healthStr += "star";
 //				System.out.println("wow");
-			durationStr += "Invincibility: " 
-					+ (int) (starDuration / 60) + "." + (int) (starDuration / 6 % 10) + " s";
+			durationStr += "Invincibility: " + (int) (starDuration / 60) + "." + (int) (starDuration / 6 % 10) + " s";
 
 		}
 		if (stealthDuration > 0) {
-			durationStr += "Stealth: "+ (int) (stealthDuration / 60) + "." + (int) (stealthDuration / 6 % 10) + "s";
+			durationStr += "Stealth: " + (int) (stealthDuration / 60) + "." + (int) (stealthDuration / 6 % 10) + "s";
 		}
-		int duration = Math.max(starDuration,  stealthDuration);
 
 		this.fill(0, 0, 0);
 		this.textSize(24);
@@ -279,59 +267,22 @@ public class DrawingSurface extends PApplet {
 			bezierVertex(xStart + 50, yStart + -5, xStart + 10, yStart + 5, xStart + 50, yStart + 40);
 			endShape();
 		}
-//			for (int i = 3; i >  player.getHealth(); i--) {
-//				xStart = 120 + i*50;
-//				yStart = DRAWING_HEIGHT - 50;
-//				smooth();
-//				stroke(0,0,0);
-//				noFill();
-//				beginShape();
-//				vertex(xStart+50,yStart+ 15);
-//				bezierVertex(xStart+50, yStart+-5, xStart+90,yStart+ 5,xStart+ 50,yStart+ 40);
-//				vertex(xStart+50, yStart+15);
-//				bezierVertex(xStart+50, yStart+-5, xStart+10, yStart+5, xStart+50, yStart+40);
-//				endShape();
-//			}
 		noFill();
 		stroke(0);
 		rect(3, DRAWING_HEIGHT - 43, 103, bannerHeight * 0.6f);
 //			this.text(combined, 10, DRAWING_HEIGHT - 20);
 		this.fill(0);
 
-		// draw guide lines
-		if (drawGridLines) {
-			for (int i = 0; i <= DRAWING_WIDTH; i += 100) {
-				this.line(i, 0, i, DRAWING_HEIGHT);
-				this.line(0, i, DRAWING_WIDTH, i);
-			}
-		}
-		
-		//Draw the time
-		
-//		int wholeSeconds = (int) (iterations / 60) % 60;
-//		int tenthSeconds = (int) (iterations / 6 % 10);
-//		int minutes = (int) (iterations / 60 / 60);
-//		String secondsStr, minutesStr;
-//		if (wholeSeconds < 10) 
-//			secondsStr = "0" + wholeSeconds;
-//		else
-//			secondsStr = "" + wholeSeconds;
-//		if (minutes < 10) 
-//			minutesStr = "0" + minutes;
-//		else 
-//			minutesStr = "" + minutes;
 
-//		String totalTimeStr =  minutesStr +":"+ secondsStr + "." + tenthSeconds + "";
-//		this.rect(DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5, c, d);
 		String totalTimeStr = framesToHHMMSS(iterations - startingIterations);
-		this.fill(255,255,255, 192);
+		this.fill(255, 255, 255, 192);
 		this.noStroke();
 		this.rect(DRAWING_WIDTH - 100, 600, 100, 24);
-		this.textAlign(this.RIGHT);
+		this.textAlign(DrawingSurface.RIGHT);
 		this.textSize(20);
 		this.fill(0);
 		this.text(totalTimeStr, DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5);
-		
+
 		popStyle();
 	}
 	/**
@@ -344,24 +295,23 @@ public class DrawingSurface extends PApplet {
 		int wholeSeconds = (int) (totalFrames / 60) % 60;
 		int tenthSeconds = (int) (totalFrames / 6 % 10);
 		int minutes = (int) (totalFrames / 60 / 60 % 60);
-		int hours =(int) (totalFrames / 60 / 60 / 60);
+		int hours = (int) (totalFrames / 60 / 60 / 60);
 		String secondsStr, minutesStr, hoursStr;
-		if (wholeSeconds < 10) 
+		if (wholeSeconds < 10)
 			secondsStr = "0" + wholeSeconds;
 		else
 			secondsStr = "" + wholeSeconds;
-		if (minutes < 10) 
+		if (minutes < 10)
 			minutesStr = "0" + minutes;
-		else 
+		else
 			minutesStr = "" + minutes;
 		if (hours > 0)
 			hoursStr = "" + hours + ":";
 		else
 			hoursStr = "";
-			
-		
+
 //		this.rect(DRAWING_WIDTH - 10, DRAWING_HEIGHT - bannerHeight - 5, c, d);
-		String totalTimeStr =  hoursStr + minutesStr +":"+ secondsStr + "." + tenthSeconds + "";
+		String totalTimeStr = hoursStr + minutesStr + ":" + secondsStr + "." + tenthSeconds + "";
 		return totalTimeStr;
 	}
 
@@ -371,6 +321,9 @@ public class DrawingSurface extends PApplet {
 
 	// The statements in the setup() function
 	// execute once when the program begins
+	/**
+	 * The statements in the setup() function execute once when the program begins
+	 */
 	public void setup() {
 		// size(0,0,PApplet.P3D);
 	}
@@ -379,6 +332,10 @@ public class DrawingSurface extends PApplet {
 	// program is stopped. Each statement is executed in
 	// sequence and after the last line is read, the first
 	// line is executed again.
+	/**
+	 * The statements in draw() are executed until the program is stopped. This is
+	 * the method that draws all the mazes
+	 */
 	public void draw() {
 		iterations++;
 //		if (iterations == temp1+1) {
@@ -495,7 +452,7 @@ public class DrawingSurface extends PApplet {
 				completeTime = iterations / 60;
 				completeTimeStr = framesToHHMMSS(iterations - startingIterations);
 			}
-			
+
 			pushStyle();
 			textAlign(CENTER);
 			fill(255);
@@ -513,7 +470,6 @@ public class DrawingSurface extends PApplet {
 			String timeStr = "Your time" + cheatStr +":\n"  + completeTimeStr ;
 			this.text(timeStr, DRAWING_WIDTH / 2, 4 * DRAWING_HEIGHT / 5);
 
-			
 			popStyle();
 		}
 
@@ -673,15 +629,26 @@ public class DrawingSurface extends PApplet {
 
 	}
 
+	/**
+	 * Look at Processing Library Website for a detailed description.
+	 */
 	public void keyPressed() {
 		keys.add(keyCode);
 	}
 
+	/**
+	 * Look at Processing Library Website for a detailed description.
+	 */
 	public void keyReleased() {
 		while (keys.contains(keyCode))
 			keys.remove(new Integer(keyCode));
 	}
 
+	/**
+	 * Returns whether the key represented by code is pressed
+	 * @param code the integer representing a keyboard key
+	 * @return true if the key represented by code is pressed, false otherwise
+	 */
 	public boolean isPressed(Integer code) {
 		return keys.contains(code);
 	}
@@ -831,7 +798,6 @@ public class DrawingSurface extends PApplet {
 				gameComplete = false;
 			} else {
 				gameComplete = true;
-				
 
 			}
 
@@ -846,6 +812,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 	/**
+	 * Returns the number of draw() iterations that have occured so far
 	 * @author Christopher Lew
 	 * @return number of draw() iterations
 	 */
@@ -854,6 +821,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 	/**
+	 * Returns how many frames on the respawn cooldown there's left
 	 * @author Christopher Lew
 	 * @return how many frames on the respawn cooldown there's left
 	 */
@@ -862,6 +830,7 @@ public class DrawingSurface extends PApplet {
 	}
 
 	/**
+	 * Returns the player that the user controls
 	 * @author Christopher Lew
 	 * @post This method modified the one and only Player on screen so use carefully
 	 * @return the Player that the user controls

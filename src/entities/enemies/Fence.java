@@ -12,9 +12,18 @@ import processing.core.PImage;
 @SuppressWarnings("serial")
 public class Fence extends Spike{
 
+	/**
+	 * Constructs this Fence at position x,y with the given image and user provided
+	 * dimensions
+	 * 
+	 * @param img    the PImage that is drawn for this Entity
+	 * @param x      the top left x coordinate
+	 * @param y      the top left x coordinate
+	 * @param width  the width of this Creature
+	 * @param height the height of this Creature
+	 */
 	public Fence(PImage img, int x, int y, int width, int height) {
 		super(img, x, y, width, height);
-		// TODO Auto-generated constructor stub
 		isVisible = false;
 	}
 
@@ -25,23 +34,17 @@ public class Fence extends Spike{
 	 * @author Christopher Lew
 	 * @param p the Player being attacked
 	 */
-	public void attack(Player p) // Chris:I think this is unused?
+	public void attack(Player p, double x) 
 	{
-		//dont attack
-	}
-	public void attack(Player p, double x) // Chris:I think this is unused?
-	{
-		//dont attack
+		//dont attack this method is necesary due to polymorphism
 	}
 
 	/**
-	 * This method will be used to toggle whether the spike will be draw or not and
-	 * if they will hurt the player or not.
+	 * This method will be used to toggle whether the fence will hurt the player or not.
 	 * 
-	 * @param state the state to which the visibility will be changed
+	 * @param state STATE IS ALWAYS FALSE REGARDLESS OF INPUT
 	 */
 	private void setVisibility(boolean state) {
-//		isVisible = state;
 		isVisible = false;
 	}
 

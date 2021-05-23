@@ -30,7 +30,6 @@ public class Main extends JFrame {
 		cardPanel = new JPanel();
 		CardLayout cl = new CardLayout();
 		cardPanel.setLayout(cl);
-
 		panel1 = new OptionPanel(this);
 		panel2 = new DrawingSurface();
 		panel2.init();

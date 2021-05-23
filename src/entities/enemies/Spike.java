@@ -5,8 +5,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * A timing trap will be spikes that appear and disappear every few seconds. If
- * the player touches the timing trap, their health will go down by 1
+ * Represents spikes that hur the player when they touch the player.
  * 
  * @author Lakshya Shrivastava
  */
@@ -18,7 +17,7 @@ public class Spike extends Enemy {
 	 * Constructs this Spike at position x,y with the given image and default
 	 * dimensions
 	 * 
-	 * @param img the PImage that is drawn for this Creature
+	 * @param img the PImage that is drawn for this Entity
 	 * @param x   the top left x coordinate
 	 * @param y   the top left x coordinate
 	 */

@@ -14,7 +14,6 @@ import processing.core.PImage;
 @SuppressWarnings("serial")
 public class Stealth extends Ability {
 
-	private long time;
 
 	/**
 	 * Constructs this Ability at position x,y with the given image and user
@@ -45,15 +44,9 @@ public class Stealth extends Ability {
 	}
 
 	/**
-	 * 
+	 * Draws this ability to a PApplet
+	 * @param marker The PApplet that the ability will be drawn to
 	 */
-	public void invincible() {
-		time = DrawingSurface.getIterations() + 120;
-		while (DrawingSurface.getIterations() <= time) {
-
-		}
-	}
-
 	public void draw(PApplet marker) {
 		super.draw(marker);
 	}
