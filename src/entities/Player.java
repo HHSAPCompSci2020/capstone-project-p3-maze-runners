@@ -20,6 +20,7 @@ public class Player extends Entity {
 	 * Walking speed of the Player
 	 */
 	public static double WALK_SPEED = 2;
+	public static final double starSpeedMultiplier = 2.0;
 	/**
 	 * Running speed of the Player
 	 */
@@ -265,6 +266,7 @@ public class Player extends Entity {
 			marker.noFill();
 			marker.ellipse((float) this.getCenterX(), (float) this.getCenterY(), (float) (1.4f * width),
 					(float) (1.4f * height));
+			speed = starSpeedMultiplier * WALK_SPEED;
 		}
 		if (DrawingSurface.starDuration > 0) {
 			DrawingSurface.playerDmgCooldown = 0;

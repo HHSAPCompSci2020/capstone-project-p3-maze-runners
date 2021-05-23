@@ -26,7 +26,7 @@ import entities.enemies.Spike;
 public class DrawingSurface extends PApplet {
 	//debugging fields
 	private static final boolean DO_TEST_MAZE = false;
-	private static final boolean CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY = true;
+	private static final boolean CAN_USE_WASD_AND_ARROW_KEYS_SIMULTANEOUSLY = false;
 	private static final boolean drawGridLines = false;
 
 	
@@ -508,8 +508,8 @@ public class DrawingSurface extends PApplet {
 			fill(0, 0, 0, 16);
 			rect(DRAWING_WIDTH - 200, 0, 220, 200);
 
-			String debugStr = "[Debug On]\n" + "Debug controls:\n" + "m Go to next maze\n" + "k Increase Health\n"
-					+ "l Increase Lives \n" + "Hold Shift to run fast";
+			String debugStr = "DEBUG MODE\n" + "Debug controls:\n" + "[m] Go to next maze\n" + "[k] Increase Health\n"
+					+ "[l] Increase Lives \n" + "[Shift] Run fast";
 
 			fill(32);
 			textSize(16);
