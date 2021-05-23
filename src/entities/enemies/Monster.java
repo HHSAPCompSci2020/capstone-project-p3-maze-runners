@@ -39,7 +39,6 @@ public class Monster extends Enemy {
 		super.act(obstacles);
 
 		double rand1 = Math.random();
-		double rand2 = Math.random();
 
 //		if (rand2 * 100 < 10) {
 		if (DrawingSurface.getIterations() % 5 == 0) {
