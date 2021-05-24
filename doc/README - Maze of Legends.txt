@@ -142,8 +142,3 @@ Credits:
    * Shelby’s “Processing - Game and Physics Demo - AP Version” starter demo (for its graphics and collisions), Shelby’s Labyrinth.readFile() from the Recursion in 2D lab
    * Heart code https://www.processing.org/discourse/beta/num_1246205739.html 
 
-
-[a]We improved our way of generating the levels (since the program generates mazes from text files) so sort of done?
-[b]Star ability is a weapon right?
-[c]yeah
-[d]This is completed by Monster.java
