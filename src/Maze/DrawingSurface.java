@@ -629,7 +629,7 @@ public class DrawingSurface extends PApplet {
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 
-		
+		//Only used for the video presentation, does not to be in final .jar
 		if (debugEnabled) {
 			if (isPressed(KeyEvent.VK_W) && isPressed(KeyEvent.VK_I) && isPressed(KeyEvent.VK_N)) {
 				int i = 0;
