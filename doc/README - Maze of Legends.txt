@@ -111,7 +111,7 @@ Class List:
    * Stealth(s)
       * Grants temporary immunity to the player from enemies
    * InvincibilityPrank(I)
-      * Our little joke
+      * Our little joke (fake instant win ability, actually covers the screen for a few seconds as a joke)
 
 
 

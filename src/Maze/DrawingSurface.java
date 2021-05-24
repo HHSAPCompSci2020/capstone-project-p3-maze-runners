@@ -16,6 +16,15 @@ import entities.abilities.Stealth;
 import entities.enemies.Enemy;
 import entities.enemies.Spike;
 
+/*
+ * Note to Shelby:
+You can press '-' and '=' at the same time or 'O' and 'P' to access Debug mode. 
+Debug mode lets you skip through the game but is not intended for normal play, which is why the controls are not shown in game. 
+
+
+In Debug mode, you can skip levels, increase health and levels, hold shift to walk very fast, and press 'W', 'I', and 'N' simultaneously to have the game complete screen appear.
+If any debug tool is used, the time at the end will be red and say that debug cheats were used to achieve that time. 
+ */
 /**
  * The PApplet that contains all the mazes and other UI components
  * 
