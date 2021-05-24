@@ -533,6 +533,8 @@ public class DrawingSurface extends PApplet {
 			} else {
 				Player.WALK_SPEED = 2;
 			}
+			
+			
 		}
 
 		// Player movement modification
@@ -598,7 +600,7 @@ public class DrawingSurface extends PApplet {
 			}
 		}
 
-		if (isPressed(KeyEvent.VK_EQUALS)) {
+		if (isPressed(KeyEvent.VK_EQUALS) && isPressed(KeyEvent.VK_MINUS)) {
 			if (toggleDebugCooldown == 0) {
 				debugEnabled = !debugEnabled;
 				toggleDebugCooldown = 60;
@@ -627,6 +629,18 @@ public class DrawingSurface extends PApplet {
 		if (!screenRect.intersects(player))
 			spawnNewPlayer(allMazes.get(mazeSelected).playerStartX, allMazes.get(mazeSelected).playerStartY);
 
+		
+		if (debugEnabled) {
+			if (isPressed(KeyEvent.VK_W) && isPressed(KeyEvent.VK_I) && isPressed(KeyEvent.VK_N)) {
+				int i = 0;
+				mazeSelected = allMazes.size()-1;
+				usedCheats = true;
+				while (!gameComplete || i <= allMazes.size()) {
+					toggleMaze();
+					i++;
+				}
+			}
+		}
 	}
 
 	/**
