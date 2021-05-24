@@ -1,6 +1,6 @@
 ﻿[Maze of Legends]
 Authors: Christopher Lew, Lakshya Shrivastava, Joseph Huang
-Revision: 5/15/2021
+Revision: 5/23/2021
 
 
 Introduction: 
